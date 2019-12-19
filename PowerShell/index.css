@@ -1,0 +1,43 @@
+html, body, iframe {
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  margin: 0;
+}
+
+iframe {
+  border: none;
+}
+
+#Menu {
+  width: 360px;
+  max-width: 720px;
+}
+
+#Article {
+  width: 720px;
+  margin: auto; /* center frame */
+  z-index: 1;
+}
+
+@media only screen and (max-width : 1000px) {
+  html, body, iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  #Menu {
+    width: 100%;
+  }
+
+  #Article {
+    width: 100%;
+    margin: auto; /* center frame */
+  }
+}

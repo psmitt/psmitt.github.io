@@ -1,0 +1,20 @@
+document.addEventListener('DOMContentLoaded', function () {
+  let folders = window.location.pathname.split('/')
+  let locale = folders[folders.length - 2]
+  let article = folders[folders.length - 1].split('.html')[0]
+  let link = document.createElement('a')
+  link.href = window.location.pathname.split(locale)[0] + `index.html?locale=${locale}&article=${article}`
+  link.target = '_top'
+  link.textContent = '🔝'
+  link.className = 'toplink'
+  link.title = 'A cikk saját címe'
+  document.body.querySelector('h1').append(link)
+
+  let close = document.createElement('span')
+  close.textContent = '🗵'
+  close.className = 'close'
+  close.addEventListener('click', function () {
+    parent.document.getElementById('Article').style.display = 'none'
+  })
+  document.body.querySelector('h1').append(close)
+})

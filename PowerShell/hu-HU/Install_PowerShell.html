@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+  <h1>A PowerShell telepítése</h1>
+  A <kbd>pwsh</kbd> parancs kiadásával ellenőrizzük, hogy a PowerShell telepítve van-e már a számítógépre:
+  <figure>
+    <img src="img/PWSH not installed - Windows.png"/>
+    <figcaption>PowerShell not installed on Windows</figcaption>
+  </figure>
+  <h2>A PowerShell önálló telepítése</h2>
+  A PowerShell utolsó stabil verziójának és legújabb előzetesének (<i>preview</i>&thinsp;)
+  az általunk választott operációs rendszerre és architektúrára előkészített önálló telepítő csomagját
+  a <a href="https://github.com/PowerShell/PowerShell#get-powershell" target="_blank"
+  >PowerShell GitHub oldaláról</a> tölthetjük le.
+  A telepítést a választott platformnak megfelelő módon hajtsuk végre.
+  Segítségül ugyanezen az oldalon a telepítési útmutatókhoz vezető linkeket is találunk.
+  <figure>
+    <img src="img/Get PowerShell.png"/>
+    <figcaption>Get PowerShell from GitHub</figcaption>
+  </figure>
+  <h2>A PowerShell telepítése csomagkezelő használatával</h2>
+  A PowerShell a .NET csomagkezelő rendszerében, a NuGet-ben is elérhető mint globális eszköz.
+  <figure>
+    <img src="img/NuGet.png"/>
+    <figcaption>The PowerShell global tool in NuGet</figcaption>
+  </figure>
+  A .NET Core SDK előzetes telepítése után a PowerShell programcsomag valamennyi platformon
+  egységesen a
+  <code>dotnet tool install --global PowerShell</code>
+  utasítással telepíthető
+  a parancssorból.
+  <figure>
+    <img src="img/dotnet tool install - Windows.png"/>
+    <figcaption>Global Tool Installation on Windows</figcaption>
+  </figure>
+  <nav>
+    <a href="https://www.nuget.org/packages/PowerShell" target="_blank">
+      A PowerShell közösség GitHub fejlesztői oldala
+    </a>
+    <p>
+    <a href="https://www.nuget.org/packages/PowerShell" target="_blank">
+      A PowerShell NuGet csomag oldala
+    </a>
+  </nav>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>A PowerShell bemutatása</h1>
+  A PowerShell a .NET keretrendszerre épülő, feladatvégrehajtásra tervezett,
+  objek&shy;tum alapú szkriptnyelv, grafikus elemeket is támogató, de alapvetően
+  parancssoros felhasználói felülettel.
+  A feladatok végrehajtását gazdagon paraméterezhető ún. parancsmagok
+  (<i>cmdlet</i>&thinsp;) biztosítják, amelyek a .NET keretrendszer objektumait
+  csővezetékszerűen képesek egymásnak átadni, miközben elemzik, módosítják,
+  és újraszervezik azokat.
+  <p>
+  Összetett feladatok automatizálását a PowerShell szkriptnyelv általános célú
+  prog&shy;ramozási szerkezetei teszik lehetővé, amelyekkel újrafelhasználható,
+  a hálózaton terjeszthető szkriptek, modulok és programcsomagok készíthetők.
+  Ezek elsajátítását és használatba vételét fejlett tájékoztatórendszer segíti.
+  A PowerShell alkalma&shy;zásának elsődleges területe a rendszeradminisztráció:
+  a rendszerüzemeltetési feladatok automatizálása és a konfiguráció menedzsment.
+  <p>
+  A .NET keretrendszer az
+  <a href="http://www.ecma-international.org/publications/standards/Ecma-335.htm"
+  target="_blank">ECMA-335</a> (<a href="https://www.iso.org/standard/58046.html"
+  target="_blank">ISO/IEC 23271:2012</a>) szabványt megvalósító közös nyelvi
+  infrastruktúra (CLI), amely egységes, közös nyelvspecifikációra (CLS) és
+  típusrendszerre (CTS) épülő szabványos osztálykönyvtárakat, valamint a köztes
+  nyelvre (CIL) fordított kódot végrehajtani képes futtatókörnyezetet (CLR/VES)
+  tartalmaz.
+  <figure>
+    <img src="img/Architecture.png"/>
+    <figcaption>PowerShell Scripting Architecture</figcaption>
+  </figure>
+  A PowerShell az assembly modulok betöltésével közvetlenül eléri a .NET
+  keret&shy;rendszer osztálykönyvtárait és típusait, ami lehetőséget biztosít
+  a parancsmagok mellett a .NET keretrendszer adatelemeinek és metódusainak
+  közvetlen haszná&shy;latára is, amennyiben a futásidejű teljesítmény
+  növelésére van szükség.
+  <p>
+  A PowerShell képességeinek teljesebb kihasználásához érdemes olyan további
+  fejlesztői segédeszközöket is igénybe venni, amelyek a kényelmes
+  kódszerkesztést és tesztelést, a futásidejű hibakeresést,
+  illetve a .NET keretrendszer osztálykönyv&shy;tárainak felderítését szolgálják.
+  <nav>
+    <a href="https://microsoft.com/PowerShell" target="_blank"
+      >A PowerShell hivatalos termékdokumentációja</a>
+    <p>
+    <a href="Install_PowerShell.html"
+      >A PowerShell telepítése</a>
+  </nav>
+</article>
+</body>
+</html>

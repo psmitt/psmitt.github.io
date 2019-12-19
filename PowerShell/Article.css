@@ -1,0 +1,114 @@
+html, body {
+  height: 100%;
+  margin: auto;
+  overflow: hidden;
+}
+
+body {
+  max-width: 720px;
+  padding: 0.5em 0.5em 0 1em;
+}
+
+article {
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+  padding-right: 100px; /* hide scrollbar */
+  font-family: 'Literata', serif;
+  font-size: large;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: lightgray;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+span.close {
+  color: #336699;
+  float: right;
+  cursor: pointer;
+}
+
+h1, h2 {
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: xx-large;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: x-large;
+  margin-top: 1em;
+}
+
+a {
+  text-decoration: none;
+  color: #5599C0;
+}
+
+a:hover {
+  color: fuchsia;
+}
+
+a.toplink {
+  font-size: x-large;
+  margin-left: 1em;
+  opacity: 0.6;
+}
+
+figure {
+  margin: 0;
+  margin-top: 1em;
+}
+
+img {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+}
+
+figcaption {
+  text-align: center;
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-weight: bold;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+}
+
+kbd, code {
+  background-color: gray;
+  color: white;
+  font-family: 'Anonymous Pro', monospace;
+}
+
+kbd {
+  display: inside-block;
+  padding: 0.1em 0.2em 0.2em 0.3em;
+}
+
+code {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding: 0.5em;
+}
+
+nav {
+  background-image: url('svg/Binocular.png');
+  background-repeat: no-repeat;
+  background-size: 2em;
+  background-position: 0.5em 0.5em;
+  margin-top: 0.5em;
+  padding-top: 2.5em;
+}
+
+nav a:before {
+  content: '🔗';
+  display: inline-block;
+  padding: 0 0.5em 0 2em;
+}

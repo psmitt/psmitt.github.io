@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT menu  (menu*)>
+<!ATTLIST menu
+          title  CDATA           #REQUIRED
+          link   CDATA           #REQUIRED
+          frame (Article|_blank) #IMPLIED>

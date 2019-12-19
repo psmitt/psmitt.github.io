@@ -1,0 +1,130 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body, input {
+  background-color: black;
+  color: lightgray;
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-size: x-large;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  width: 100%;
+}
+
+input {
+  border-radius: 1em;
+  border: solid thin gray;
+  background-image: url('svg/magnifier glass.svg');
+  background-repeat: no-repeat;
+  background-size: auto 66%;
+  background-position: 0.3em 0.25em;
+  outline: none;
+  padding: 0 0.3em 0.1em 1.4em;
+}
+
+input::placeholder {
+  color: silver;
+}
+
+input:hover {
+  border-color: skyblue;
+}
+
+input:focus {
+  border-color: skyblue;
+  box-shadow: 0 0 0.2em 0.2em skyblue;
+}
+
+input:invalid {
+  border-color: lightcoral;
+  box-shadow: 0 0 0.2em 0.2em lightcoral;
+}
+
+div.notTree {
+  box-sizing: content-box;
+  overflow-y: scroll;
+  height: 100%;
+  width: 100%;
+  padding-right: 100px; /* hide scrollbar */
+}
+
+div.notRoot {
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  padding: 10px;
+  padding-right: 0.1em;
+  background-color: black;
+}
+
+div.notBranch {
+  margin-left: 0.8em;
+}
+
+div.Tree {
+  background-image: url('svg/hash.svg');
+  background-repeat: no-repeat;
+  background-size: 0.5em 0.5em;
+  background-position: 0.2em 0.5em;
+  padding-left: 0.5em;
+}
+div.Tree.collapsed {
+  background-image: url('svg/square.svg');
+}
+div.Tree.expanded {
+  background-image: url('svg/triangle.svg');
+}
+div.Tree.filtered {
+  background-image: url('svg/blue triangle.svg');
+}
+
+div.Root {
+  margin: 4px;
+  margin-left: -0.5em;
+  padding-left: 1.05em;
+  border-radius: 1em;
+  outline: none;
+  cursor: pointer;
+}
+
+div.Root, mark {
+  padding-bottom: 0.2em;
+}
+
+div.Root.branching {
+  font-weight: bold;
+  border-radius: 0;
+}
+
+div.Root.clicked {
+  background-color: dimgray;
+}
+
+div.Root:focus {
+  box-shadow: 0 0 0.1em 0.1em skyblue;
+}
+
+div.Branch {
+  margin-left: 0.2em;
+}
+
+div.Branch.filtered {
+  border-left: solid thin skyblue;
+}
+
+div.Branch.collapsed {
+  display: none;
+}
+
+a {
+  color:inherit;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  user-select: none; /* prevent text selection on double click */
+}
