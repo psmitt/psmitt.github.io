@@ -1,5 +1,5 @@
 ## My [GitHub.com](github.com/psmitt) Projects
-
+<br/>
 
 ### Metalanguage Package for Atom
 
@@ -17,9 +17,9 @@
 
 An integrated package of a responsive web application and a standalone Electron-based desktop application. CMS Client displays XML-based process descriptions and executes the process-related database operations. The default underlying database is MySQL.
 
-
+<br/>
 ## My [GitHub.io](psmitt.github.io) Projects
-
+<br/>
 
 ### Metalanguage Grammar Examples
 
