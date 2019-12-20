@@ -1,37 +1,33 @@
-## Welcome to GitHub Pages
+## My [GitHub.com](github.com/psmitt) Projects
 
-You can use the [editor on GitHub](https://github.com/psmitt/psmitt.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+### Metalanguage Package for Atom
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+- Provides basic syntax highlighting and transformation tools for formal language specifications written in classic syntactic metalanguages (Backus-Naur Form et al.).
+- Offers an XML-based syntax specification template to display the grammar rules in a clear and compact manner inside a browser window.
+- Refers to grammar source of many languages and implements then as examples.
 
-### Markdown
+### The UTFool Programming Language
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+- A Unicode-based object-oriented programming language designed for trans-compilation to any other object-oriented source
+- UTFool to Java trans-compiler
+- UTFool language support package for Atom
 
-```markdown
-Syntax highlighted code block
+### Configuration Management Client
 
-# Header 1
-## Header 2
-### Header 3
+An integrated package of a responsive web application and a standalone Electron-based desktop application. CMS Client displays XML-based process descriptions and executes the process-related database operations. The default underlying database is MySQL.
 
-- Bulleted
-- List
+## My [GitHub.io](psmitt.github.io) Projects
 
-1. Numbered
-2. List
+### Metalanguage Grammar Examples
 
-**Bold** and _Italic_ and `Code` text
+- [UTFool Lexical Structure](https://psmitt.github.io/grammar/UTFool%20Lexical%20Structure.xml)
+- [UTFool Syntactic Grammar](https://psmitt.github.io/grammar/UTFool%20Syntactic%20Grammar.xml)
+- [CoffeeScript](https://psmitt.github.io/grammar/CoffeeScript.xml)
+- [PowerShell](https://psmitt.github.io/grammar/PowerShell)
 
-[Link](url) and ![Image](src)
-```
+### [CoffeeScript Guide](https://psmitt.github.io/CoffeeScript)
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### [PowerShell Biblia](https://psmitt.github.io/PowerShell)
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/psmitt/psmitt.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Az alapoktól a teljes körű rendszerfelügyeletig.
+(fejlesztés alatt)
