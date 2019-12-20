@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<link href="https://fonts.googleapis.com/css?family=Amaranth" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Amiri" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Anonymous+Pro" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Averia+Libre" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet"/>
+<link href="Syntax.css" rel="stylesheet"/>
+<link href="text.css" rel="stylesheet"/>
+<link href="menu.css" rel="stylesheet"/>
+<link id ="theme" href="LightGrey.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="menu">
+<table>
+<tr><th>Select Theme</th></tr>
+<tr><td id="LightGrey" onclick=apply(this.id)>Light Grey</td></tr>
+<tr><td id="DarkGrey" onclick=apply(this.id)>Dark Grey</td></tr>
+<tr><td id="LightBrown" onclick=apply(this.id)>Light Brown</td></tr>
+<tr><td id="DarkBrown" onclick=apply(this.id)>Dark Brown</td></tr>
+<tr><th>Select Folding</th></tr>
+<tr><td class="folding" onclick=setFolding('none')>no folding</td></tr>
+<tr><td class="folding" onclick=setFolding('flat')>flat folding</td></tr>
+<tr><td class="folding" onclick=setFolding('indent')>indent folding</td></tr>
+<tr><th style="border:none"></th></tr>
+</table>
+<span id="icon" title="Menu ON/OFF"
+onclick=toggle(this.previousSibling.previousSibling)>&#9776;</span>
+</div>
+<h1>An Interactive Guide <br/> to CoffeeScript Universe</h1>
+<h2>Short Introduction to Everything</h2>
+<p><a href="http://coffeescript.org">CoffeeScript</a> is a programming language that compiles to JavaScript. JavaScript is based on the ECMAScript Language Specification ( <a href="https://www.ecma-international.org/ecma-262">ECMA-262</a> ). The execution model of ECMAScript is implemented in <a href="https://nodejs.org">Node.js</a> runtime system, built on Google Chrome's V8 JavaScript engine. <a href="https://developers.google.com/v8">V8</a> compiles and executes JavaScript source code, handles memory allocation for objects, and garbage collects objects it no longer needs. V8 provides all the data types, operators, objects and functions specified in the ECMA-262 standard.</p>
+<p>Depending on the host environment CoffeeScript can be used as a domain-specific scripting language for web browsers, or as a general-purpose programming language for various software platforms. The host environment of objects and facilities completes the capabilities of the scripting language.</p>
+<p>This Guide follows the <em>learning by doing</em> principle, using the methodology of exploratory programming for teaching the <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml">elements of CoffeeScript language</a> while discovering the runtime environment. The domain exploration is made possible by an interactive language shell running a read-eval-print loop ( <a href="https://nodejs.org/api/repl.html">REPL</a> ). REPL takes single user inputs, evaluates them, and returns the result to the user.</p>
+<h3>Have a Coffee</h3>
+<p>Install the current version of <a href="https://nodejs.org">Node.js</a>, then open a command line interface and install the newest version of CoffeeScript:</p>
+<pre><code>os&gt; npm install -g coffeescript
+</code></pre>
+<p>Enter the interactive CoffeeScript REPL by typing <code>coffee</code>. In order to exit REPL type <code>.exit</code>.</p>
+<pre><code>os&gt; coffee
+coffee&gt; .exit
+os&gt;
+</code></pre>
+<h3>Autocomplete</h3>
+<p>Pressing TAB displays an available name in the current scope starting with the already typed characters. In case of zero or multiple options no completion happens: pressing TAB for a second time will then display all of the autocomplete options.</p>
+<p>Enter REPL, type <code>.</code> and press TAB twice to see the available commands for controlling the REPL session. Continue typing with <code>h</code> and press TAB once to have <code>.help</code> displayed. Press ENTER to see the result of <code>.help</code> command.</p>
+<pre><code>os&gt; coffee
+coffee&gt; .
+break   clear   editor  exit    help    load    save
+
+coffee&gt; .help
+.break    Sometimes you get stuck, this gets you out
+.clear    Alias for .break
+.editor   Enter editor mode
+.exit     Exit the REPL
+.help     Print this help message
+.load     Load code from a file into this REPL session
+.save     Save all evaluated commands in this REPL session to a file
+coffee&gt;
+</code></pre>
+<p>The shortcut for <code>.break</code> is CTRL+C which can be pressed even if typing is not possible due to a stuck process. Pressing CTRL+C twice in an empty line is equivalent to <code>.exit</code>.</p>
+<pre><code>coffee&gt;
+(To exit, press ^C again or type .exit)
+coffee&gt;
+
+os&gt;
+</code></pre>
+<h3>Input Modes</h3>
+<p>REPL reads one or more input lines, evaluates the code, realizes side effects, and prints out the string representation of the value of the last expression in the input. Single-line input mode is the default: pressing ENTER makes the current line evaluated. Expressions within the line can be separated by semicolons.</p>
+<pre><code>coffee&gt; 11 ; 22 ;;; 33
+33
+</code></pre>
+<p>Multi-line input mode can be started by pressing CTRL+V. Then the prompt changes and pressing ENTER produces a simple line break. Similarly to semicolons, line breaks <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#T">terminate</a> expressions. Pressing CTRL+V again in the beginning of an empty line makes the previous lines evaluated and switches back to single-line input mode.</p>
+<pre><code>------&gt; 11
+....... 22
+....... 33
+33
+coffee&gt;
+</code></pre>
+<p>Another possibility to enter multiple lines is the editor mode of REPL activated by <code>.editor</code> command. The evaluation of the input happens on pressing CTRL+D, whilst CTRL+C interrupts editor mode without input evaluation.</p>
+<h4>Comments</h4>
+<p>In CoffeeScript, comments are denoted by the <code>#</code> character to the end of a line, or from <code>###</code> to the next appearance of <code>###</code>. This latter allows embedded or multiline comments as well.</p>
+<pre><code>coffee&gt; 11 # 22 ;;; 33 this is a line comment
+11
+coffee&gt; 11 ### 22 this is a block comment ### ;;; 33
+33
+</code></pre>
+<h2>Literally Speaking</h2>
+<p>The evaluation of a valid input results a <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Literal">literal value</a>. Literal is the ultimate output format: REPL does not transform literal values, literal values are <em>invariant</em> to the evaluation loop. The <em>type</em> of literals defines the <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Operation">operations</a> applicable on them. The type of expressions can be identified by the <code>typeof</code> operator. The result of the <code>typeof</code> operator is a string literal telling the name of the type.</p>
+<h3>Undefined</h3>
+<p>The Undefined type has exactly one value called <code>undefined</code>. Any variable that has not been assigned a value has the value <code>undefined</code>.</p>
+<pre><code>coffee&gt; typeof anything
+'undefined'
+coffee&gt; typeof undefined
+'undefined'
+</code></pre>
+<h3>Null</h3>
+<p>The Null type has exactly one value, called <code>null</code>, that represents the intentional absence of any object value.</p>
+<pre><code>coffee&gt; typeof null
+'object'
+</code></pre>
+<h3>Boolean</h3>
+<p>The <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Boolean">Boolean</a> type has exactly two values, representing a logical entity. However each values has three different literal forms in CoffeeScript.</p>
+<pre><code>coffee&gt; true is yes is on
+true
+coffee&gt; false is no is off
+true
+coffee&gt; typeof true
+'boolean'
+</code></pre>
+<p>Values of other types can be converted to Boolean by simply calling the <code>Boolean</code> function on them. The result of the conversion is <code>false</code> for arguments <code>undefined</code>, <code>null</code>, <code>false</code>, <code>+0</code>, <code>-0</code>, <code>NaN</code> or an empty string; otherwise it is <code>true</code>.</p>
+<pre><code>coffee&gt; Boolean ''
+false
+coffee&gt; Boolean false
+false
+coffee&gt; Boolean 'false'
+true
+</code></pre>
+<p>The <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#AND">logical AND</a> operator returns <code>false</code> in case its first operand expression converts to Boolean <code>false</code>; otherwise the value of the second operand expression is returned. The <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#OR">logical OR</a> operator returns the value of its first operand expression if the first expression converts to Boolean <code>true</code>; otherwise the value of the second operand expression is returned.</p>
+<pre><code>coffee&gt; false and true
+false
+coffee&gt; 'false' and 'true'
+'true'
+coffee&gt; false or true
+true
+coffee&gt; 'false' or 'true'
+'false'
+</code></pre>
+<h3>Numbers</h3>
+<p>The <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Number">Number</a> type is the set of literals corresponding to a double-precision 64-bit binary format <a href="https://standards.ieee.org/findstds/standard/754-2008.html">IEEE 754-2008</a> value. The evaluation of mathematical and logical expressions follows a well-defined operator precedence and associativity. Precedence rules can be overridden by <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Parenthetical">explicit parentheses</a>.</p>
+<p>Prefix, right-associative, <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Unary">unary</a> mathematical and logical operators have the highest precedence.</p>
+<table>
+<tr><th>Operator</th><th>Meaning</th><th>Example</th><th>Result</th></tr>
+<tr><td class="center"><code>+</code></td><td>conversion to number</td>
+    <td class="center"><code>+true</code></td><td class="center"><code>1</code></td></tr>
+<tr><td class="center"><code>-</code></td><td>mathematical negation</td>
+    <td class="center"><code>-0</code></td><td class="center"><code>-0</code></td></tr>
+<tr><td class="center"><code>~</code></td><td>bitwise complement</td>
+    <td class="center"><code>~0</code></td><td class="center"><code>-1</code></td></tr>
+<tr><td class="center"><code>!</code><br/><code>not</code></td><td>logical negation</td>
+    <td class="center"><code>!true</code><br/><code>not true</code>
+    </td><td class="center"><code>false</code><br/><code>false</code></td></tr>
+</table>
+<p>The <code>**</code> exponentiation operator has the highest precedence among the binary matematical operators, and it is the only one being right-associative.</p>
+<table>
+<tr><th>Operator</th><th>Meaning</th><th>Example</th><th>Result</th></tr>
+<tr><td class="center"><code>**</code></td><td>exponentiation ( <em>power</em> )</td>
+    <td class="center"><code>2 ** 3</code></td><td class="center"><code>8</code></td></tr>
+</table>
+<p><a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Multiplicative">Multiplicative</a> operators have the highest precedence among left-associative mathematical operators. <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Additive">Additive</a> operators have higher precedence than <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Shift">bitwise shift</a> operators.</p>
+<table>
+<tr class="bottom"><th>Operator</th><td><b>Meaning</b></td><td><b>Example<b/></td><td><b>Result<b/></td></tr>
+<tr><td class="center"><code>*</code></td><td>multiplication</td>
+    <td><code>7 * -3</code></td><td><code>-21</code></td></tr>
+<tr><td class="center"><code>/</code></td><td>division</td>
+    <td><code>7 / -3</code></td><td><code>-2.3333333333333335</code></td></tr>
+<tr><td class="center"><code>%</code></td><td>JavaScript's modulo</td>
+    <td><code>7 % -3</code></td><td><code>1</code></td></tr>
+<tr><td class="center"><code>//</code></td><td>integer part ( <em>floor</em> ) of division</td>
+    <td><code>7 // -3</code></td><td><code>-3</code></td></tr>
+<tr class="bottom"><td class="center"><code>%%</code></td><td>remainder of <em>Euclidean</em> division</td>
+    <td><code>7 %% -3</code></td><td><code>-2</code></td></tr>
+<tr><td class="center"><code>+</code></td><td>addition</td>
+    <td><code>7 + 3</code></td><td><code>10</code></td></tr>
+<tr class="bottom"><td class="center"><code>-</code></td><td>substraction</td>
+    <td><code>7 - 3</code></td><td><code>4</code></td></tr>
+<tr><td class="center"><code>&lt;&lt;</code></td><td>bitwise left shift</td>
+    <td><code>-100 &lt;&lt; 2</code></td><td><code>-400</code></td></tr>
+<tr><td class="center"><code>&gt;&gt;</code></td><td>bitwise right shift</td>
+    <td><code>-100 &gt;&gt; 2</code></td><td><code>-25</code></td></tr>
+<tr><td class="center"><code>&gt;&gt;&gt;</code></td><td>bitwise unsigned right shift</td>
+    <td><code>-100 &gt;&gt;&gt;&gt; 2</code></td><td><code>1073741799</code></td></tr>
+</table>
+<p>Equality ( <code>==</code>, <code>is</code> ) and inequality ( <code>!=</code>, <code>isnt</code> ) operators in CoffeeScript are always <em>strict and type-safe</em>. Although they have lower precedence than other <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Comparison">comparison operators</a>, <em>chained comparison</em> abolishes the precedence rule: the logical value of the chained comparison is true if and only if each binary relation is true.</p>
+<pre><code>coffee&gt; 2 &gt;= 1 &gt; +0 == -0 &lt; 1 &lt;= 2 != 3
+true
+</code></pre>
+<p>Each bitwise and logical operator has its own precedence in the following order.</p>
+<table>
+<tr><th>Operator</th><th>Meaning</th><th>Example</th><th>Result</th></tr>
+<tr class="bottom"><td class="center"><code>&amp;</code></td><td>bitwise conjunction</td>
+    <td class="center"><code>51 &amp; 21</code></td><td class="center"><code>17</code></td></tr>
+<tr class="bottom"><td class="center"><code>|</code></td><td>bitwise disjunction</td>
+    <td class="center"><code>51 | 21</code></td><td class="center"><code>55</code></td></tr>
+<tr class="bottom"><td class="center"><code>^</code></td><td>bitwise exclusion</td>
+    <td class="center"><code>51 ^ 21</code></td><td class="center"><code>38</code></td></tr>
+<tr class="bottom"><td class="center"><code>and</code><br/><code>&amp;&amp;</code></td><td>logical conjunction</td>
+    <td class="center"><code>true and false</code></td><td class="center"><code>true</code></td></tr>
+<tr class="bottom"><td class="center"><code>or</code><br/><code>||</code></td><td>logical disjunction</td>
+    <td class="center"><code>true or false</code></td><td class="center"><code>false</code></td></tr>
+</table>
+<h4>Trinity</h4>
+<p>In additive operations zero means nothing. However in multiplicative operations zero is one of the three mightiest numbers: by multiplying, zero transforms numbers into its own image. Ordinary arithmetic does not allow division by zero, but CoffeeScript does: the result is another supernumber called <code>Infinity</code>. Both zero and <code>Infinity</code> can have positive or negative sign.</p>
+<pre><code>coffee&gt; 1 / 0
+Infinity
+coffee&gt; 1 / -0
+-Infinity
+</code></pre>
+<p><code>Infinity</code> has even more power over numbers than zero has: additive operations with <code>Infinity</code> result <code>Infinity</code>. It is interesting though what gives zero or <code>Infinity</code> divided by themselves, or what is their product. Each of these operations results <code>NaN</code>, the most powerful number among all. If <code>NaN</code> is an operand of an arithmetic expression, then the result is always <code>NaN</code>.</p>
+<pre><code>coffee&gt; 0 / 0
+NaN
+coffee&gt; 0 * Infinity
+NaN
+coffee&gt; typeof NaN
+'number'
+</code></pre>
+<p><code>Infinity</code> is greater than any other numbers, except <code>NaN</code>, but not because <code>NaN</code> would be the greater one. <code>NaN</code> is simply uncomparable to anything, <em>it is even not equal to itself</em> ! The other way to identify <code>NaN</code> value is the <code>isNaN</code> function.</p>
+<pre><code>coffee&gt; Infinity &gt; NaN
+false
+coffee&gt; Infinity &lt;= NaN
+false
+coffee&gt; NaN == NaN
+false
+coffee&gt; NaN != NaN
+true
+coffee&gt; isNaN NaN
+true
+</code></pre>
+<h3>Strings</h3>
+<p><a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#String">String</a> type is is the set of all ordered sequences of zero or more 16-bit unsigned integer values treated as UTF-16 encoded text data. <a href="http://www.unicode.org">Unicode</a> code points may also be represented by an <a href="http://www.ecma-international.org/ecma-262/#sec-literals-string-literals">escape sequence</a>. Each character has a position in the string, the first being at index 0, assuming the string is not empty. The length of a string is the number of its 16-bit character elements within it. The empty string has length zero and therefore contains no elements.</p>
+<p>Single-quoted strings are literal. <br/>
+Double-quoted strings allow expression interpolation using <code>#{…}</code>.</p>
+<pre><code>coffee&gt; 'Literal string without #{ interpolation }'
+'Literal string without #{ interpolation }'
+coffee&gt; &quot;String with #{ Boolean( 1 + 1 ) } interpolation&quot;
+'String with true interpolation'
+</code></pre>
+<p>In case of multiline strings indentation is ignored, and lines are joined by a single space unless they end with a backslash.</p>
+<pre><code>  ------&gt; 'Beware
+  .......         the
+  .......             Jabberwock\
+  .......             ,         \
+  .......             my son!'
+  'Beware the Jabberwock,         my son!'
+  coffee&gt;
+</code></pre>
+<p>Triple-quoted block strings can be used to hold formatted or indentation-sensitive text, however the minimal indentation level is maintained throughout the string block.</p>
+<pre><code>------&gt; &quot;&quot;&quot;
+.......       The jaws
+.......    that bite,
+.......       the claws,
+.......    that catch!
+....... &quot;&quot;&quot;
+'   The jaws\nthat bite,\n   the claws,\nthat catch!'
+coffee&gt;
+</code></pre>
+<p>Strings can be concatenated by <code>+</code> operator.</p>
+<pre><code>coffee&gt; 'Hello' + ' ' + 'World!'
+'Hello World!'
+coffee&gt; typeof ''
+'string'
+</code></pre>
+<h3>Symbols</h3>
+<p>The Symbol type is the set of all non-String values that may be used as the key of an Object property. Symbols do not have a literal syntax, the <code>Symbol</code> function is the only way to create them. <code>Symbol</code> is not a constructor function, no new objects can be created by that. <code>Symbol</code> can be given a string parameter which will be the key for the created Symbol; the default value for the key parameter is <code>'undefined'</code>.</p>
+<pre><code>coffee&gt; Symbol()
+Symbol()
+coffee&gt; Symbol('key')
+Symbol(key)
+coffee&gt; typeof Symbol('key')
+'symbol'
+</code></pre>
+<p>Each possible Symbol value is unique and immutable. Even symbols having the same key are different. However symbols created by the <code>Symbol.for</code> function get registered and are accessible globally, and therefore all references to them are identical. Keys used to create global symbols can be retrieved by the <code>Symbol.keyFor</code> function. Symbols are protected from any implicit conversion, however they can be explicitly converted to string by the <code>String</code> function or by the <code>toString</code> method.</p>
+<pre><code>coffee&gt; Symbol() is Symbol()
+false
+coffee&gt; Symbol.for() is Symbol.for()
+true
+coffee&gt; Symbol.keyFor Symbol 'key'
+undefined
+coffee&gt; Symbol.keyFor Symbol.for()
+'undefined'
+coffee&gt; Symbol.keyFor Symbol.for 'key'
+'key'
+coffee&gt; String(Symbol()) is Symbol().toString()
+true
+</code></pre>
+<h3>Objects</h3>
+<p>An <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Object">Object</a> type is a collection of properties. Properties are identified and accessible using <em>key</em> values. A property key is either a Symbol ( <em>id</em> ), String ( <em>name</em> ) or natural Number ( <em>index</em> ).</p>
+<p>An object literal is a list of name-value pairs wrapped in curly braces. Properties can be separated by commas, semicolons, and/or line breaks; keys and values must be separated by a colon. Object literals encapsulate data, creating a separate namespace for the properties. CoffeeScript does not allow Symbol keys in object literals; object properties with Symbol keys must be assigned separately.</p>
+<p>Each object is a unique entity; object instances differ even when they have the same properties with the same values.</p>
+<pre><code>------&gt; {
+.......  key : 'value of named property'
+.......  123 : 'value of indexed property'
+....... }
+{ '123': 'value of indexed property',
+  key: 'value of named property' }
+coffee&gt; typeof {}
+'object'
+coffee&gt; {} is {}
+false
+</code></pre>
+<h3>Arrays</h3>
+<p>An <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Array">Array</a> object is a collection of values, identified and accessible via natural number indexes. The literal representation of arrays is the list of values in brackets, separated by commas, semicolons, and/or line breaks. Elisions are not allowed in CoffeeScript; use elisions in JavaScript literal instead.</p>
+<pre><code>coffee&gt; [ undefined; null; false; 0; ''; NaN ]
+[ undefined, null, false, 0, '', NaN ]
+coffee&gt; typeof []
+'object'
+coffee&gt; `[ 1,, 'Elision' ,, 2 ]` 
+[ 1, &lt;1 empty item&gt;, 'Elision', &lt;1 empty item&gt;, 2 ]
+</code></pre>
+<h4>Ranges</h4>
+<p>A <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Range">Range</a> is an array object of an increasing or decreasing sequence of numbers, where the difference between the consecutive elements is 1. The literal representation of a range is the range limits in brackets with two or three dots in between them.</p>
+<p>The first element of the range is the value of the first expression in the brackets. The limit of the range is the value of the second expression. The sequence is increasing if the first element is less than the limit, otherwise it is decreasing. The sequence stops at the range limit. In case of two dots the limit is included in the range, if the limit is an element of the sequence. Otherwise the limit is excluded from the range.</p>
+<pre><code>coffee&gt; [1..5]
+[ 1, 2, 3, 4, 5 ]
+coffee&gt; [2...-3]
+[ 2, 1, 0, -1, -2 ]
+coffee&gt; [3/2..5]
+[ 1.5, 2.5, 3.5, 4.5 ]
+coffee&gt; [1..5] instanceof Array
+true
+</code></pre>
+<h4>Slices</h4>
+<p>Ranges used as <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Range">index</a> can slice strings and arrays. In order to properly index string characters or array elements, range must be a sequence of increasing natural numbers under the length of the string / array. Therefore the limits of the range are always truncated, and then transformed to the remainder of the Euclidean division by the lenght of the string / array. The result of slicing is the collection of string characters or array elements indexed by the elements of the transformed range. Range limits can be omitted: the default lower limit is zero, the default upper limit is the length of the string / array, excluded from the range.</p>
+<pre><code>coffee&gt; '0123456789'[3..6]
+'3456'
+coffee&gt; '0123456789'[..-3]
+'01234567'
+coffee&gt; '0123456789'[...-3]
+'0123456'
+coffee&gt; '0123456789'[-3..]
+'789'
+</code></pre>
+<h3>Regular Expressions</h3>
+<p>A <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#RegExp">RegExp</a> object contains a text pattern used to match character combinations in strings. Based on the matches strings can be validated, modified or splitted. The literal format of a <a href="http://www.regular-expressions.info">regular expression</a> is the search pattern specified between slashes. Searching options (flags) may be specified after the closing slash.</p>
+<p>Similar to strings and comments, regular expressions do have a multiline block literal format that ignore internal whitespaces and can contain comments and interpolations. Regular expression blocks are delimited by triple slashes.</p>
+<pre><code>------&gt; /// ^
+....... (?!.*(.).*\1)
+....... [imguy]*
+....... $ ///
+/^(?!.*(.).*\1)[imguy]*$/
+coffee&gt; typeof /^(?!.*(.).*\1)[imguy]*$/
+'object'
+coffee&gt; /^(?!.*(.).*\1)[imguy]*$/ instanceof RegExp
+true
+coffee&gt; new RegExp
+/(?:)/
+</code></pre>
+<h3>Literal JavaScript</h3>
+<p>Literal JavaScript code can be embedded into CoffeeScript between backticks.</p>
+<pre><code>coffee&gt; `{[Symbol('foo')]: 'foo'}`
+{ [Symbol(foo)]: 'foo' }
+coffee&gt; `function say(something) { return something }`
+[Function: say]
+coffee&gt; typeof say
+'function'
+coffee&gt; say 'Hello!'
+'Hello!'
+</code></pre>
+<h2>Assignments</h2>
+<p><a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Assignment">Assigment</a> expressions make values stored in a retrievable way, or modify the content value of an already existing storage ( a.k.a. <em>compound assignment</em> ). The storage name identifies the stored value in the current <a href="http://www.ecma-international.org/ecma-262/#sec-executable-code-and-execution-contexts">scope</a>. The <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Identifier">identifier</a> is called <em>property</em> when the association between the name and the value is a part of an object. The identifier is called <em>variable</em> when the association between the name and the value exists within an execution context ( e.g. in a function body ).</p>
+<p>The indented block structure of an object description makes the braces and commas omittable. Even existing name and value associations can be reused for creation of new objects, but braces are required in this latter case to create the new scope.</p>
+<pre><code>coffee&gt; one = 1
+1
+coffee&gt; two = 2
+2
+coffee&gt; pair = { one, two }
+{ one: 1, two: 2 }
+------&gt; pair =
+.......   three : 3
+.......   four : 4
+{ three: 3, four: 4 }
+</code></pre>
+<p>Existing objects and arrays can be reused to create new ones. In order to include the properties of existing objects or the elements of existing arrays into a new one, splats <code>...</code> must be given before or after the name of the object or array. Usage of splats requires too the enclosing braces and brackets.</p>
+<pre><code>------&gt; quad = {
+.......   two : 2
+.......   pair ... # three, four
+.......   five : 5
+....... }
+{ two: 2, three: 3, four: 4, five: 5 }
+coffee&gt; triplet = [2..4]
+[ 2, 3, 4 ]
+coffee&gt; array = [ 'one', triplet..., 'five']
+[ 'one', 2, 3, 4, 'five' ]
+</code></pre>
+<h3>Accessing Properties</h3>
+<p>New properties for existing objects can be easily created by assigning a value to the property name. This is the only way to create properties with Symbol keys. Symbol keys should be stored in the outer scope if the property must be <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Accessor">accessible</a> directly after the assignment. Existing ( and accessible ) properties of an object can be removed from the outer scope by <code>delete</code> operator.</p>
+<pre><code>coffee&gt; obj = new Object
+{}
+coffee&gt; KEY = Symbol('key')
+Symbol(key)
+coffee&gt; obj[KEY] = 'accessible value'
+'accessible value'
+coffee&gt; obj[Symbol 'key'] = 'inaccessible value'
+'inaccessible value'
+coffee&gt; obj.key = 'named value'
+'named value'
+coffee&gt; obj[123] = 'indexed value'
+'indexed value'
+coffee&gt; obj
+{ '123': 'indexed value',
+  key: 'named value',
+  [Symbol(key)]: 'accessible value',
+  [Symbol(key)]: 'inaccessible value' }
+coffee&gt; delete obj[Symbol 'key']
+true
+coffee&gt; obj
+{ '123': 'indexed value',
+  key: 'named value',
+  [Symbol(key)]: 'accessible value',
+  [Symbol(key)]: 'inaccessible value' }
+coffee&gt; delete obj[KEY]
+true
+coffee&gt; obj
+{ '123': 'indexed value',
+  key: 'named value',
+  [Symbol(key)]: 'inaccessible value' }
+</code></pre>
+<p>Properties of an object can be hidden from enumeration by setting the <code>enumerable</code> attribute of their to <code>false</code>.
+In order to enumerate non-inherited properties of an object, several helper functions exist.</p>
+<ul>
+<li>
+<p><code>Object.keys</code> function enumerates only the enumerable property names and indexes.</p>
+</li>
+<li>
+<p><code>Object.getOwnPropertyNames</code> function enumerates all property names and indexes.</p>
+</li>
+<li>
+<p><code>Object.getOwnPropertySymbols</code> function enumerates all symbol keys for properties.</p>
+</li>
+<li>
+<p><code>Reflect.ownKeys</code> function enumerates all non-inherited properties of an object.</p>
+<pre><code>coffee&gt; Object.defineProperty obj, 123, { enumerable : false }
+{ key: 'string key value', [Symbol(key)]: 'inaccessible value' }
+coffee&gt; Object.keys obj
+[ 'key' ]
+coffee&gt; Object.getOwnPropertyNames obj
+[ '123', 'key' ]
+coffee&gt; Object.getOwnPropertySymbols obj
+[ Symbol(key) ]
+coffee&gt; Reflect.ownKeys obj
+[ '123', 'key', Symbol(key) ]
+</code></pre>
+</li>
+</ul>
+<p>In order to enumerate inherited properties use the above helper functions on the prototype chain of the object.</p>
+<pre><code>coffee&gt; obj.__proto__ is Object.getPrototypeOf obj
+true
+coffee&gt; Object.getOwnPropertyNames obj.__proto__
+[ '__defineGetter__',
+  '__defineSetter__',
+  'hasOwnProperty',
+  '__lookupGetter__',
+  '__lookupSetter__',
+  'propertyIsEnumerable',
+  'toString',
+  'valueOf',
+  '__proto__',
+  'constructor',
+  'toLocaleString',
+  'isPrototypeOf' ]
+coffee&gt;
+</code></pre>
+<h3>Condition of Existence</h3>
+<p>The existential operator <code>?</code> serves to test if an identifier exists in the current context, i.e., its type and value are different from <code>undefined</code> or <code>null</code>. The behaviour of the operator depends on the test result, on the code context, and even on the space between the operator and the preceding expression.</p>
+<table>
+<tr class="bottom"><td><b>Context</b></td><td><b>Behavior</b></td></tr>
+<tr class="bottom"><td><code>e?</code></td>
+    <td>tests if the value of expression <code>e</code> is different from <code>undefined</code> or <code>null</code></td></tr>
+<tr class="bottom"><td><code>f? a</code></td>
+    <td>calls function <code>f</code> with argument <code>a</code> if the function exists,
+        <br/> otherwise returns <code>undefined</code></td></tr>
+<tr class="bottom"><td><code>a ? b</code></td>
+    <td>returns the value of expression <code>a</code> if different from <code>undefined</code> or <code>null</code>,
+        <br/> otherwise returns the value of expression <code>a</code></td></tr>
+<tr class="bottom"><td><code>o?.p</code><br/><code>o?['p']</code></td>
+    <td>returns the property <code>p</code> of object <code>o</code> if the object exists
+        <br/> otherwise returns <code>undefined</code></td></tr>
+<tr class="bottom"><td><code>v ?= e</code></td>
+    <td>assigns the value of expression <code>e</code> to the variable <code>v</code> if the variable is <code>null</code>,
+        <br/> otherwise returns the original value of <code>v</code></td></tr>
+</table>
+<h3>Destructuring Assignments</h3>
+<p><a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Assignable">Destructuring assignment</a> is an expression storing values exctacted from an object or array, into variables of the current scope. Identifiers on the left side have to be structured in the same way as the object or array on the right side in order to assign them the appropriate value. In case of object the identifiers must have the same name as the object's properties to match them. In case of array the assignments are based on the order of names and values.</p>
+<pre><code>------&gt; object =
+.......   outer : 1
+.......   inner :
+.......     first : 10
+.......     second : 20
+.......
+{ outer: 1, inner: { first: 10, second: 20 } }
+coffee&gt; [ outer?, inner?, first?, second? ]
+[ false, false, false, false ]
+coffee&gt; { inner : { first, second } } = object
+{ outer: 1, inner: { first: 10, second: 20 } }
+coffee&gt; [ outer?, inner?, first?, second? ]
+[ false, false, true, true ]
+coffee&gt; swap = [ first, second ] = [ second, first ]
+[ 20, 10 ]
+coffee&gt; [ nine, twenty, ten, five ] = [ 9, swap..., 5 ]
+[ 9, 20, 10, 5 ]
+coffee&gt; ten is 10
+true
+</code></pre>
+<h3>Splicing Arrays</h3>
+<p>Splicing means to replace a segment of an array with new elements. In order to specify the segment to replace a slice of the array can be given on the left side of the assignment. The appropriate number of replacing elements should be given on the right side, in an array literal.</p>
+<pre><code>coffee&gt; numbers = [0..9]
+[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+coffee&gt; numbers[3..6] = [ 30, 40, 50, 60 ]
+[ 30, 40, 50, 60 ]
+coffee&gt; numbers
+[ 0, 1, 2, 30, 40, 50, 60, 7, 8, 9 ]
+</code></pre>
+<h2>Functions</h2>
+<p>A <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Function">Function</a> object contains an executable code block ( a.k.a <em>function body</em> ), which can receive runtime values to process, through an optional parameter list. The literal form of a function is called <em>anonymous function</em> which can be assigned to a function name. The execution of a function is initiated by the invocation of the function name and the enumeration of the argument expressions initializing the parameters.</p>
+<p>The result of a function execution is the value of the last expression evaluated in the function body, or the value of the expression returned by a <code>return</code> statement.</p>
+<h3>Default Parameters</h3>
+<p>Default <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Param">parameter</a> values can be given for functions in case of the corresponding argument is missing or <code>undefined</code>.</p>
+<pre><code>coffee&gt; fun = (one = 1, two = 2, three = 3) -&gt; [ one, two, three ]
+[Function: fun]
+coffee&gt; fun undefined, 5
+[ 1, 5, 3 ]
+</code></pre>
+<h3>Rest Parameter</h3>
+<p>Surplus arguments does not cause error in a function call: they become evaluated, just not processes by the function by default. Functions can however handle variable number of arguments too, with splats <code>...</code> after the last parameter name. The rest parameter is the array of the rest of the arguments.</p>
+<pre><code>coffee&gt; team = ( first, second, rest... ) -&gt; [ first, second, rest ]
+[Function: team]
+coffee&gt; team 'Ann', 'Bob', 'Chad', 'Dolly', 'Eve', 'Frank'
+[ 'Ann', 'Bob', [ 'Chad', 'Dolly', 'Eve', 'Frank' ] ]
+coffee&gt; team 'Ann'
+[ 'Ann', undefined, [] ]
+</code></pre>
+<h3>Tagged Templates</h3>
+<p>A tagged template is a <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Invocation">function call</a> where the arguments of the call are derived from the postfix string with interpolations following the function name <strong>without spaces</strong>. The first argument is the array of text fragments between the interpolations, the following arguments are the values of the interpolated expressions.</p>
+<pre><code>------&gt; decompose = (text, interpolations...) -&gt;
+.......   { fragments : text, interpolations }
+[Function: decompose]
+coffee&gt; decompose &quot;One, #{ 2 }, three, #{ 4 }&quot;
+{ fragments: 'One, 2, three, 4', interpolations: [] }
+coffee&gt; decompose&quot;One, #{ 2 }, three, #{ 4 }&quot;
+{ fragments: [ 'One, ', ', three, ', '' ],
+  interpolations: [ 2, 4 ] }
+</code></pre>
+<h3>Chained Invocations</h3>
+<p>Leading <code>.</code> closes all open calls, allowing for simpler chaining syntax.</p>
+<pre><code>------&gt; 'abcdefgh'
+....... .split ''
+....... .reverse()
+....... .join ''
+'hgfedcba'
+</code></pre>
+<h3>Generator Functions</h3>
+<p>Functions containing a <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Conditional">Yield</a> statement in the body has a static context, preserving any changes in between two consecutive invocation. The first invocation of the function returns an iterator. The sequence of yielded values can be generated by calling the <code>next</code> method of the iterator until the generator function's body gets completed.</p>
+<pre><code>------&gt; counter123 = -&gt;
+.......   n = 0
+.......   yield ++n until n is 3
+.......   return 'Go!'
+[GeneratorFunction: counter123]
+coffee&gt; iterator = counter123()
+{}
+coffee&gt; iterator.next()
+{ value: 1, done: false }
+coffee&gt; iterator.next()
+{ value: 2, done: false }
+coffee&gt; iterator.next()
+{ value: 3, done: false }
+coffee&gt; iterator.next()
+{ value: 'Go!', done: true }
+coffee&gt; iterator.next()
+{ value: undefined, done: true }
+</code></pre>
+<h2>Control Structures</h2>
+<h3>Conditional Expressions</h3>
+<p><a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Conditional">Conditional</a> expressions or statements have both prefix and postfix form; the latter is used for one-liners. The flow control is determined by either <code>if</code> or <code>unless</code> keywords to the true or false direction, respectively. Prefixed conditional blocks can be extended with <code>else</code> branches.</p>
+<pre><code>coffee&gt; if true then 'OK' else 'impossible'
+'OK'
+coffee&gt; 'OK' unless false
+'OK'
+------&gt; if false
+.......   'It is false.'
+....... else unless true
+.......   'It is still not true.'
+....... else
+.......   'It is true.'
+'It is true.'
+</code></pre>
+<h3>Case Selections</h3>
+<p><a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Switch">Switch</a> flow control, based on possible values of an expression, is implementable by <code>switch</code> - <code>when</code> - <code>else</code> control structure. The blocks of the cases do not require <code>break</code> statement in the end in order to prevent fall-through; in fact, fall-through is not possible in CoffeeScript. It is valid to enumerated multiple options after <code>when</code>, separated by comma.</p>
+<pre><code>coffee&gt; month = 5
+5
+------&gt; switch month
+.......   when 1, 2, 12
+.......     'winter'
+.......   when 3, 4, 5
+.......     'spring'
+.......   when 6, 7, 8
+.......     'summer'
+.......   else
+.......     'autumn'
+'spring'
+</code></pre>
+<p>If the control expression after <code>switch</code> is omitted, the first case evaluated to <code>true</code> will be selected from the branch list.</p>
+<pre><code>------&gt; switch
+.......   when month &lt; 3 then 'winter'
+.......   when month &lt; 6 then 'spring'
+.......   when month &lt; 9 then 'summer'
+.......   when month &lt; 12 then 'autumn'
+.......   else 'winter'
+'spring'
+</code></pre>
+<h3>Conditional Loops</h3>
+<p><a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Loop">Loop</a> conditions can be also specified in prefix or postfix position; the latter is used for one-liners. The flow control is determined by either <code>while</code> or <code>until</code> keywords repeating the loop body in true or false case, respectively. Loop condition can be extended with an additional <code>when</code> condition ( a.k.a <em>guard clause</em> ) which controls the execution of the loop body for each iteration. Loops result the array of the values of the last expression of the loop body.</p>
+<pre><code>coffee&gt; n = 0
+0
+coffee&gt; while ++n &lt; 10 when n % 2 then n
+[ 1, 3, 5, 7, 9 ]
+coffee&gt; n until --n is 0 when n % 3
+[ 8, 7, 5, 4, 2, 1 ]
+</code></pre>
+<p>Loops counting from and to a given value with fixed-size increments, or iterating over the keys and values of an object or array, can be implemented in a clear and comprehensible way using different forms of <code>for</code> loops. In order to iterate over numbers, the most suitable form is to use range comprehensions. Without loop parameter the range comprehension simply counts the number of iterations; the <code>by</code> stepping size is a way to influence the counter. <a href="http://rawgit.com/psmitt/metalanguage/master/examples/CoffeeScript.xml#Loop">For loops</a> can also have an optional guard clause.</p>
+<pre><code>coffee&gt; n = 0
+0
+coffee&gt; n += 1 for [1...10] by 2
+[ 1, 2, 3, 4, 5 ]
+coffee&gt; for n in [1...10] by 2 then n
+[ 1, 3, 5, 7, 9 ]
+coffee&gt; n for n in [9..1] when n % 3
+[ 8, 7, 5, 4, 2, 1 ]
+</code></pre>
+<p>When iterating over an array with <code>for</code> - <code>in</code> syntax, the first parameter after <code>for</code> takes the value of the current array element; the optional second parameter can take the index of it. The order is the opposite with <code>for</code> - <code>of</code> syntax which is use to iterate over objects: here the first parameter is the key, the optional second is the value of the current property. The <code>by</code> stepping size cannot be specified for the iterations over objects.</p>
+<pre><code>coffee&gt; numbers = [ 'two', 'six', 'ten' ]
+[ 'two', 'six', 'ten' ]
+coffee&gt; &quot;#{ index }. #{ value }&quot; for value, index in numbers
+[ '0. two', '1. six', '2. ten' ]
+coffee&gt; &quot;#{ index }. #{ value }&quot; for index, value of numbers
+[ '0. two', '1. six', '2. ten' ]
+------&gt; numbers =
+.......   two : 2
+.......   six : 6
+.......   ten : 10
+{ two: 2, six: 6, ten: 10 }
+coffee&gt; &quot;#{ key } = #{ value }&quot; for key, value of numbers
+[ 'two = 2', 'six = 6', 'ten = 10' ]
+</code></pre>
+<p>In order to iterate only over non-inherited properties of an object, the <code>for own</code> - <code>of</code> syntax may be used.</p>
+<p>In order to iterate a generator function the <code>for</code> - <code>from</code> syntax may be used.</p>
+<pre><code>------&gt; counter123 = -&gt;
+.......   n = 0
+.......   yield ++n until n is 3
+coffee&gt; for i from counter123() then i
+[ 1, 2, 3 ]
+</code></pre>
+<h3>Unconditional Loops</h3>
+<p>Iterations of a block or expression is even possible without loop condition, simply prefixing them with <code>loop</code>. In this case it is the developer's responsibility to <code>break</code> the loop from the loop body in order to avoid an infinite loop.</p>
+<pre><code>coffee&gt; n = 0
+0
+coffee&gt; loop if ++n &gt;= 10 then break else n if n % 2
+[ 1, undefined, 3, undefined, 5, undefined, 7, undefined, 9 ]
+</code></pre>
+<h2>Objects All Around</h2>
+<p>Exit and enter REPL for a fresh start. REPL's lexical environment is a <em>global environment</em>, prepopulated with identifier bindings, and includes an associated <em>global object</em> whose properties provide some of the global environment's identifier bindings.</p>
+<p>Use the autocomplete function of REPL to discover existing entities. List all available identifiers in the current namespace by a double TAB in an empty line. Get the same list by pressing TAB twice after <code>global.</code> or <code>this.</code>, printing the properties of the global object. The global object inherits some properties from <code>Object</code>, the rests are its own properties. Display the inherited properties by a double TAB after <code>Object.prototype.</code>, then list the global object's own properties by calling <code>Object.getOwnPropertyNames global</code>.</p>
+<p>Obsolete references to the global objects could still exist in the global environment for compatibility purposes.</p>
+<pre><code>coffee&gt; this is global is GLOBAL is root
+true
+[DEP0016] DeprecationWarning: 'GLOBAL' is deprecated, use 'global'
+[DEP0016] DeprecationWarning: 'root' is deprecated, use 'global'
+</code></pre>
+<h3>Origin</h3>
+<p>The <code>Object</code> constructor function is the initial value of the <code>Object</code> property of the global object. When called as a constructor it creates a new ordinary object. When <code>Object</code> is called as a function rather than as a constructor, it performs a type conversion.</p>
+<pre><code>coffee&gt; typeof Object
+'function'
+coffee&gt; typeof new Object
+'object'
+coffee&gt; typeof Object()
+'object'
+</code></pre>
+<p>The real immutable primary intrinsic object of the CoffeeScript Universe is the <code>Object.prototype</code>. Use double TAB to see its properties.</p>
+<pre><code>coffee&gt; Object.prototype.
+Object.prototype.__defineGetter__      Object.prototype.__defineSetter__
+Object.prototype.__lookupGetter__      Object.prototype.__lookupSetter__
+Object.prototype.__proto__             Object.prototype.constructor
+Object.prototype.hasOwnProperty        Object.prototype.isPrototypeOf
+Object.prototype.propertyIsEnumerable  Object.prototype.toLocaleString
+Object.prototype.toString              Object.prototype.valueOf
+</code></pre>
+<p>When <code>Object</code> function is called with a boolean, number, or string literal value, it results a <em>wrapper object</em> of the argument. <code>Boolean</code>, <code>Number</code>, and <code>String</code> wrapper objects are own properties of the global object, providing useful transformation and validation methods. Examine the own properties of the wrapper object by <code>Object.getOwnPropertyNames</code> function.</p>
+<script src="folding.js"></script>
+</body>
+</html>

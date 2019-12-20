@@ -1,0 +1,20 @@
+body {
+	background-color: #FFFFFF;
+	color: #000000;
+}
+
+blockquote {
+	border-left-color: #CCCCCC;
+}
+
+pre, code, tt {
+	background-color: #EEEEEE;
+}
+
+a {
+	color: #2244FF;
+}
+
+.triangle {
+	color: #CCCCCC;
+}

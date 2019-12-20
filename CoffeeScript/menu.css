@@ -1,0 +1,60 @@
+#menu {
+	position: fixed;
+	top: 0;
+	right: 0;
+	font-family: sans-serif;
+	font-size: medium;
+	z-index: 1;
+	user-select: none;
+}
+
+#menu table {
+  display: none;
+  line-height: 100%;
+  margin-top: 4px;
+	border: groove;
+	background-color: #888888;
+}
+
+#menu th {
+  font-style: italic;
+  border-bottom: solid thin;
+  color: white;
+  padding: 5px
+}
+
+#menu td {
+  cursor: pointer;
+	text-align: center;
+}
+
+#menu td:hover {
+  font-weight: bold;
+}
+
+#LightGrey, #menu td.folding {
+	background-color: #FFFFFF;
+	color: #000000;
+}
+
+#DarkGrey {
+	background-color: #222222;
+	color: #EEEEEE;
+}
+
+#LightBrown {
+	background-color: #FFEEDD;
+	color: #0F0800;
+}
+
+#DarkBrown {
+	background-color: #2F2820;
+	color: #FFF8F0;
+}
+
+#icon {
+	display: inline-block;
+  vertical-align: top;
+  margin-right: 5px;
+  cursor: pointer;
+}

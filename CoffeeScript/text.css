@@ -1,0 +1,104 @@
+html {
+  overflow-y: scroll;
+}
+
+body {
+	font-family: 'Garamond', 'Amiri', serif;
+	font-size: x-large;
+	line-height: 150%;
+	max-width: 900px;
+	padding-left: 44px;
+	margin: 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Amaranth', 'Averia Libre', sans-serif;
+	font-weight: normal;
+	padding-left: 36px;
+	text-indent: -36px;
+	margin: 33px -40px 11px;
+}
+
+h1 {
+	font-family: 'Patua One', 'Averia Libre', cursive;
+	font-size: 200%;
+	line-height: 120%;
+}
+
+h2 {
+	font-size: 170%;
+}
+
+h3 {
+	font-size: 160%;
+}
+
+h4 {
+	font-size: 150%;
+}
+
+h5 {
+	font-size: 140%;
+}
+
+h6 {
+	font-size: 130%;
+}
+
+pre, code, tt {
+	font-family: 'Anonymous pro', monospace;
+	font-size: 96%;
+}
+
+pre {
+	padding: 11px;
+	padding-left: 16px;
+}
+
+code {
+	padding: 5px;
+}
+
+pre code {
+	padding: 0;
+}
+
+blockquote {
+	margin: 0;
+	border-left-style: solid;
+	border-left-width: 5px;
+	padding-left: 11px;
+}
+
+p {
+	margin: 22px 0 22px 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+.triangle {
+	font-family: 'Anonymous pro', monospace;
+	font-size: 30px;
+	display: inline-block;
+	vertical-align: top;
+	width: 35px;
+	cursor: pointer;
+	text-indent: 0;
+	margin: 0;
+}
+
+table {
+  border-spacing: 22px 0;
+  margin: auto;
+}
+
+td.center {
+  text-align: center;
+}
+
+tr th,
+tr.bottom td {
+  border-bottom: thin solid black;
+}
