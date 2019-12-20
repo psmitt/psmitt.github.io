@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
   close.className = 'close'
   close.addEventListener('click', function () {
     parent.document.getElementById('Article').style.display = 'none'
+    parent.document.getElementById('Article').src = ''
   })
   document.body.querySelector('h1').append(close)
 })

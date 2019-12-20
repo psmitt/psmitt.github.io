@@ -6,7 +6,7 @@
     <menu title="PowerShell">
       <menu title="Ismertetés" link="About_PowerShell"/>
       <menu title="Telepítés"  link="Install_PowerShell"/>
-      <menu title="Indítás"    link="Start_PowerShell"/>
+      <menu title="Indítás"/>
       <menu title="Frissítés"  link="Update_PowerShell"/>
       <menu title="Kilépés"    link="Stop_PowerShell"/>
       <menu title="Törlés"     link="Remove_PowerShell"/>

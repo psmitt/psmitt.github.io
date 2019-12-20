@@ -31,21 +31,21 @@ function search(Tree, input) { // input must be trimmed!
       set(Tree, 'collapsed')
     }
   }
-  let Root = Tree.firstElementChild
+  let RootSpan = Tree.firstElementChild.lastElementChild
   if (input) {
     let matchAll = new RegExp('(?=.*' + input.replace(/ /g, ')(?=.*') + ')', 'i')
     let matchAny = new RegExp('(' + input.replace(/ /g, '|') + ')', 'ig')
     let found = matchAll.test(Root.textContent)
     if (found) {
-      Root.innerHTML = Root.textContent.replace(matchAny, '<mark>$1</mark>')
+      RootSpan.innerHTML = RootSpan.textContent.replace(matchAny, '<mark>$1</mark>')
     } else {
-      Root.innerHTML = Root.textContent
+      RootSpan.innerHTML = RootSpan.textContent
     }
     Tree.style.display = found || anyFound ? 'block' : 'none'
     return found || anyFound
   } else {
-    Root.innerHTML = Root.textContent
-    let result = anyFound || Root.classList.contains('clicked') ||
+    RootSpan.innerHTML = RootSpan.textContent
+    let result = anyFound || Tree.firstElementChild.classList.contains('clicked') ||
       Tree.parentNode == Menu // display top level menu
     Tree.style.display = result ? 'block' : 'none'
     return result
@@ -71,8 +71,8 @@ function selectMenu(event) {
       Root.classList.add('clicked')
       Root.focus()
       if (Root.firstElementChild) {
-        Root.firstElementChild.click()
         parent.document.getElementById('Article').style.display = ''
+        Root.firstElementChild.click()
       }
     }
   }
