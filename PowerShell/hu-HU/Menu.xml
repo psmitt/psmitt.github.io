@@ -3,25 +3,50 @@
 <?xml-stylesheet type="text/xsl" href="../Menu.xsl"?>
 <menu>
   <menu title="Alapok">
-    <menu title="PowerShell">
+    <menu title="PowerShell - a parancsértelmező">
       <menu title="Ismertetés" link="About_PowerShell"/>
       <menu title="Telepítés"  link="Install_PowerShell"/>
-      <menu title="Indítás"/>
+      <menu title="Indítás"    link="Start_PowerShell"/>
+      <menu title="Verzió információk"/>
       <menu title="Frissítés"  link="Update_PowerShell"/>
       <menu title="Kilépés"    link="Stop_PowerShell"/>
       <menu title="Törlés"     link="Remove_PowerShell"/>
     </menu>
+    <menu title="Help - a tájékoztatórendszer">
+      <menu title="Ismertetés" link="About_PowerShell"/>
+      <menu title="Telepítés"  link="Install_PowerShell"/>
+      <menu title="Indítás"/>
+      <menu title="Verzió"/>
+      <menu title="Frissítés"  link="Update_PowerShell"/>
+      <menu title="Kilépés"    link="Stop_PowerShell"/>
+      <menu title="Törlés"     link="Remove_PowerShell"/>
+    </menu>
+    <menu title="Command - a parancsfelderítő">
+      <menu title="Ismertetés" link="About_PowerShell"/>
+      <menu title="Telepítés"  link="Install_PowerShell"/>
+      <menu title="Indítás"/>
+      <menu title="Verzió"/>
+      <menu title="Frissítés"  link="Update_PowerShell"/>
+      <menu title="Kilépés"    link="Stop_PowerShell"/>
+      <menu title="Törlés"     link="Remove_PowerShell"/>
+    </menu>
+    <menu title="Host - a parancssori ablak">
+      <menu title="Ismertetés" link="About_PowerShell"/>
+      <menu title="Telepítés"  link="Install_PowerShell"/>
+      <menu title="Indítás"/>
+      <menu title="Verzió"/>
+      <menu title="Frissítés"  link="Update_PowerShell"/>
+      <menu title="Kilépés"    link="Stop_PowerShell"/>
+      <menu title="Törlés"     link="Remove_PowerShell"/>
+    </menu>
+  </menu>
+  <menu title="Adattárak, Tárkezelők, Alapparancsok, AdatTárHelyKezelők">
     <menu title="Ismertetés" link="About_PowerShell"/>
     <menu title="Telepítés"  link="Install_PowerShell"/>
-    <menu title="Indítás"    link="Start_PowerShell"/>
+    <menu title="Indítás"/>
+    <menu title="Verzió"/>
     <menu title="Frissítés"  link="Update_PowerShell"/>
     <menu title="Kilépés"    link="Stop_PowerShell"/>
     <menu title="Törlés"     link="Remove_PowerShell"/>
   </menu>
-  <menu title="Ismertetés" link="About_PowerShell"/>
-  <menu title="Telepítés"  link="Install_PowerShell"/>
-  <menu title="Indítás"    link="Start_PowerShell"/>
-  <menu title="Frissítés"  link="Update_PowerShell"/>
-  <menu title="Kilépés"    link="Stop_PowerShell"/>
-  <menu title="Törlés"     link="Remove_PowerShell"/>
 </menu>

@@ -35,7 +35,7 @@ function search(Tree, input) { // input must be trimmed!
   if (input) {
     let matchAll = new RegExp('(?=.*' + input.replace(/ /g, ')(?=.*') + ')', 'i')
     let matchAny = new RegExp('(' + input.replace(/ /g, '|') + ')', 'ig')
-    let found = matchAll.test(Root.textContent)
+    let found = matchAll.test(RootSpan.textContent)
     if (found) {
       RootSpan.innerHTML = RootSpan.textContent.replace(matchAny, '<mark>$1</mark>')
     } else {

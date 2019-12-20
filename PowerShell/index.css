@@ -15,29 +15,23 @@ iframe {
 }
 
 #Menu {
-  width: 360px;
   max-width: 720px;
 }
 
 #Article {
-  width: 720px;
+  flex: 0 0 720px;
   margin: auto; /* center frame */
   z-index: 1;
 }
 
 @media only screen and (max-width : 1000px) {
-  html, body, iframe {
+  html, body, #Article {
     position: absolute;
     top: 0;
     left: 0;
   }
 
   #Menu {
-    width: 100%;
-  }
-
-  #Article {
-    width: 100%;
     margin: auto; /* center frame */
   }
 }

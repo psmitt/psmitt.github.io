@@ -12,6 +12,7 @@ body {
 article {
   height: 100%;
   width: 100%;
+  max-width: 695px;
   overflow-y: scroll;
   padding-right: 100px; /* hide scrollbar */
   font-family: 'Literata', serif;
