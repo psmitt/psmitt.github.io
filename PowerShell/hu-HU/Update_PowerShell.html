@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>Hogyan tartsuk naprakészen a PowerShell parancsértelmezőt?</h1>
+  <h2>A PowerShell telepített verziójának megállapítása</h2>
+  Az adott platformon telepített PowerShell verziószámát a parancsértelmező
+  elindítása nélkül is megállapíthatjuk a <kbd>pwsh -version</kbd> paranccsal.
+  Amennyiben a PowerShell előzetes (<i>preview</i>&thinsp;) verzióját (is)
+  telepítettük a számítógépre, annak verziószámát a <kbd>pwsh-preview -version</kbd>
+  paranccsal jeleníthetjük meg.
+  <figure>
+    <img src="img/pwsh versions.png"/>
+    <figcaption>Installed Versions of PowerShell</figcaption>
+  </figure>
+  <h2>A PowerShell új kiadásainak figyelése</h2>
+  A <a href="https://github.com/PowerShell/PowerShell/releases/latest"
+  target="_blank">https://github.com/PowerShell/PowerShell/releases/latest</a>
+  webcím mindig az utolsó stabil verzió kiadási oldalára mutat, amelynek alján
+  szintén megtaláljuk a különböző platformokra előkészített telepítő csomagokat.
+  Ha értesülni szeretnénk az újabb kiadásokról, állítsuk be a kiadások figyelését
+  a <a href="https://github.com/PowerShell/PowerShell/releases" target="_blank"
+  >https://github.com/PowerShell/PowerShell/releases</a> oldalon.
+  <figure>
+    <img src="img/Watch Releases.png"/>
+    <figcaption>Watch Releases of PowerShell</figcaption>
+  </figure>
+  <h2>A PowerShell újabb verziójának telepítése</h2>
+  Az önállóan telepített PowerShell verziófrissítését az újabb verzió önálló
+  telepítésével hajtsuk végre (ld. <a href="Install_PowerShell.html"
+  >A PowerShell telepítése</a>). A PowerShell segítségével a böngésző
+  használata nélkül is letölthetjük és elindíthatjuk a telepítő programot a
+  következő PowerShell utasítással:
+  <code>
+    Invoke-Expression "& { $(Invoke-RestMethod -Uri
+    https://aka.ms/install-powershell.ps1) } -UseMSI -Preview -AddToPath"
+  </code>
+  Az utasítás kiadása előtt természetesen el kell indítani a PowerShell
+  parancsértelmezőt a konzolon ( <kbd>pswh</kbd> vagy <kbd>pwsh-preview</kbd> ).
+  <h2>A PowerShell verziófrissítése csomagkezelő használatával</h2>
+  A .NET globális eszközként telepített PowerShell programcsomag valamennyi
+  platformon egységesen a <code>dotnet tool update --global PowerShell</code>
+  utasítással telepíthető a parancssorból. Érdekességképpen megjegyezzük, hogy
+  ugyanez az utasítás akkor is feltelepíti a PowerShell legújabb verzióját, ha
+  az előtte nem is volt a számítógépre telepítve. Amennyiben a számítógépen már
+  az elérhető legújabb verzió fut, akkor mindössze üzenetet kapunk erről, és
+  a frissítés értelemszerűen nem történik meg.
+  <figure>
+    <img src="img/dotnet tool update.png"/>
+    <figcaption>Update the PowerShell Global Tool</figcaption>
+  </figure>
+  <nav>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pwsh" target="_blank">
+      A <strong>pwsh</strong> parancssori eszköz használata
+    </a>
+    <p>
+      <a href="About_Help">
+        A PowerShell elindítása és tájékoztatórendszere
+      </a>
+  </nav>
+</article>
+</body>
+</html>

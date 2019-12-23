@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>Hogyan távolítsuk el a PowerShell parancsértelmezőt a számítógépről?</h1>
+  Az önállóan telepített PowerShell programnak egyszerre akár több verziója is
+  telepítve lehet a számítógépen, és előfordulhat, hogy a régebbi verziókra már
+  nincs szükség. Ezeket az adott platformra jellemző módon távolíthatjuk el a
+  számítógépről, Windows operációs rendszeren például a Gépházból elérhető
+  <strong>Alkalmazások és szolgáltatások</strong> beállításlapon, vagy a
+  Vezérlőpultról elérhető <strong>Programok és szolgáltatások</strong>
+  beállításablakban.
+  <figure>
+    <img src="img/Windows Settings.png"/>
+    <figcaption>Windows Settings</figcaption>
+    <img src="img/Windows Control Panel.png"/>
+    <figcaption>Windows Control Panel</figcaption>
+  </figure>
+  <h2>A PowerShell globális eszköz eltávolítása</h2>
+  A .NET globális eszközként telepített PowerShell programcsomag valamennyi
+  platformon egységesen a <code>dotnet tool uninstall --global PowerShell</code>
+  utasítással távolítható el a számítógépről.
+  <figure>
+    <img src="img/dotnet tool uninstall.png"/>
+    <figcaption>Remove the PowerShell Global Tool</figcaption>
+  </figure>
+  <nav>
+    <a href="https://github.com/jerriep/dotnet-outdated" target="_blank">
+      Az elavult NuGet csomagokat jelző .NET globális eszköz
+    </a>
+    <p>
+  </nav>
+</article>
+</body>
+</html>

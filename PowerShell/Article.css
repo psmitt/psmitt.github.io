@@ -6,7 +6,7 @@ html, body {
 
 body {
   max-width: 720px;
-  padding: 0.5em 0.5em 0 1em;
+  padding: 0.4em 0.5em 0 1em;
 }
 
 article {
@@ -35,6 +35,7 @@ h1, h2 {
   font-family: 'Barlow Semi Condensed', sans-serif;
   font-weight: bold;
   margin-bottom: 0.5em;
+  text-align: left;
 }
 
 h1 {
@@ -57,9 +58,11 @@ a:hover {
 }
 
 a.toplink {
+  display: inline-block;
   font-size: x-large;
-  margin-left: 1em;
   opacity: 0.6;
+  vertical-align: text-bottom;
+  padding-bottom: 3px;
 }
 
 figure {
@@ -82,7 +85,7 @@ figcaption {
 }
 
 kbd, code {
-  background-color: gray;
+  background-color: #444444;
   color: white;
   font-family: 'Anonymous Pro', monospace;
 }
@@ -97,6 +100,8 @@ code {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   padding: 0.5em;
+  white-space: nowrap;
+  overflow-x: auto;
 }
 
 nav {
