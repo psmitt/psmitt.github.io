@@ -2,19 +2,21 @@
 <!DOCTYPE syntax SYSTEM "../Menu.dtd">
 <?xml-stylesheet type="text/xsl" href="../Menu.xsl"?>
 <menu>
-  <menu title="Alapok">
+  <menu title="Első lépések, felderítőeszközök">
     <menu title="PowerShell parancsértelmező">
       <menu title="Áttekintés"      link="About_PowerShell"/>
-      <menu title="Telepítés"       link="Install_PowerShell"/>
-      <menu title="Verziófrissítés" link="Update_PowerShell"/>
-      <menu title="Eltávolítás"     link="Remove_PowerShell"/>
+      <menu title="Telepítés"       link="Install-PowerShell"/>
+      <menu title="Verziófrissítés" link="Update-PowerShell"/>
+      <menu title="Eltávolítás"     link="Remove-PowerShell"/>
     </menu>
     <menu title="Help tájékoztatórendszer">
-      <menu title="Ismertetés" link="About_Help"/>
-    </menu>
-    <menu title="Command parancsfelderítő">
+      <menu title="Áttekintés" link="About_Help"/>
+      <menu title="A súgó naprakészen tartása, frissítése" link="Update-Help"/>
+      <menu title="A súgó használata" link="Get-Help"/>
     </menu>
     <menu title="Host - a parancssori ablak">
+    </menu>
+    <menu title="PSReadLine parancssorkezelő">
     </menu>
   </menu>
   <menu title="Adattárak, Tárkezelők, Alapparancsok, AdatTárHelyKezelők">

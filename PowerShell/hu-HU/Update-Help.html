@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>Hogyan tartsuk naprakészen a súgófájlokat?</h1>
+  Valahányszor új összetevőkkel bővítjük a PowerShell munkakörnyezetetet, vagy a
+  már használatba vett csomagok, modulok és szriptek verziószámát növeljük,
+  mindig érdemes azonnal frissíteni a helyben tárolt súgófájlokat is.
+  A helyi súgórendszer frissítése az <kbd>Update-Help</kbd> paranccsal történik.
+  A súgórendszer csak rendszergazdai jogosultságokkal frissíthető, a parancs
+  végrehajtásához tehát a PowerShell parancsértelmező felhasználói ablakát eleve
+  rendszergazdaként kell elindítani.
+  <figure>
+    <img src="img/Run PowerShell as Administrator.png"/>
+    <figcaption>Run PowerShell as Administrator</figcaption>
+  </figure>
+  <p>
+  Az <kbd>Update-Help</kbd> parancs önmagában (vagyis alapértelmezett paraméterekkel)
+  csak az aktuális felhasználói profil regionális beállításaiban szereplő
+  országnak és nyelvnek megfelelő súgóállományokat tölti le és frissíti!
+  Mivel a fejlesztési konvenciók szerint súgó információk elsősorban az amerikai
+  angol nyelvterülethez készülnek, a súgófájlok frissítésekor érdemes kifejezetten
+  megjelölni az amerikai angol területi beállításokat.
+  A megfelelően felparaméterezett parancs a következő:
+  <code>Update-Help -UICulture en-US -Force -Verbose</code>
+  <figure>
+    <img src="img/Update-Help.png"/>
+    <figcaption>Update-Help</figcaption>
+  </figure>
+  <nav>
+    <a href="Get-Help.html"
+      >A súgófájlok használata</a>
+  </nav>
+</article>
+</body>
+</html>
