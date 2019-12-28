@@ -25,12 +25,6 @@ article {
   text-justify: inter-word;
 }
 
-span.close {
-  color: #336699;
-  float: right;
-  cursor: pointer;
-}
-
 h1, h2 {
   font-family: 'Barlow Semi Condensed', sans-serif;
   font-weight: bold;
@@ -39,8 +33,13 @@ h1, h2 {
 }
 
 h1 {
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  background-color: black;
   font-size: xx-large;
   margin-top: 0;
+  padding: 0 1.5em 0.2em 1.5em;
 }
 
 h2 {
@@ -51,18 +50,25 @@ h2 {
 a {
   text-decoration: none;
   color: #5599C0;
+  cursor: pointer;
 }
 
 a:hover {
   color: fuchsia;
 }
 
-a.toplink {
-  display: inline-block;
-  font-size: x-large;
+a.toplink, a.close {
+  position: absolute;
+  top: -0.1em;
   opacity: 0.6;
-  vertical-align: text-bottom;
-  padding-bottom: 3px;
+}
+
+a.toplink {
+  right: -0.1em;;
+}
+
+a.close {
+  left: -0.1em;;
 }
 
 figure {

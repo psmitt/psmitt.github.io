@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', function () {
   let locale = folders[folders.length - 2]
   let article = folders[folders.length - 1].split('.html')[0]
 
-  let close = document.createElement('span')
-  close.textContent = '🗵'
+  let close = document.createElement('a')
+  close.textContent = '🔙'
   close.className = 'close'
   close.addEventListener('click', function () {
     parent.document.getElementById('Article').style.display = 'none'
@@ -18,5 +18,5 @@ document.addEventListener('DOMContentLoaded', function () {
   link.textContent = '🔝'
   link.className = 'toplink'
   link.title = 'A cikk saját címe'
-  close.prepend(link)
+  document.body.querySelector('h1').append(link)
 })
