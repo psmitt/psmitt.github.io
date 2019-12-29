@@ -10,15 +10,23 @@
       <menu title="Eltávolítás"     link="Remove-PowerShell"/>
     </menu>
     <menu title="Help tájékoztatórendszer">
-      <menu title="Áttekintés" link="About_Help"/>
+      <menu title="Áttekintés"        link="About_Help"/>
       <menu title="A súgó naprakészen tartása, frissítése" link="Update-Help"/>
       <menu title="A súgó használata" link="Get-Help"/>
     </menu>
-    <menu title="Host - a parancssori ablak">
-    </menu>
     <menu title="PSReadLine parancssorkezelő">
+      <menu title="Áttekintés"              link="About_PSReadLine"/>
+      <menu title="History parancstörténet" link="About_History"/>
+      <menu title="Host konzol"             link="About_Host"/>
     </menu>
   </menu>
-  <menu title="Adattárak, Tárkezelők, Alapparancsok, AdatTárHelyKezelők">
+  <menu title="Adattárhely-kezelő alapparancsok">
+    <menu title="Path adatelérési utak"       link="About_Path"/>
+    <menu title="Location tárhelyek kezelése" link="About_Location"/>
+    <menu title="Item adatelemek kezelése"    link="About_Item"/>
+    <menu title="PSProvider adattárolók és PSDrive meghajtók">
+      <menu title="Áttekintés" link="About_PSProvider"/>
+      <menu title="A fájlrendszer" link="File_System"/>
+    </menu>
   </menu>
 </menu>

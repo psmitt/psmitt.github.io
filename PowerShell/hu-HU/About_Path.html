@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="hu-HU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>Path adatelérési utak</h1>
+  Azokat a parancsmagokat, amelyekkel kifejezetten a PowerShell-hez kifejlesztett,
+  hierarchikus felépítésű <kbd>PSProvider</kbd> adattárhelyeken tárolt adatelemeket
+  kezeljük, a PowerShell alapparancsainak (<i>core commands&thinsp;</i>) nevezzük.
+  A PSProvider adattárhelyeken tárolt adatelemeket egyedi azonosítóját
+  <strong>adatelérési útnak</strong> (<i>Path&thinsp;</i>) hívjuk.
+  <p>
+  Egy adatelérési út lehet abszolút vagy relatív. Egy abszolút adatelérési út
+  a hierarchikus (faszerkezetű) adattárhely gyökerénél kezdődik,
+  amit PSDrive meghajtónak nevezünk. Minden meghajtónak egyedi megnevezése van.
+  Az abszolút adatelérési út a meghajtótól az egymásba ágyazott tárhelyeken
+  (<i>Location&thinsp;</i>) keresztül vezet egészen a tárolt adatelemig
+  (<i>Item</i>), és annak a nevével végződik. A meghajtó elé tetszés szerint
+  feltüntethető az adattárhely neve is, tehát egy abszolút elérési út teljes
+  szerkezete a következőképpen írható le:
+  <code>Path = [&lt;PSProvider&gt;::][&lt;PSDrive&gt;:]\[&lt;Location&gt;\…]&lt;Item&gt;</code>
+  Abszolút elérési utat láthatunk például a parancssor elejét jelző
+  ún. <i>prompt&thinsp;</i> karakterláncban.
+  <figure>
+    <img src="img/command prompt.png"/>
+    <figcaption>Command Prompt</figcaption>
+  </figure>
+  Egy relatív elérési út egy adott tárhelytől indul, és a hierarchiában fel-le
+  közlekedve ér el az azonosított adatelemig. A relatív elérési út leírásában
+  egy pont az aktuális tárhelyet, két pont pedig a hierarchiában eggyel magasabb
+  szintet jelöli. Egy <kbd>A</kbd> tárhelyről a vele szomszédos <kbd>B</kbd>
+  tárhelyre tehát a <kbd>../B</kbd> relatív útvonallal hivatkozhatunk.
+  <figure>
+    <img src="img/relative path to sibling.png"/>
+    <figcaption>Relative Path to Sibling</figcaption>
+  </figure>
+  <nav>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_path_syntax"
+     target="_blank">Get-Help about_Path_Syntax</a>
+    <p>
+    <a href="../index.html?locale=hu-HU&article=About_Location" target="_top"
+      >Közlekedés a tárhelyek között</a>
+  </nav>
+</article>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="hu-HU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>A parancssoros felhasználói felület</h1>
+  A parancssoros felhasználói felület (<i>command-line interface</i>, CLI)
+  billentyűzetről szerkeszthető beviteli sorokból olvassa a karaktersorozatként
+  megadott felhasználói utasításokat, és a válaszokat is karaktersorozatok
+  formájában jeleníti meg. Az egyetlen vizuális formázási lehetőséget a
+  karakteres felületen a háttér és a karakterek színezése jelenti.
+  <p>
+  A beviteli karaktersorozat szerkesztéséhez használt billentyűket és
+  billentyűkombinációkat röviden ismerteti a
+  <code>Get-Help about_Line_Editing</code>
+  súgó témakör. A <kbd>PSReadLine</kbd> eszköz azonban több, mint egyszerű
+  sorszerkesztő: a többsoros parancsbevitelt a begépelt
+  utasítássorok történeti visszakeresésével és a PowerShell szkritpnyelv
+  szintaxis alapú színezésével is támogatja, sőt az Emacs és Vi szövegszerkesztők
+  megszokott billentyűparancsai is elérhetők benne.
+  Részletes ismertetését a
+  <code>Get-Help about_PSReadLine</code>
+  témakörben olvashatjuk, de a használható billentyűkombinációkat
+  táblázatként is megjeleníthetjük a <kbd>Get-PSReadLineKeyHandler</kbd>
+  utasítással; a parancssorkezelő aktuális megjelenítési beállításait
+  pedig a <kbd>Get-PSReadLineOption</kbd> utasítással listázhatjuk.
+  <nav>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/psreadline/about/about_psreadline"
+     target="_blank">A PSReadLine parancssorkezelő termékdokumentációs oldalai</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_psconsolehostreadline"
+     target="_blank"
+      >A parancssorfeldolgozó eljárás átdefiniálása</a>
+    <p>
+    <a href="../index.html?locale=hu-HU&article=About_History" target="_top"
+      >A parancssor történeti nyilvántartása</a>
+  </nav>
+</article>
+</body>
+</html>

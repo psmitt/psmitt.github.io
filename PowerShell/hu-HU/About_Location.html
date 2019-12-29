@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="hu-HU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>Közlekedés a tárhelyek között</h1>
+  A legfontosabb szabály: a PowerShell rendszerben mindig benne vagyunk egy
+  tárhely-hierarchiában, mindig éppen egy adott tárhelyet és annak adatelemeit
+  látjuk. A <kbd>pwsh</kbd> indításakor ez a tárhely lehet a felhasználói mappa,
+  vagy egy rendszermappa (ha az eszközt rendszergazdaként indítjuk), de
+  a <kbd>--WorkingDirectory</kbd> kapcsolóval megadhatunk bármilyen más
+  kezdőmappát is a fájlrendszerben.
+  <p>
+  Az éppen adott tárhelyet (aktuális munkakönyvtárat) a <kbd>Get-Location</kbd>
+  utasítással jeleníthetjük meg. Ennek eredményeképpen megkapjuk az aktuális
+  tárhely abszolút elérési útját, ugyanazt a karaktersorozatot, amelyet a
+  parancssor prompt-jában is látunk.
+  <figure>
+    <img src="img/Get-Location.png"/>
+    <figcaption>Get-Location</figcaption>
+  </figure>
+  Az aktuális tárhely a <kbd>Set-Location</kbd> paranccsal megváltoztatható;
+  paraméterként az új tárhely (abszolút vagy relatív) adatelérési útját kell
+  csak megadni.
+  <figure>
+    <img src="img/Set-Location.png"/>
+    <figcaption>Set-Location</figcaption>
+  </figure>
+  Egy adott elérési úton megtalálható összes tárhelyet kilistázhatjuk a
+  <code>Get-ChildItem -Directory</code>
+  utasítással, mindössze az elérési utat kell utána írni. Ha nem adunk meg
+  elérési utat, akkor az utasítás az aktuális munkakönyvtárban megtalálható
+  tárhelyeket (alkönyvtárakat, almappákat) listázza.
+  <figure>
+    <img src="img/Get-ChildItem -Directory.png"/>
+    <figcaption>Get-ChildItem -Directory</figcaption>
+  </figure>
+  <nav>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_Locations"
+     target="_blank">Get-Help about_Locations</a>
+    <p>
+    <a href="../index.html?locale=hu-HU&article=About_Item" target="_top"
+      >A tárolt adatelemek kezelése</a>
+  </nav>
+</article>
+</body>
+</html>
