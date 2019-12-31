@@ -18,7 +18,10 @@
   vagy egy rendszermappa (ha az eszközt rendszergazdaként indítjuk), de
   a <kbd>--WorkingDirectory</kbd> kapcsolóval megadhatunk bármilyen más
   kezdőmappát is a fájlrendszerben.
-  <p>
+  <figure>
+    <img src="img/pwsh --WorkingDirectory.png"/>
+    <figcaption>pwsh -&#8202;-WorkingDirectory</figcaption>
+  </figure>
   Az éppen adott tárhelyet (aktuális munkakönyvtárat) a <kbd>Get-Location</kbd>
   utasítással jeleníthetjük meg. Ennek eredményeképpen megkapjuk az aktuális
   tárhely abszolút elérési útját, ugyanazt a karaktersorozatot, amelyet a
@@ -42,6 +45,16 @@
   <figure>
     <img src="img/Get-ChildItem -Directory.png"/>
     <figcaption>Get-ChildItem -Directory</figcaption>
+  </figure>
+  A felkeresett tárhelyeket mint a közlekedés "állomásait" egyfajta útinaplóként
+  feljegyezhetjük, ha a váltáshoz a <kbd>Push-Location</kbd> parancsot használjuk.
+  A feljegyzett állomásokat fordított sorrendben azután újra felkereshetjük a
+  <kbd>Pop-Location</kbd> parancsmag segítségével. Arra is van lehetőség, hogy
+  egyszerre több útinaplót használjunk: ezek nevét az említett parancsmagoknak
+  a <kbd>-StackName</kbd> paraméterrel adhatjuk át.
+  <figure>
+    <img src="img/Push-Location, Pop-Location.png"/>
+    <figcaption>Push-Location, Pop-Location</figcaption>
   </figure>
   <nav>
     <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_Locations"

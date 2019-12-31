@@ -12,22 +12,31 @@
 <body>
 <article>
   <h1>Adatelemek kezelése</h1>
-
-  Egy adott elérési úton megtalálható összes tárhelyet kilistázhatjuk a
-  <code>Get-ChildItem -Directory</code>
-  utasítással, mindössze az elérési utat kell utána írni. Ha nem adunk meg
-  elérési utat, akkor az utasítás az aktuális munkakönyvtárban megtalálható
-  tárhelyeket (alkönyvtárakat, almappákat) listázza.
-  <figure>
-    <img src="img/Get-ChildItem -Directory.png"/>
-    <figcaption>Get-ChildItem -Directory</figcaption>
-  </figure>
+  Egy adott tárhelyen elérhető valamennyi adatelemet kilistázhatjuk a
+  <kbd>Get-ChildItem</kbd> parancsmaggal. Ha nem adunk meg konkrét tárhelyet,
+  akkor a parancs az aktuális munkakönyvtárban tárolt adatelemeket listázza,
+  beleértve a beágyazott tárhelyeket (alkönyvtárakat, almappákat) is.
+  A listázást a <kbd>-Recurse</kbd> kapcsolóval a beágyazott tárhelyekre
+  is kiterjeszthetjük, ugyanakkor a tárolt adatelemek felsorolását akár név
+  szerint, akár leíró tulajdonságaik (attribútumaik) szerint szűkíthetjük a
+  megfelelő paraméterek használatával (ld.
+  <a href="https://docs.microsoft.com/hu-hu/powershell/module/microsoft.powershell.management/get-childitem"
+  target="_blank">Get-Help Get-ChildItem</a>).
+  <p>
+  Az (abszolút vagy relatív) elérési úttal azonosított adatelemeket
+  (<i>Item&thinsp;</i>), azok tulajdonságait (<i>ItemProperty&thinsp;</i>),
+  valamint adattartalmát (<i>Content&thinsp;</i>) a nekik megfelelő
+  alapparancsokkal deríthetjük fel, módosíthatjuk, törölhetjük, vagy hozhatjuk
+  létre. Az alapparancsok használatáról a súgóban tájékozódjunk:
+  <code>Get-Help *-Item</code>
+  <code>Get-Help *-ItemProperty</code>
+  <code>Get-Help *-Content</code>
   <nav>
     <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_Core_Commands"
      target="_blank">Get-Help about_Core_Commands</a>
     <p>
-    <a href="../index.html?locale=hu-HU&article=About_Item" target="_top"
-      >A PowerShell adattárhely</a>
+    <a href="../index.html?locale=hu-HU&article=About_PSProvider" target="_top"
+      >PSProvider adattárolók és PSDrive meghajtók</a>
   </nav>
 </article>
 </body>

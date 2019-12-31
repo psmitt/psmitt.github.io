@@ -13,15 +13,16 @@
 <article>
   <h1>Hogyan használjuk a PowerShell tájékoztatórendszerét?</h1>
   A PowerShell munkakörnyezet megismerését a tájékoztatórendszer általános
-  témakörei és a PowerShell parancsmagok súgóoldalai segítik. Ezeket a
-  <kbd>Get-Help</kbd> utasítással jeleníthetjük meg akár karakteres formában
-  a parancssori ablakban, akár webes formában a böngészőben.
+  témakörei, továbbá a parancsok, függvények stb. súgóoldalai segítik.
+  Ezeket a <kbd>Get-Help</kbd> utasítással jeleníthetjük meg akár karakteres
+  formában a parancssori ablakban, akár webes formában a böngészőben.
   A <kbd>Get-Help</kbd> utasítás önmagában a tájékoztatórendszer használatát
-  ismerteti &mdash; ugyanezt jeleníti meg oldalakra bontva a <kbd>help</kbd> parancs
-  (ld. <a href="About_Help.html">Áttekintés</a>).
+  ismerteti &mdash; ugyanezt jeleníti meg oldalakra bontva a <kbd>help</kbd>
+  parancs is (ld. <a href="About_Help.html">Áttekintés</a>).
   <p>
-  Amennyiben egy konkrét parancsmag használatát szeretnénk megtanulni, annak a
-  nevét adjuk meg argumentumként a <kbd>Get-Help</kbd> után.
+  Amennyiben egy konkrét PowerShell elem (parancs, függvény, osztály stb.)
+  használatát szeretnénk megtanulni, annak a nevét adjuk meg argumentumként
+  a <kbd>Get-Help</kbd> után.
   A súgófájlok frissítésének módját például a következő parancs ismerteti:
   <code>Get-Help Update-Help</code>
   <figure>
@@ -29,22 +30,21 @@
     <figcaption>Get-Help Update-Help</figcaption>
   </figure>
   Ha ugyanez a tartalom weblapként is elérhető valahol a PowerShell
-  termékdokumentációs oldalain, akkor azt a böngészőablakban az
-  <kbd>-Online</kbd> kapcsolóval jeleníthetjük meg:
+  termékdokumentációs oldalain, akkor azt az <kbd>-Online</kbd> kapcsolóval
+  jeleníthetjük meg:
   <code>Get-Help Update-Help -Online</code>
   <p>
-  A parancsmagok ismertetését kiegészítő további súgó témakörök címe az
-  <kbd>about_</kbd> előtaggal kezdődik. A <kbd>pwsh</kbd> parancssori
-  eszköz indítási paramétereit például részletesen ismerteti a
+  A PowerShell alapelemeit, alapfogalmait ismertető súgó témakörök címe
+  az <kbd>about_</kbd> előtaggal kezdődik. A <kbd>pwsh</kbd> parancssori eszköz
+  indítási paramétereit például részletesen ismerteti a
   <code>Get-Help about_pwsh</code> utasítás.
   <p>
-  Az elérhető témakörök, illetve a tájékoztató oldalakkal rendelkező parancsmagok
-  felderítéséhez használjuk a <kdb>Get-Help</kdb> argumentumában a tetszőleges
-  szövegrészletet helyettesítő <kbd>*</kbd> karaktert.
-  Az összes elérhető súgó témakör felsorolható például a
-  <code>Get-Help about_*</code> utasítással,
-  a súgórendszerrel kapcsolatos összes parancsmag és témakör pedig a
-  <code>Get-Help *help</code> utasítással listázható a képernyőre.
+  Az elérhető súgó témakörök és tájékoztató oldalak felderítéséhez használjuk
+  a <kbd>Get-Help</kbd> argumentumában a tetszőleges szövegrészletet helyettesítő
+  <kbd>*</kbd> karaktert. Az összes elérhető súgó témakör felsorolható például a
+  <code>Get-Help about_*</code> utasítással, a súgórendszerrel kapcsolatos összes
+  parancs és témakör pedig a <code>Get-Help *help</code> utasítással
+  listázható a képernyőre.
   <figure>
     <img src="img/Get-Help starhelp.png"/>
     <figcaption>Get-Help *help</figcaption>
@@ -52,14 +52,26 @@
   A találatokon észrevehető a szabály, hogy a kis- és nagybetűk közötti eltérés
   általában nem jelent lényeges különbséget, vagyis a PowerShell parancsértelmező
   alapértelmezetten nem betűérzékeny (<i>case insensitive&thinsp;</i>).
+  <p>
+  A <kbd>Get-Help</kbd> "csillagos" használatához hasonló módon működik a
+  <kbd>Get-Command</kbd> parancs is, amely azonban csak a keresési szövegnek
+  megfelelő PowerShell elemek (parancsok, függvények stb.) nevét deríti fel
+  és írja a képernyőre, az általános jellegű súgó témakörök címét nem.
+  Az így felderített PowerShell elemekről azután megint csak a
+  <kbd>Get-Help</kbd> utasítással kell tájékozódni.
+  <figure>
+    <img src="img/Get-Command starhelp.png"/>
+    <figcaption>Get-Command *help</figcaption>
+  </figure>
   <nav>
-    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pwsh" target="_blank">
-      A <strong>pwsh</strong> parancssori eszköz használata
-    </a>
+    <a href="../index.html?locale=hu-HU&article=About_PSReadLine" target="_top"
+     >A parancssori ablak (konzol) használata, az utasítások szerkesztése</a>
     <p>
-    <a href="../index.html?locale=hu-HU&article=About_PSReadLine" target="_top">
-      A PowerShell parancssori ablak (konzol) használata
-    </a>
+    <a href="../index.html?locale=hu-HU&article=About_Command_Syntax" target="_top"
+     >A PowerShell parancsok felépítése (szintaxisa)</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_command_syntax"
+     target="_blank">Segítség a parancsok használatának megértéséhez</a>
   </nav>
 </article>
 </body>

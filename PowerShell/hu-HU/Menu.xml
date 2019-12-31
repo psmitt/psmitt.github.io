@@ -3,21 +3,31 @@
 <?xml-stylesheet type="text/xsl" href="../Menu.xsl"?>
 <menu>
   <menu title="Első lépések, felderítőeszközök">
-    <menu title="PowerShell parancsértelmező">
+    <menu title="A PowerShell parancsértelmező">
       <menu title="Áttekintés"      link="About_PowerShell"/>
       <menu title="Telepítés"       link="Install-PowerShell"/>
       <menu title="Verziófrissítés" link="Update-PowerShell"/>
       <menu title="Eltávolítás"     link="Remove-PowerShell"/>
     </menu>
-    <menu title="Help tájékoztatórendszer">
+    <menu title="A Help tájékoztatórendszer">
       <menu title="Áttekintés"        link="About_Help"/>
       <menu title="A súgó naprakészen tartása, frissítése" link="Update-Help"/>
       <menu title="A súgó használata" link="Get-Help"/>
     </menu>
-    <menu title="PSReadLine parancssorkezelő">
+    <menu title="A PSReadLine parancssorkezelő">
       <menu title="Áttekintés"              link="About_PSReadLine"/>
       <menu title="History parancstörténet" link="About_History"/>
-      <menu title="Host konzol"             link="About_Host"/>
+    </menu>
+    <menu title="A parancsfeldolgozó működése">
+      <menu title="A parancsok felépítése (szintaxis)" link="About_Command_Syntax"/>
+      <menu title="Feldolgozandó adatok (input)" link="Input"/>
+      <menu title="Eredménycsatornák (streams)" link="Streams"/>
+      <menu title="Az eredmény elrendezése (format)" link="Format"/>
+      <menu title="Az eredmény megjelenítése (output)" link="Output"/>
+    </menu>
+    <menu title="A csővezeték (pipeline)">
+      <menu title="A csővezeték működése" link="About_Pipelines"/>
+      <menu title="A rejtett csővezeték" link="Out-Default"/>
     </menu>
   </menu>
   <menu title="Adattárhely-kezelő alapparancsok">
@@ -26,7 +36,17 @@
     <menu title="Item adatelemek kezelése"    link="About_Item"/>
     <menu title="PSProvider adattárolók és PSDrive meghajtók">
       <menu title="Áttekintés" link="About_PSProvider"/>
-      <menu title="A fájlrendszer" link="File_System"/>
+      <menu title="Fájlrendszer" link="File_System_Provider"/>
+      <menu title="Regisztrációs adatbázis" link="Registry_Provider"/>
+      <menu title="Környezeti változók" link="Environment_Provider"/>
+      <menu title="Automatikus és felhasználói változók" link="Variable_Provider"/>
+      <menu title="PowerShell függvények" link="Function_Provider"/>
+      <menu title="PowerShell parancsok rövidítései" link="Alias_Provider"/>
     </menu>
+  </menu>
+  <menu title="A .NET keretrendszer felderítése">
+    <menu title="Áttekintés" link="About_.NET"/>
+    <menu title="Objektumok" link="About_Object"/>
+    <menu title="A közös típusrendszer (CTS)" link="About_CTS"/>
   </menu>
 </menu>

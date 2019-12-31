@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="hu-HU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>PSProvider adattárhelyek és PSDrive meghajtók</h1>
+  A PowerShell-ben elérhető és az alapparancsokkal kezelhető tárhelyszolgáltatók
+  névsorát a <kbd>Get-PSProvider</kbd> utasítással jeleníthetjük meg.
+  <figure>
+    <img src="img/Get-PSProvider.png"/>
+    <figcaption>Get-PSProvider</figcaption>
+  </figure>
+  Hasonló tartalmú listát kapunk meghajtókra lebontva a <kbd>Get-PSDrive</kbd>
+  utasítással.
+  <figure>
+    <img src="img/Get-PSDrive.png"/>
+    <figcaption>Get-PSDrive</figcaption>
+  </figure>
+  Kiegészítő modulok és szkriptek újabb tárhelyekkel és meghajtókkal bővíthetik
+  a PowerShell munkakörnyezetet; tipikus példa erre a vállalati környezetben
+  használt Active Directory modul, amely importáláskor az AD: meghajtót telepíti.
+  <figure>
+    <img src="img/Import-Module Active-Directory.png"/>
+    <figcaption>Import-Module Active-Directory</figcaption>
+  </figure>
+  <figure>
+    <img src="img/Get-PSProvider AD.png"/>
+    <figcaption>Active Directory Module with AD: PSDrive</figcaption>
+  </figure>
+  Új meghajtók létrehozásához, például megosztott hálózati mappák felcsatolásához
+  a <kbd>New-PSDrive</kbd> parancsmagot, létező meghajtók eltávolításához
+  a <kbd>Remove-PSDrive</kbd> parancsmagot használjuk. Ezek alkalmazására
+  jó példákat láthatunk a parancsmagok súgójában:
+  <code>Get-Help New-PSDrive -Examples</code>
+  <code>Get-Help Remove-PSDrive -Examples</code>
+
+  <nav>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_providers"
+     target="_blank">Get-Help about_Providers</a>
+    <p>
+    <a href="../index.html?locale=hu-HU&article=File_System_Provider" target="_top"
+      >Az adatállományok tárhelye a merevlemezen: a fájlrendszer</a>
+    <p>
+    <a href="../index.html?locale=hu-HU&article=Registry_Provider" target="_top"
+      >A rendszerbeállítások tárhelye: a regisztrációs adatbázis</a>
+    <p>
+    <a href="../index.html?locale=hu-HU&article=Environment_Provider" target="_top"
+      >A környezeti változók tára</a>
+    <p>
+    <a href="../index.html?locale=hu-HU&article=Variable_Provider" target="_top"
+      >Az automatikus és a felhasználói változók tára</a>
+    <p>
+    <a href="../index.html?locale=hu-HU&article=Function_Provider" target="_top"
+      >A PowerShell függvények tára</a>
+    <p>
+    <a href="../index.html?locale=hu-HU&article=Alias_Provider" target="_top"
+      >A PowerShell parancsok rövidítéseinek tára</a>
+  </nav>
+</article>
+</body>
+</html>

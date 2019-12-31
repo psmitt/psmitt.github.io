@@ -33,6 +33,7 @@ article {
 h1, h2 {
   font-family: 'Barlow Semi Condensed', sans-serif;
   font-weight: bold;
+  font-size: larger;
   margin-bottom: 0.5em;
   text-align: left;
 }
@@ -42,13 +43,11 @@ h1 {
   position: sticky;
   top: 0;
   background-color: black;
-  font-size: xx-large;
   margin-top: 0;
-  padding: 0 1.5em 0.2em 1.5em;
+  padding: 0.1em 0 0.3em 1.5em;
 }
 
 h2 {
-  font-size: x-large;
   margin-top: 1em;
 }
 
@@ -64,7 +63,7 @@ a:hover {
 
 a.toplink, a.close {
   position: absolute;
-  top: -0.1em;
+  top: 0;
   opacity: 0.6;
 }
 
@@ -99,6 +98,7 @@ kbd, code {
   background-color: #444444;
   color: white;
   font-family: 'Anonymous Pro', monospace;
+  white-space: nowrap;
 }
 
 kbd {
@@ -111,7 +111,6 @@ code {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   padding: 0.5em;
-  white-space: nowrap;
   overflow-x: auto;
 }
 
