@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="hu-HU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>Az objektumok átadása a megjelenítő vagy tároló eszköznek</h1>
+  Bármely egyszerű parancs vagy tetszőlegesen hosszú műveletsor végén
+  az eredményt közölni kell a felhasználóval és/vagy tárolni kell további
+  felhasználás végett. A megfelelően formázott eredmény objektumokat az
+  <kbd>Out</kbd> parancsmagokkal jeleníthetjük meg vagy menthetjük fájlba.
+  <figure>
+    <img src="img/Get-Help Out-star.png"/>
+    <figcaption>Cmdlets for Data Output</figcaption>
+  </figure>
+  A formázó parancsmagokhoz hasonlóan a kiviteli parancsmagoknak is a
+  csővezetéken keresztül szokás a megjelenítendő objektumokat átadni.
+  <ul>
+    <li>A parancsfeldolgozót üzemeltető és a parancsori ablakot is felügyelő
+        <kbd>Host</kbd> gazdaprogram a karakteres képernyőn jeleníti meg az
+        adatokat.
+    <li>A <kbd>GridView</kbd> grafikus ablakban, táblázatos formában jeleníti
+        meg az eredményt, amelynek sorai oszloponként rendezhetők, szűrhetők.
+    <li>A <kbd>File</kbd> kimenetvezérlő szöveges állományba írja az adatokat.
+    <li>A <kbd>Out-Printer</kbd> a megadott (vagy alapértelmezett) nyomtatóra küldi
+        az eredményt. A nyomtatókat a <kbd>*-Printer</kbd> parancsmagokkal
+        felügyelhetjük, az elérhető nyomtatók listáját például a
+        <kbd>Get-Printer</kbd> utasítással kérhetjük el.
+        Tájékozódásképpen adjuk ki a
+        <code>Get-Help *-Printer</code>
+        illetve
+        <code>Get-Printer | Out-GridView</code> parancsokat!
+    <li>Az <kbd>Out-String</kbd> parancsmag szöveges adatokká alakítja az átvett
+        objektumokat, amelyeket azután szövegkezelő eljárásokkal dolgozhatunk fel.
+    <li>Az <kbd>Out-Null</kbd> elnyeli, megsemmisíti az átvett adatokat.
+  </ul>
+  Ha egy utasítás végeredményéről a parancssorban nem rendelkezünk, tehát sem
+  memóriaváltozóba, sem egy kimeneti eszközre nem irányítjuk az objektumokat,
+  akkor az eredményt az <kbd>Out-Default</kbd> parancsmag kapja meg, amely azt
+  az alapértelmezett formázás után a <kbd>Host</kbd> gazdaprogramnak adja át,
+  az pedig a karakteres képernyőn jeleníti meg.
+  A csővezeték tehát akkor is működésbe lép, ha ez a kiadott parancsban nem
+  látszik!
+  <nav>
+    <a href="../index.html?locale=hu-HU&article=About_Pipeline" target="_top"
+     >A csővezeték működése</a>
+    <p>
+    <a href="https://devblogs.microsoft.com/powershell/how-powershell-formatting-and-outputting-really-works/"
+     target="_blank">Az objektumok alapértelmezett formázása és megjelenítése</a>
+    <p>
+    <a href="https://get-powershellblog.blogspot.com/2017/04/out-default-secrets-revealed.html"
+     target="_blank">Az Out-Default működésének rejtett titkai</a>
+  </nav>
+</article>
+</body>
+</html>

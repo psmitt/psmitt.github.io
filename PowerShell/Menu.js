@@ -86,6 +86,14 @@ function searchMenu() {
     found = search(Tree, input) || found
   }
   Search.setCustomValidity(input && !found ? '0' : '')
+  if (!input) {
+    let Root = Menu.querySelector('.clicked')
+    let Tree = Root.parentNode
+    while (Tree.parentNode != Menu) {
+      Tree = Tree.parentNode.parentNode
+      set(Tree, 'expanded')
+    }
+  }
 }
 Search.addEventListener('input', searchMenu)
 Search.addEventListener('focus', searchMenu)

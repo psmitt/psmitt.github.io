@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="hu-HU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>A parancsmagok kimeneti adatfolyamai</h1>
+  Egy parancsmag a bemeneti adatokból egy vagy több eredmény-objektumot állít
+  elő. Az eredmények alapértelmezetten az Output kimeneti adatfolyamba kerülnek,
+  ahonnan továbbhaladhatnak a csővezetéken, vagy az előírt elrendezésben
+  szöveggé alakítva megjeleníthetők a képernyőn, adatállományba írhatók,
+  esetleg kinyomtathatók vagy el is dobhatók.
+  <figure>
+    <img src="img/Cmdlet.png"/>
+    <figcaption>Cmdlet</figcaption>
+  </figure>
+  Az Output adatfolyamot általában a kimeneti objektumoknak tartjuk fenn,
+  amelyekkel további műveleteket végzünk. A felhasználó tájékoztatása végett
+  azonban további információs csatornák léteznek a hibajelzésre (Error),
+  figyelmeztetésre (Warning), részletes jelentésre (Verbose), futásellenőrzésre
+  (Debug), és végül a felhasználóval való általános kommunikációra
+  (Information). A <kbd>Write</kbd> paranccsal ezekre az adatfolyamokra
+  közvetlenül is küldhetünk üzenetet.
+  <figure>
+    <img src="img/Get-Help Write-star.png"/>
+    <figcaption>Get-Help Write-*</figcaption>
+  </figure>
+  Nem minden adatfolyamra küldött üzenet jut el a parancssori ablakot felügyelő
+  Host gazdaprogramhoz, ennélfogva nem minden adatfolyam tartalma olvasható
+  közvetlenül a képernyőn.
+  <figure>
+    <img src="img/Write into Streams.png"/>
+    <figcaption>Write Message to Streams</figcaption>
+  </figure>
+  Ahhoz, hogy a különböző adatfolyamok tartalmát láthatóvá tegyük, át kell
+  irányítani azokat egy hozzáférhető csatornába. Ekkor az is láthatóvá válik,
+  hogy a gazdaprogram &ndash; a felhasználó beállításainak megfelelően &ndash;
+  milyen színekkel teszi feltűnőbbé a különféle adatfolyamok megjelenített
+  tartalmát.
+  <figure>
+    <img src="img/Write Streams from Function.png"/>
+    <figcaption>Write Streams from Function</figcaption>
+  </figure>
+  <nav>
+    <a href="../index.html?locale=hu-HU&article=Format" target="_top"
+     >Az eredmény elrendezése szöveges formában</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_redirection"
+     target="_blank">Az adatfolyamok átirányítása</a>
+  </nav>
+</article>
+</body>
+</html>

@@ -19,7 +19,7 @@
       <menu title="History parancstörténet" link="About_History"/>
     </menu>
     <menu title="A parancsfeldolgozó működése">
-      <menu title="A parancsok felépítése (szintaxis)" link="About_Command_Syntax"/>
+      <menu title="A parancsok felépítése (syntax)" link="About_Command_Syntax"/>
       <menu title="Feldolgozandó adatok (input)" link="Input"/>
       <menu title="Eredménycsatornák (streams)" link="Streams"/>
       <menu title="Az eredmény elrendezése (format)" link="Format"/>

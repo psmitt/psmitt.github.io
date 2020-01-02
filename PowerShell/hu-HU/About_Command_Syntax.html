@@ -15,7 +15,9 @@
   A <kbd>Get-Help</kbd> súgó egy parancsmag ismertetését a parancsmag nevével
   és használatának módjával kezdi. Egy parancsmag használatának megértéséhez
   mindenekelőtt ismerni kell a vele kiadható parancsok szerkezeti felépítését,
-  sajátos nyelvtanát, szintaxisát. Az általános szabály egyszerűen elmondható:
+  sajátos nyelvtanát, szintaxisát. Az
+  <a href="https://psmitt.github.io/grammar/PowerShell#Command"
+  target="_blank">általános szabály</a> egyszerűen elmondható:
   egy PowerShell parancs a parancsmag nevével kezdődik, amelyet egy vagy több
   paraméter és/vagy argumentum követhet.
   <p>
@@ -41,31 +43,32 @@
   kiírni, mert a megadott argumentumok sorrendje (pozíciója) alapján azonosítja
   őket a rendszer, és állapítja meg az értéküket.
   <p>
-  A szintaxisleírásban szögletes zárójelek közé tesszük az opcionális elemeket.
-  Az értékparaméterek lehetséges értékeit vagy explicite felsoroljuk kapcsos
-  zárójelek között, egymástól <kbd>|</kbd> karakterrel elválasztva, vagy
-  megadjuk a paraméter értékének a pontos típusát csúcsos zárójelek között.
-  Ez a típusnév a .NET keretrendszer valamelyik típusának a neve kell hogy legyen.
+  A szintaxisleírásban szögletes zárójelek között látjuk az opcionális elemeket.
+  Az értékparaméterek lehetséges értékeit vagy egymástól <kbd>|</kbd> karakterrel
+  elválasztva olvashatjuk kapcsos zárójelek között, vagy csak az argumentum
+  <strong>típusának</strong> a nevét láthatjuk csúcsos zárójelek között.
   <p>
   Egy parancsmag szintaxisleírásait a <kbd>Get-Command</kbd> utasítás
   <kbd>-Syntax</kbd> kapcsolójával kérhetjük el; ez sok esetben tömörebb,
   egyszerűbb, mint a <kbd>Get-Help</kbd> szintaxisleírása,
-  mert a felsorolható argumentumértékek (<i>enumeration</i>) helyett is az
-  argumentum típusát jeleníti meg.
+  mert a felsorolható argumentumértékek (<i>enumeration</i>) helyett is
+  csak az argumentum típusát jeleníti meg.
   <figure>
     <img src="img/Command Syntax.png"/>
     <figcaption>PowerShell Command Syntax</figcaption>
   </figure>
-
   <nav>
     <a href="../index.html?locale=hu-HU&article=Input" target="_top"
-     >A feldolgozandó adatok átadása</a>
+     >A feldolgozandó (input) adatok átadása</a>
     <p>
     <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_command_syntax"
-     target="_blank">Get-Help About_Command_Syntax</a>
+     target="_blank">Get-Help about_Command_Syntax</a>
     <p>
-    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters"
-     target="_blank">Get-Help About_Common_Parameters</a>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_simplified_syntax"
+     target="_blank">Get-Help about_Simplified_Syntax</a>
+    <p>
+    <a href="https://psmitt.github.io/grammar/PowerShell"
+     target="_blank">A PowerShell programozási nyelv teljes szintaxisleírása</a>
   </nav>
 </article>
 </body>

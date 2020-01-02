@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="hu-HU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>A feldolgozandó (input) adatok átadása</h1>
+  Egy parancsmag a feldolgozandó adatokat mindig a szintaxisleírásban
+  magadott valamelyik paraméterként veszi át, de hogy melyik input adat
+  melyik paraméter értékévé alakul át, az a parancsbeli helyzetétől függ.
+  <ul>
+    <li>Ha egy paraméter neve megjelenik a parancsban, akkor annak értéke az őt
+        követő argumentum kifejezés értéke lesz; kapcsoló (<i>switch&thinsp;</i>)
+        esetén a paraméter értéke a logikai IGAZ érték, ami azt jelzi, hogy a
+        kapcsoló "be van kapcsolva".
+    <li>Ha egy argumentum kifejezés nem egy paraméter neve után jelenik meg,
+        akkor ahányadik ezek közül a névtelen argumentumok közül, annyiadik
+        pozícionális paraméter veszi át az értékét a szintaxisleírásban
+        feltüntetettek közül (amelyeknek tehát maga a neve opcionális).
+    <li>Egy parancsmag az őt megelőző kifejezések vagy parancsok eredményét is
+        átveheti az ún. csővezetékből, és a csővezetéken egymás után több
+        objektum is érkezhet; a parancsmag minden egyes beérkező objektumot
+        feldolgoz, és mindegyik esetében előállít valamilyen végeredményt.
+    <li>Lehetnek olyan paraméterek, amelyek akkor is kapnak egy alapértelmezett
+        (<i>default&thinsp;</i>) értéket, ha nem jelennek meg a kiadott parancsban.
+    <li>Lehetnek olyan parancsmagok is, amelyek input adatok nélkül is
+        előállítanak valamilyen végeredményt; tipikusan ilyenek a <kbd>Get</kbd>
+        igével kezdődő parancsmagok (pl. <kbd>Get-Help</kbd>, <kbd>Get-Command</kbd>).
+    <li>Ha egy parancsmagnak nem adjuk meg egy kötelező paraméterét, akkor a
+        PowerShell ezt a parancs végrehajtása előtt a felhasználótól elkéri, mert
+        enélkül az utasítás nem hajtható végre.
+  </ul>
+  <figure>
+    <img src="img/Cmdlet Input Arguments.png"/>
+    <figcaption>Cmdlet Input Arguments</figcaption>
+  </figure>
+  <nav>
+    <a href="../index.html?locale=hu-HU&article=Streams" target="_top"
+     >Eredménycsatornák: a parancsmagok kimeneti adatfolyamai</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_command_syntax"
+     target="_blank">Get-Help about_Command_Syntax</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameters"
+     target="_blank">Get-Help about_Parameters</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters"
+     target="_blank">Get-Help about_CommonParameters</a>
+  </nav>
+</article>
+</body>
+</html>
