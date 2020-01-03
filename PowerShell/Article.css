@@ -134,3 +134,23 @@ nav a:before {
   content: '🔗';
   padding-right: 1em;
 }
+
+table.wide {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table.wide th {
+  background: #333333;
+  color: darkgray;
+  text-align: left;
+}
+
+table.wide td {
+  padding-bottom: 0.5em;
+  border-bottom: solid thin gray;
+}
+
+table.wide .center {
+  text-align: center;
+}

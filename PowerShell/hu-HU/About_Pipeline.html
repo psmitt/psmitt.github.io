@@ -11,55 +11,80 @@
 </head>
 <body>
 <article>
-  <h1>Az objektumok átadása a megjelenítő vagy tároló eszköznek</h1>
-  Bármely egyszerű parancs vagy tetszőlegesen hosszú műveletsor végén
-  az eredményt közölni kell a felhasználóval és/vagy tárolni kell további
-  felhasználás végett. A megfelelően formázott eredmény objektumokat az
-  <kbd>Out</kbd> parancsmagokkal jeleníthetjük meg vagy menthetjük fájlba.
+  <h1>Objektumok futószalagon: a csővezeték működése</h1>
+  Valahányszor a PowerShell parancssorban egy vagy több adatot állítunk elő,
+  azok mint memória-objektumok az Output adatfolyamban, mint egy futószalagon
+  várják, hogy feldolgozzák őket. Egyéb utasítás híján az eredményadatok az
+  <kbd>Out-Default</kbd> parancsmaghoz kerülnek, amely megfelelően formázva
+  azokat a parancssori ablakot felügyelő <kbd>Host</kbd> objektumhoz küldi,
+  és az végül szöveges formában megjeleníti őket a karakteres képernyőn.
+  <p>
+  Az adatobjektumokat szállító mechanizmus neve: <strong>csővezeték</strong>
+  (<i>pipeline&thinsp;</i>). A csővezetéken közlekedő objektumok feldolgozásába
+  további lépéseket iktathatunk be: az objektumokat különféle parancsmagok felé
+  irányíthatjuk, amelyek szűrik, rendezik, átalakítják azokat, vagy éppen
+  statisztikát készítenek róluk. Az egyik parancsmag által előállított
+  objektumokat a <kbd>|</kbd> csővezeték-jellel továbbíthatjuk a soron következő
+  parancsmaghoz, tetszőlegesen hosszú utasításláncot létrehozva egészen addig,
+  míg el nem érünk a kívánt végeredményhez, amelyet aztán megjeleníthetünk,
+  és/vagy további feldolgozás végett eltárolhatunk a memóriában vagy a merevlemezen.
+  <p>
+  Az adatfeldolgozás megkezdéséhez akár mi magunk is elhelyezhetjük a kezdeti
+  adatokat a szállítószalag vagy csővezeték elején, ehhez csak a megfelelő
+  <a href="https://psmitt.github.io/grammar/PowerShell#Expression"
+  target="_blank">PowerShell kifejezéseket</a> kell a parancssor elejére írni,
+  és a csővezetékbe irányítani. Ezeknek a kifejezéseknek az értéke kerül a
+  csővezetéken keresztül az első parancsmaghoz, annak az eredménye a másodikhoz,
+  és ilyen módon a további adatfeldolgozás már automatikusan zajlik.
+  Ha a kifejezések után nem használjuk a <kbd>|</kbd> csővezeték operátort,
+  akkor a kifejezések értéke az <kbd>Out-Default</kbd> eljáráson keresztül
+  megint csak a képernyőn jelenik meg.
+  Ezen a módon &mdash; ismerve a PowerShell nyelvben használható
+  <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_operators"
+  target="_blank">műveleti jeleket</a> és azok
+  <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_operator_precedence"
+  target="_blank">végrehajtási sorrendjét</a> &mdash;
+  a PowerShell parancssorát akár számológépnek is használhatjuk,
+  sőt a PowerShell még a bináris mértékegységeket is ismeri!
   <figure>
-    <img src="img/Get-Help Out-star.png"/>
-    <figcaption>Cmdlets for Data Output</figcaption>
+    <img src="img/PowerShell Arithmetics.png"/>
+    <figcaption>PowerShell Arithmetics</figcaption>
   </figure>
-  A formázó parancsmagokhoz hasonlóan a kiviteli parancsmagoknak is a
-  csővezetéken keresztül szokás a megjelenítendő objektumokat átadni.
-  <ul>
-    <li>A parancsfeldolgozót üzemeltető és a parancsori ablakot is felügyelő
-        <kbd>Host</kbd> gazdaprogram a karakteres képernyőn jeleníti meg az
-        adatokat.
-    <li>A <kbd>GridView</kbd> grafikus ablakban, táblázatos formában jeleníti
-        meg az eredményt, amelynek sorai oszloponként rendezhetők, szűrhetők.
-    <li>A <kbd>File</kbd> kimenetvezérlő szöveges állományba írja az adatokat.
-    <li>A <kbd>Out-Printer</kbd> a megadott (vagy alapértelmezett) nyomtatóra küldi
-        az eredményt. A nyomtatókat a <kbd>*-Printer</kbd> parancsmagokkal
-        felügyelhetjük, az elérhető nyomtatók listáját például a
-        <kbd>Get-Printer</kbd> utasítással kérhetjük el.
-        Tájékozódásképpen adjuk ki a
-        <code>Get-Help *-Printer</code>
-        illetve
-        <code>Get-Printer | Out-GridView</code> parancsokat!
-    <li>Az <kbd>Out-String</kbd> parancsmag szöveges adatokká alakítja az átvett
-        objektumokat, amelyeket azután szövegkezelő eljárásokkal dolgozhatunk fel.
-    <li>Az <kbd>Out-Null</kbd> elnyeli, megsemmisíti az átvett adatokat.
-  </ul>
-  Ha egy utasítás végeredményéről a parancssorban nem rendelkezünk, tehát sem
-  memóriaváltozóba, sem egy kimeneti eszközre nem irányítjuk az objektumokat,
-  akkor az eredményt az <kbd>Out-Default</kbd> parancsmag kapja meg, amely azt
-  az alapértelmezett formázás után a <kbd>Host</kbd> gazdaprogramnak adja át,
-  az pedig a karakteres képernyőn jeleníti meg.
-  A csővezeték tehát akkor is működésbe lép, ha ez a kiadott parancsban nem
-  látszik!
+  Nagyon fontos észben tartani, hogy a PowerShell csak és kizárólag objektumokkal
+  dolgozik! Az általunk egyszerű számként, szövegként vagy dátumként megadott
+  információk a .NET keretrendszer megfelelő típusú objektumának egyik
+  tulajdonságává válnak, és a parancsmagok kizárólag ebben a formában dolgozzák
+  fel őket, és ugyancsak objektumok formájában állítják elő a végeredményt.
+  Csak a megjelenítő eszközöknek köszönhetjük, hogy az előállított adatokat ismét
+  "emberi" formában, számként vagy szövegként olvashatjuk.
+  <p>
+  Amennyiben egy objektumot további feldolgozás végett meg akarunk őrizni a
+  memóriában, akkor nevet adhatunk neki. Ezt a nevet régi szokás szerint
+  <strong>változónak</strong> (<i>variable&thinsp;</i>) hívjuk, tekintettel
+  arra, hogy a "benne" tárolt objektum megváltoztatható, vagy egy másik
+  objektumra kicserélhető. A PowerShell változók nevét a <kbd>$</kbd> dollárjel
+  karakterrel kezdjük, és a <kbd>=</kbd> operátorral kötjük hozzá az objektumot,
+  azaz a parancssorban kiadott utasítás végeredményét. Ebben az esetben a
+  futószalag végállomása maga a változó, tehát a végeredmény a csővezeték végén
+  nem kerül automatikusan a képernyőre. A változóban tárolt objektumot
+  (a változó "értékét") egyszerűen a változó nevének leírásával jelenítjük meg
+  a parancssorban.
+  <figure>
+    <img src="img/PowerShell Variable.png"/>
+    <figcaption>PowerShell Variable</figcaption>
+  </figure>
   <nav>
-    <a href="../index.html?locale=hu-HU&article=About_Object" target="_top"
-     >Objektumok</a>
+    <a href="../index.html?locale=hu-HU&article=About_Operators" target="_top"
+     >PowerShell műveleti jelek és végrehajtási sorrendjük</a>
     <p>
-    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_objects"
-     target="_blank">Az objektumok rövid ismertetése</a>
+    <a href="../index.html?locale=hu-HU&article=Get-Member" target="_top"
+     >Egy objektum tulajdonságainak felderítése</a>
     <p>
     <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pipelines"
      target="_blank">A csővezeték részletes ismertetése</a>
     <p>
     <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_properties"
-     target="_blank">Hogyan derítsük fel az objektumok tulajdonságait?</a>
+     target="_blank">Az objektumok tulajdonságainak részletes felderítése</a>
   </nav>
 </article>
 </body>

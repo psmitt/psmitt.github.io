@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="hu-HU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>A PowerShell nyelv műveleti jelei és azon végrehajtási sorrendje</h1>
+  Az elemi matematikából tudjuk, hogy a szorzás "erősebb" az összeadásnál,
+  tehát a zárójelek nélkül leírt elemi műveletek közül először mindig a
+  szorzást-osztást hajtjuk végre (egymás követő esetben balról jobbra haladva),
+  és csak utána jöhetnek az összeadások és kivonások. Ennek megfelelően például
+  <code>3 + 2 * 4 = 11</code> és <code>24 - 12 / 6 / 2 = 23</code>
+  A zárójelezés természetesen megváltoztathatja a műveletek végrehajtásának a
+  sorrendjét, mert előírja, hogy először a zárójelben lévő műveleteket kell
+  végrehajtani, és csak utána a zárójelen kívülieket. Ezért tehát
+  <code>(3 + 2) * 4 = 20</code> és <code>(24 - 12) / (6 / 2) = 4</code>
+  Vannak aztán olyan matematikai műveletek is, például a négyzetre emelés vagy
+  a négyzetgyökvonás, amelyekhez csak egyetlen műveleti tag szükséges, egyetlen
+  szám, amelyen a műveletet végre kell hajtani.
+  <p>
+  A PowerShell nyelv a matematikai műveleteken kívül még sok más
+  <strong>operátort</strong> tartalmaz. Ezek elsősorban a műveleti tagok
+  számával (<i>arity&thinsp;</i>) jellemezhetők. Mindegyiknek megvan a többihez
+  képest az elsőbbsége (<i>precedence&thinsp;</i>), az azonos precedenciájú
+  operátoroknak pedig a műveleti iránya (<i>direction&thinsp;</i>), hogy
+  közülük a balra lévőt vagy a jobbra lévőt kell-e először végrehajtani.
+  A precedencia és az irány alapján már pontosan kiszámítható egy kifejezés
+  értéke, mert pontosan meghatározható a kifejezésben előforduló műveletek
+  végrehajtási sorrendje.
+  <p>
+  A következő táblázat végrehajtási sorrendben ismerteti a PowerShell nyelv
+  műveleti jeleit és azok jelentését, egy-egy példával illusztrálva a műveleteket.
+  Gyakorlásképpen másoljuk a példákat a PowerShell parancssorába, és
+  végrehajtás előtt tippeljük meg, mi lesz a végeredmény!
+  <table class="wide">
+    <tr>
+      <th class="center">Operátor</th>
+      <th>Jelentés</th>
+      <th>Példa</th>
+    </tr>
+    <tr>
+      <td class="center"><kbd>=</kbd></td>
+      <td>Értékadás változónak</td>
+      <td><kbd>$x = 1</kbd></td>
+    </tr>
+  </table>
+  </p>
+  Ismét fontos megjegyezni, hogy a PowerShell operátorok nem számok vagy logikai
+  értékek, hanem .NET objektumok között ható műveletek. A műveleti tagok és a
+  műveletek végeredménye is egy-egy meghatározott típusú objektum!
+  <nav>
+    <a href="../index.html?locale=hu-HU&article=Get-Member" target="_top"
+     >Egy objektum tulajdonságainak felderítése</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_operators"
+     target="_blank">A PowerShell operátorai</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_operator_precedence"
+     target="_blank">Az operátorok precedenciája</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_arithmetic_operators"
+     target="_blank">Aritmetikai és bináris matematikai műveletek</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_assignment_operators"
+     target="_blank">Értékmódosító aritmetikai műveletek</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logical_operators"
+     target="_blank">Logikai műveletek</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comparison_operators"
+     target="_blank">Számok összehasonlítása, szövegek összehasonlítása</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_split"
+     target="_blank">Szövegek felszeletelése</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_join"
+     target="_blank">Szövegek összefűzése</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_type_operators"
+     target="_blank">Objektumok típusának ellenőrzése</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_redirection"
+     target="_blank">Adatfolyamok átirányítása</a>
+  </nav>
+</article>
+</body>
+</html>
