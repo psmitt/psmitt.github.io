@@ -11,7 +11,96 @@
 </head>
 <body>
 <article>
-  <h1>Az objektumok átadása a megjelenítő vagy tároló eszköznek</h1>
+  <h1>Objektumok összehasonlítása</h1>
+  A PowerShell nemcsak számokat, dátumokat vagy szövegeket, hanem bármilyen
+  két objektumot vagy objektumhalmazt képes összehasonlítani, megállapítani
+  azonosságukat, vagy meghatározni a különbséget közöttük. Egy objektumot vagy
+  objektumhalmazt önmagával összehasonlítva természetesen nem találhatunk
+  különbséget: az összehasonlított objektumok típusra és adattartalomra nézve
+  is teljesen egyenlők kell hogy legyenek, tekintettel arra, hogy azonosak.
+  Egymástól különböző változók vagy kifejezések is hivatkozhatnak azonban
+  ugyanarra az objektumra, vagy rendelkezhetnek ugyanazzal a típussal és
+  adattartalommal; esetleg lehetnek különböző típusúak, de egyenértékűek.
+  <p>
+  Az egyenlőség megállapítására szolgáló általános <kbd>-eq</kbd>
+  operátor különféle típusú objektumok összehasonlításakor különféleképpen
+  viselkedhet, érdemes tehát mindig pontosan megfogalmazni, milyen fajta
+  azonosság vizsgálatába fogunk, és milyen különbségekre vagyunk kíváncsiak.
+  <h2>Két egyedi objektum összehasonlítása</h2>
+  <ol>
+    <li><strong>Igaz-e, hogy a két hivatkozás ugyanarra az objektumra
+        vonatkozik?</strong><br>
+        Erre a kérdésre az <kbd>Object</kbd> osztály statikus
+        <kbd>ReferenceEquals</kbd> metódusa ad választ.
+        <figure>
+          <img src="img/Object Reference Comparison.png"/>
+          <figcaption>Object Reference Comparison</figcaption>
+        </figure>
+        Ha igaz, akkor a két objektum <strong>azonos</strong>,
+        vagyis valójában egy és ugyanaz az objektum.
+        Ha a két objektum nem azonos, akkor vizsgálhatjuk az objektumok
+        típusának és adattartalmának az egyenlőségét.
+    <li><strong>Igaz-e, hogy a két objektumra típusa megegyezik?</strong><br>
+        Ha igaz, akkor a két objektum <strong>ugyanolyan</strong>,
+        vagyis ugyanannak az osztálynak egy-egy példánya.
+        A pontos válaszhoz a két objektum típusát kérjük el a <kbd>.GetType()</kbd>
+        metódussal, és egyenlőségüket vizsgáljuk az <kbd>-eq</kbd> operátorral.
+        <figure>
+          <img src="img/Object Type Comparison.png"/>
+          <figcaption>Object Type Comparison</figcaption>
+        </figure>
+        Típusvizsgálathoz használhatjuk az <kbd>-is</kbd> vagy <kbd>-isNot</kbd>
+        típusoperátorokat is: ezeknek a bal oldalára kerül a vizsgált objektum,
+        a jobb oldalára pedig az azonosítandó típus. <strong>De vigyázat!</strong>
+        A típusoperátor nemcsak az objektum saját típusára, hanem minden
+        őstípusára is megállapítja az egyezést; egyébként nagyon helyesen,
+        hiszen például minden objektumra igaz, hogy objektum, vagyis az
+        <kbd>Object</kbd> őstípus leszármazottja.
+        <figure>
+          <img src="img/Using the Type Operator.png"/>
+          <figcaption>Using the Type Operator</figcaption>
+        </figure>
+        Arra is figyeljünk oda, hogy ne keverjük össze a típusoperátor
+        használatának módját az egyenlőség operátoréval! Ha a típusoperátor
+        mindkét oldalára az összehasonlítandó objektumok típusát írjuk,
+        akkor nem arra a kérdésre kapunk választ, amit feltettünk.
+        <figure>
+          <img src="img/Misusing the Type Operator.png"/>
+          <figcaption>Misusing the Type Operator</figcaption>
+        </figure>
+    <li><strong>Ha két objektum azonos típusú, akkor igaz-e, hogy a két objektum
+        adattartalma megegyezik, vagyis a két objektum egyenlő?</strong><br>
+        Minden objektum rendelkezik az <kbd>.Equals</kbd> metódussal,
+        amelynek egyetlan argumentumként a vele összehasonlítandó objektumot
+        vagy kifejezést kell átadni, és a metódus megállapítja, hogy egyenértékűek-e.
+        Ez az egyenértékűség vagy ekvivalencia az <kbd>Object</kbd> osztály
+        kétargumentumú, statikus <kbd>.Equals</kbd> metódusával is vizsgálható.
+        <figure>
+          <img src="img/Equality of Objects.png"/>
+          <figcaption>Equality of Objects</figcaption>
+        </figure>
+        Azonos típusú objektumok esetén az <kbd>-eq</kbd> operátor a fenti
+        metódusokhoz hasonlóan működik, és velük egyező eredményt ad.
+        Különböző típusú objektumok esetén azonban, míg az <kbd>.Equals</kbd>
+        metódus eredménye mindig hamis, addig az <kbd>-eq</kbd> operátor
+        egyenértékűséget is megállapíthat!
+        <figure>
+          <img src="img/Equivalence of different objects.png"/>
+          <figcaption>Equivalence of different objects</figcaption>
+        </figure>
+    <li>Ha a két objektum különböző típusú, akkor van-e olyan objektumtípus
+        (esetleg a kettő közül az egyik), amelyre átalakítva (konvertálva)
+        a két objektum egyenlővé válik? Igaz-e például, hogy a két objektum
+        szöveggé alakítva azonos módon jelenik meg?
+  </ol>
+
+  [Object]::ReferenceEqual
+  [Object]::Equal
+  <h2>Egy objektum és egy objektumhalmaz összehasonlítása</h2>
+  -eq
+  <h2>Két objektumhalmaz összehasonlítása</h2>
+  Compare-Object
+
   Bármely egyszerű parancs vagy tetszőlegesen hosszú műveletsor végén
   az eredményt közölni kell a felhasználóval és/vagy tárolni kell további
   felhasználás végett. A megfelelően formázott eredmény objektumokat az

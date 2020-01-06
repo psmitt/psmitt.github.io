@@ -35,10 +35,10 @@
   értéke, mert pontosan meghatározható a kifejezésben előforduló műveletek
   végrehajtási sorrendje.
   <p>
-  A következő táblázat végrehajtási sorrendben ismerteti a PowerShell nyelv
-  műveleti jeleit és azok jelentését, egy-egy példával illusztrálva a műveleteket.
-  Gyakorlásképpen másoljuk a példákat a PowerShell parancssorába, és
-  végrehajtás előtt tippeljük meg, mi lesz a végeredmény!
+  A következő táblázat növekvő precedencia szerint ismerteti a PowerShell nyelv
+  néhány műveleti jelét és azok jelentését, egy-egy példával illusztrálva a
+  műveleteket. Gyakorlásképpen másoljuk a példákat a PowerShell parancssorába,
+  és végrehajtás előtt tippeljük meg, mi lesz a végeredmény!
   <table class="wide">
     <tr>
       <th class="center">Operátor</th>
@@ -46,9 +46,181 @@
       <th>Példa</th>
     </tr>
     <tr>
+      <td colspan="3" class="section">Hozzárendelő műveletek</td>
+    </tr>
+    <tr>
       <td class="center"><kbd>=</kbd></td>
-      <td>Értékadás változónak</td>
-      <td><kbd>$x = 1</kbd></td>
+      <td>Hozzárendelés: tárolt objektum beállítása</td>
+      <td><kbd>$x = 5</kbd></td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>+=</kbd></td>
+      <td>Hozzáadás: objektum hozzáadása a tárolt tartalomhoz</td>
+      <td><kbd>$x += 2</kbd></td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>-=</kbd></td>
+      <td>Csökkentés: tárolt mennyiség csökkentése</td>
+      <td><kbd>$x -= 3</kbd></td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>*=</kbd></td>
+      <td>Megsokszorozás: tárolt tartalom megsokszorozása</td>
+      <td><kbd>$x *= 7</kbd></td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>/=</kbd></td>
+      <td>Elosztás: tárolt mennyiség elosztása</td>
+      <td><kbd>$x /= 4</kbd></td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>/=</kbd></td>
+      <td>Maradékképzés: tárolt mennyiség osztási maradékának megőrzése</td>
+      <td><kbd>$x %= 6</kbd></td>
+    </tr>
+    <tr>
+      <td colspan="3" class="section">Kéttagú logikai műveletek</td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>-and</kbd></td>
+      <td>Konjunkció: kifejezések igazságértékének összekapcsolása;
+          az eredmény akkor IGAZ, ha mindkét kifejezés IGAZ.
+          Ha az első kifejezés HAMIS, a második nem kerül kiértékelésre.</td>
+      <td><kbd>$x -gt 1 -and $x -lt 4</kbd></td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>-or</kbd></td>
+      <td>Diszjunkció: kifejezések igazságértékének vizsgálata;
+          az eredmény akkor IGAZ, ha legalább az egyik kifejezés IGAZ.
+          Ha az első kifejezés IGAZ, a második nem kerül kiértékelésre.</td>
+      <td><kbd>$x -gt 1 -or $x -lt 4</kbd></td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>-xor</kbd></td>
+      <td>Kizárás: kifejezések igazságértékének szétválasztása;
+          az eredmény akkor IGAZ, ha az egyik kifejezés IGAZ, a másik HAMIS.
+          Mindkét kifejezés kiértékelésre kerül.</td>
+      <td><kbd>$x -gt 1 -xor $x -lt 4</kbd></td>
+    </tr>
+    <tr>
+      <td colspan="3" class="section">Bitszintű műveletek</td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>-band</kbd></td>
+      <td>Bitszorzás: egész számok bitenkénti összeszorzása</td>
+      <td><kbd>217 -band 93</kbd></td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>-bor</kbd></td>
+      <td>Bitválasztás: egész számok bitenkénti vizsgálata;
+          az eredmény bit 1, ha legalább az egyik szám bitje 1.</td>
+      <td><kbd>217 -bor 93</kbd></td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>-bxor</kbd></td>
+      <td>Bitkülönbség: egész számok bitenkénti különbsége</td>
+      <td><kbd>217 -bxor 93</kbd></td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>-shl</kbd></td>
+      <td>Bitléptetés balra: a megadott számú 0 bit írása
+          az egész szám bináris alakjának a végére</td>
+      <td><kbd>93 -shl 2</kbd></td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>-shr</kbd></td>
+      <td>Bitléptetés jobbra: a megadott számú bit törlése
+          az egész szám bináris alakjának végéről</td>
+      <td><kbd>93 -shr 2</kbd></td>
+    </tr>
+    <tr>
+      <td colspan="3" class="section">Relációs műveletek</td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>-eq</kbd></td>
+      <td>Egyenlő</td>
+      <td><kbd>22 / 7 -eq 3.14</kbd></td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>-ne</kbd></td>
+      <td>Nem egyenlő</td>
+      <td><kbd>22 / 7 -ne 3.14</kbd></td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>-gt</kbd></td>
+      <td>Nagyobb</td>
+      <td><kbd>22 / 7 -gt 3.14</kbd></td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>-lt</kbd></td>
+      <td>Kisebb</td>
+      <td><kbd>22 / 7 -lt 3.14</kbd></td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>-ge</kbd></td>
+      <td>Nagyobb vagy egyenlő</td>
+      <td><kbd>22 / 7 -ge 3.14</kbd></td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>-le</kbd></td>
+      <td>Kisebb vagy egyenlő</td>
+      <td><kbd>22 / 7 -le 3.14</kbd></td>
+    </tr>
+    <tr>
+      <td colspan="3" class="section">Aritmetikai műveletek</td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>+</kbd></td>
+      <td>Összeadás</td>
+      <td><kbd>17 + 5</kbd></td>
+    </tr>
+    <tr style="border-bottom: solid thin gray">
+      <td class="center"><kbd>-</kbd></td>
+      <td>Kivonás</td>
+      <td><kbd>17 - 5</kbd></td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>*</kbd></td>
+      <td>Szorzás</td>
+      <td><kbd>17 * 5</kbd></td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>/</kbd></td>
+      <td>Osztás</td>
+      <td><kbd>17 / 5</kbd></td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>%</kbd></td>
+      <td>Maradékképzés</td>
+      <td><kbd>17 % 5</kbd></td>
+    </tr>
+    <tr>
+      <td colspan="3" class="section">Egytagú műveletek</td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>-</kbd></td>
+      <td>Matematikai előjel megfordítása</td>
+      <td><kbd>-$x</kbd></td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>!</kbd><br><kbd>-not</kbd></td>
+      <td>Logikai tagadás</td>
+      <td><kbd>!(22 / 7 -eq 3.14)</kbd><br><kbd>-not (1 -lt 2)</kbd></td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>-bnot</kbd></td>
+      <td>Bitfordítás: egész szám minden bitjének megváltoztatása</td>
+      <td><kbd>-bnot 93</kbd></td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>++</kbd></td>
+      <td>Növelés: tárolt tartalom egységnyi növelése</td>
+      <td><kbd>++$x</kbd><br><kbd>$x++</kbd></td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>--</kbd></td>
+      <td>Csökkentés: tárolt tartalom egységnyi csökkentése</td>
+      <td><kbd>--$x</kbd><br><kbd>$x--</kbd></td>
     </tr>
   </table>
   </p>
@@ -88,6 +260,9 @@
     <p>
     <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_redirection"
      target="_blank">Adatfolyamok átirányítása</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pipeline_chain_operators"
+     target="_blank">Csővezeték előző eredménytől függő indítása</a>
   </nav>
 </article>
 </body>

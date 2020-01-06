@@ -136,21 +136,32 @@ nav a:before {
 }
 
 table.wide {
+  border-bottom: solid thin gray;
   border-collapse: collapse;
   width: 100%;
+}
+
+table.wide .center {
+  text-align: center;
 }
 
 table.wide th {
   background: #333333;
   color: darkgray;
   text-align: left;
+  padding-bottom: 0.5em;
 }
 
 table.wide td {
   padding-bottom: 0.5em;
-  border-bottom: solid thin gray;
 }
 
-table.wide .center {
-  text-align: center;
+table.wide td.section {
+  font-style: italic;
+  border-bottom: solid thin gray;
+  padding: 0.25em;
+}
+
+ol li {
+  margin-bottom: 1em;
 }

@@ -11,43 +11,100 @@
 </head>
 <body>
 <article>
-  <h1>Az objektumok átadása a megjelenítő vagy tároló eszköznek</h1>
-  Bármely egyszerű parancs vagy tetszőlegesen hosszú műveletsor végén
-  az eredményt közölni kell a felhasználóval és/vagy tárolni kell további
-  felhasználás végett. A megfelelően formázott eredmény objektumokat az
-  <kbd>Out</kbd> parancsmagokkal jeleníthetjük meg vagy menthetjük fájlba.
+  <h1>Egy objektum tulajdonságainak felderítése</h1>
+  Minden adat, amit a PowerShell parancsértelmező feldolgoz, és minden eredmény,
+  amit előállít: egy vagy több <strong>objektum</strong> (<i>Object&thinsp;</i>).
+  A képernyőn megjelenített vagy fájlba mentett információ nem más,
+  mint az objektumok szöveges formára alakított "emberi fogyasztásra is
+  alkalmassá tett" adattartalma.
+  <p>
+  Egy információ sokféleképpen "tálalható": egy dátum adatot például megadhatunk
+  számhármas formájában (2020.01.05.); a hónapot betűkkel is írhatjuk, teljes
+  névvel vagy rövidítve (január, jan.); és a dátumhoz akár hozzátehetjük a hét
+  napját is, akár teljes névvel, akár rövidítve, tetszésünk szerint (hétfő, H).
+  Ugyanez a dátum adat ugyancsak sokféleképpen tárolható a memóriában mint
+  objektum. Lehet, hogy a teljes információ egyetlen számban van összesűrítve,
+  de az is lehet, hogy külön tárolódik az év, a hónap és a nap; lehet, hogy
+  a hét napja egy külön tulajdonsága a dátum objektumnak, de az is lehet,
+  hogy ezt az információt az év-hónap-nap alapján egy eljárás számítja ki,
+  valahányszor szükségünk van rá.
+  <p>
+  Egy objektum tehát sokféle adatot tárolhat, és képes lehet azokból más
+  adatokat is előállítani. Az objektum által tárolt adatokat az objektum
+  egy-egy <strong>tulajdonságának</strong> (<i>Property&thinsp;</i>), azokat
+  az eljárásokat, amelyeket pedig képes végrehajtani, az objektum egy-egy
+  <strong>metódusának</strong> (<i>Method&thinsp;</i>) nevezzük.
+  Együttesen az objektum <strong>tagjainak</strong> (<i>Member&thinsp;</i>)
+  hívjuk őket.
+  Vannak olyan adatok és eljárások is, amelyek nemcsak az adott objektumra,
+  hanem a hozzá hasonló, vele azonos típusú összes objektumra vonatkozó
+  információt hordoznak vagy állítanak elő. Ezeket a közös tagokat
+  <strong>statikus</strong> (<i>static&thinsp;</i>) tagoknak mondjuk, és
+  mivel minden azonos típusú objektumra egyszerre vonatkoznak, inkább az
+  objektumok <strong>típusának</strong> (<i>Type&thinsp;</i>) vagy
+  <strong>osztályának</strong> (<i>class&thinsp;</i>) a tulajdonságai
+  és metódusai közé soroljuk őket.
+  <p>
+  Egy objektum tulajdonságainak és metódusainak a felderítéséhez a
+  <kbd>Get-Member</kbd> parancsmagot használjuk. Párjával, az
+  <kbd>Add-Member</kbd> parancsmaggal újabb tulajdonságokat és metódusokat
+  adhatunk egy objektumhoz, újabb adatokkal és képességekkel ruházva fel.
   <figure>
-    <img src="img/Get-Help Out-star.png"/>
-    <figcaption>Cmdlets for Data Output</figcaption>
+    <img src="img/Get-Help star-Member.png"/>
+    <figcaption>Cmdlets for Object Members</figcaption>
   </figure>
-  A formázó parancsmagokhoz hasonlóan a kiviteli parancsmagoknak is a
-  csővezetéken keresztül szokás a megjelenítendő objektumokat átadni.
-  <ul>
-    <li>A parancsfeldolgozót üzemeltető és a parancsori ablakot is felügyelő
-        <kbd>Host</kbd> gazdaprogram a karakteres képernyőn jeleníti meg az
-        adatokat.
-    <li>A <kbd>GridView</kbd> grafikus ablakban, táblázatos formában jeleníti
-        meg az eredményt, amelynek sorai oszloponként rendezhetők, szűrhetők.
-    <li>A <kbd>File</kbd> kimenetvezérlő szöveges állományba írja az adatokat.
-    <li>A <kbd>Out-Printer</kbd> a megadott (vagy alapértelmezett) nyomtatóra küldi
-        az eredményt. A nyomtatókat a <kbd>*-Printer</kbd> parancsmagokkal
-        felügyelhetjük, az elérhető nyomtatók listáját például a
-        <kbd>Get-Printer</kbd> utasítással kérhetjük el.
-        Tájékozódásképpen adjuk ki a
-        <code>Get-Help *-Printer</code>
-        illetve
-        <code>Get-Printer | Out-GridView</code> parancsokat!
-    <li>Az <kbd>Out-String</kbd> parancsmag szöveges adatokká alakítja az átvett
-        objektumokat, amelyeket azután szövegkezelő eljárásokkal dolgozhatunk fel.
-    <li>Az <kbd>Out-Null</kbd> elnyeli, megsemmisíti az átvett adatokat.
-  </ul>
-  Ha egy utasítás végeredményéről a parancssorban nem rendelkezünk, tehát sem
-  memóriaváltozóba, sem egy kimeneti eszközre nem irányítjuk az objektumokat,
-  akkor az eredményt az <kbd>Out-Default</kbd> parancsmag kapja meg, amely azt
-  az alapértelmezett formázás után a <kbd>Host</kbd> gazdaprogramnak adja át,
-  az pedig a karakteres képernyőn jeleníti meg.
-  A csővezeték tehát akkor is működésbe lép, ha ez a kiadott parancsban nem
-  látszik!
+  A <kbd>Get-Member</kbd> parancsmagnak a csővezetéken szokás átadni a
+  felderítendő objektumot. Egyéb kapcsoló híján a parancsmag az objektum saját
+  tagjait jeleníti meg; a statikus tagok megjelenítéséhez a <kbd>-Static</kbd>
+  kapcsoló használata szükséges. A megjelenítendő tagok típusát a
+  <kbd>-MemberType</kbd> paraméter argumentumaként sorolhatjuk fel;
+  ennek híján a parancsmag az összes nyilvános tagot felsorolja, a
+  <kbd>-Force</kbd> kapcsolóval pedig még a rejtett tagokat is.
+  <p>
+  Egy dátum objektum tulajdonságainak felderítéséhez kérjük el az aktuális
+  dátumot a <kbd>Get-Date</kbd> paranccsal, és adjuk át a csővezetéken a
+  <kbd>Get-Member</kbd> parancsmagnak bekapcsolva a tulajdonságokat
+  megjelenítő paramétert:
+  <code>Get-Date | Get-Member -MemberType Properties</code>
+  <figure>
+    <img src="img/Get properties of a Date object.png"/>
+    <figcaption>Get properties of a Date object</figcaption>
+  </figure>
+  Láthatjuk, hogy egy dátum objektum a pontos idő ezredmásodpercig részletezett
+  adatelemeit mind egy-egy tulajdonságként tárolja. A tulajdonságok
+  adattartalmát a dátum objektumot azonosító kifejezés után írt, attól ponttal
+  elválasztott tulajdonságnévvel hívhatjuk elő. A <kbd>.DisplayHint</kbd>
+  tulajdonság megmutatja, melyik másik tulajdonságot kell megnevezni ahhoz,
+  hogy a felhasználó számára előkészített formában láthassuk a dátumot és időt,
+  a <kbd>.Kind</kbd> tulajdonság pedig elárulja, hogy a dátum objektum a helyi
+  vagy az univerzális (UTC) időértéket képviseli-e.
+  <figure>
+    <img src="img/Display information of a Date object.png"/>
+    <figcaption>Display information of a Date object</figcaption>
+  </figure>
+  A dátum objektum statikus tulajdonságait megjelenítve a dátum objektumok
+  közös, a dátum <strong>típusra</strong> jellemző általános tulajdonságainak
+  a nevét olvashatjuk.
+  <figure>
+    <img src="img/Get static properties of a Date object.png"/>
+    <figcaption>Get static properties of a Date object</figcaption>
+  </figure>
+  A statikus tulajdonságok adattartalmára nem is az objektumon keresztül,
+  hanem az objektum típusának szögletes zárójelbe tett nevét követő dupla
+  kettőspont után írt tulajdonságnévvel hivatkozunk.
+  <figure>
+    <img src="img/System.DateTime Properties.png"/>
+    <figcaption>System.DateTime Properties</figcaption>
+  </figure>
+  A <kbd>Get-Member</kbd> a tagok felsorolása előtt mintegy címként jeleníti meg
+  a vizsgált objektum típusának a nevét. Ez a típusnév, valamint az összes
+  általánosabb alaptípus, amelyből az objektum származik, egészen a .NET típusok
+  közös őstípusáig, az <kbd>Object</kbd> osztályig bezárólag megjeleníthető
+  egy rejtett tulajdonság, a <kbd>.pstypenames</kbd> előhívásával.
+  <figure>
+    <img src="img/Get-Date.pstypenames.png"/>
+    <figcaption>Base Types of a Date object</figcaption>
+  </figure>
   <nav>
     <a href="../index.html?locale=hu-HU&article=Compare-Object" target="_top"
      >Objektumok összehasonlítása</a>
