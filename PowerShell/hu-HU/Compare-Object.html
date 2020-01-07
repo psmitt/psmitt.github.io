@@ -30,16 +30,16 @@
   <ol>
     <li><strong>Igaz-e, hogy a két hivatkozás ugyanarra az objektumra
         vonatkozik?</strong><br>
-        Erre a kérdésre az <kbd>Object</kbd> osztály statikus
+        Erre a kérdésre az <kbd>Object</kbd> osztály kétargumentumú, statikus
         <kbd>ReferenceEquals</kbd> metódusa ad választ.
         <figure>
           <img src="img/Object Reference Comparison.png"/>
           <figcaption>Object Reference Comparison</figcaption>
         </figure>
-        Ha igaz, akkor a két objektum <strong>azonos</strong>,
+        Ha az eredmény igaz (True), akkor a két objektum <strong>azonos</strong>,
         vagyis valójában egy és ugyanaz az objektum.
-        Ha a két objektum nem azonos, akkor vizsgálhatjuk az objektumok
-        típusának és adattartalmának az egyenlőségét.
+        Ha a két objektum nem azonos (False), akkor tovább vizsgálhatjuk az
+        objektumok típusának és adattartalmának az egyenlőségét.
     <li><strong>Igaz-e, hogy a két objektumra típusa megegyezik?</strong><br>
         Ha igaz, akkor a két objektum <strong>ugyanolyan</strong>,
         vagyis ugyanannak az osztálynak egy-egy példánya.
@@ -54,8 +54,8 @@
         a jobb oldalára pedig az azonosítandó típus. <strong>De vigyázat!</strong>
         A típusoperátor nemcsak az objektum saját típusára, hanem minden
         őstípusára is megállapítja az egyezést; egyébként nagyon helyesen,
-        hiszen például minden objektumra igaz, hogy objektum, vagyis az
-        <kbd>Object</kbd> őstípus leszármazottja.
+        hiszen például minden objektumra igaz, hogy <strong>objektum</strong>,
+        vagyis az <kbd>Object</kbd> alaptípus leszármazottja.
         <figure>
           <img src="img/Using the Type Operator.png"/>
           <figcaption>Using the Type Operator</figcaption>
@@ -74,75 +74,100 @@
         amelynek egyetlan argumentumként a vele összehasonlítandó objektumot
         vagy kifejezést kell átadni, és a metódus megállapítja, hogy egyenértékűek-e.
         Ez az egyenértékűség vagy ekvivalencia az <kbd>Object</kbd> osztály
-        kétargumentumú, statikus <kbd>.Equals</kbd> metódusával is vizsgálható.
+        kétargumentumú, statikus <kbd>Equals</kbd> metódusával is vizsgálható.
         <figure>
           <img src="img/Equality of Objects.png"/>
           <figcaption>Equality of Objects</figcaption>
         </figure>
         Azonos típusú objektumok esetén az <kbd>-eq</kbd> operátor a fenti
         metódusokhoz hasonlóan működik, és velük egyező eredményt ad.
-        Különböző típusú objektumok esetén azonban, míg az <kbd>.Equals</kbd>
-        metódus eredménye mindig hamis, addig az <kbd>-eq</kbd> operátor
-        egyenértékűséget is megállapíthat!
-        <figure>
-          <img src="img/Equivalence of different objects.png"/>
-          <figcaption>Equivalence of different objects</figcaption>
-        </figure>
-    <li>Ha a két objektum különböző típusú, akkor van-e olyan objektumtípus
+    <li><strong>Ha a két objektum különböző típusú, akkor van-e olyan objektumtípus
         (esetleg a kettő közül az egyik), amelyre átalakítva (konvertálva)
         a két objektum egyenlővé válik? Igaz-e például, hogy a két objektum
-        szöveggé alakítva azonos módon jelenik meg?
+        szöveggé alakítva azonos módon jelenik meg?</strong><br>
+        Különböző objektumtípusok esetén az <kbd>-eq</kbd> operátor megpróbálja
+        a jobboldali objektumot a baloldali típusára átalakítani, és utána
+        megállapítani egyenlőségüket. Az objektumtípusok közötti átalakítás
+        nem mindig kölcsönösen egyértelmű, ezért az <kbd>-eq</kbd> reláció
+        különböző típusú objektumok között nem ekvivalenciareláció.
+        <figure>
+          <img src="img/Non-equivalence of different objects.png"/>
+          <figcaption>Non-equivalence of different objects</figcaption>
+        </figure>
+        Minden objektum rendelkezik a <kbd>.ToString()</kbd> metódussal,
+        amely az objektum szöveges megjelenítési formáját eredményezi.
+        Ugyanezt kapjuk az <kbd>-as</kbd> típusoperátor használatával, ha
+        <strong>utána</strong> a <kbd>[String]</kbd> típust adjuk meg.
+        továbbá akkor is, ha típuskonverzióhoz az objektum <strong>előtt</strong>
+        a <kbd>[String]</kbd> típust jelöljük meg. A terület- és nyelvfüggő
+        beállítások azonban okozhatnak meglepetést:
+        <figure>
+          <img src="img/Conversions to String.png"/>
+          <figcaption>Conversions to String</figcaption>
+        </figure>
+        A szövegadatok összehasonlításához is használhatjuk az <kbd>-eq</kbd>
+        operátort, de jegyezzük meg, hogy ez alapértelmezetten nem érzékeny
+        a kisbetű-nagybetű eltérésekre. Ha két szöveget betűérzékenyen akarunk
+        összehasonlítani, akkor a <kbd>-ceq</kbd> operátort használjuk.
+        Valamennyi más szövegkezelő operátornak is létezik a betűérzékeny
+        (<i>case sensitive&thinsp;</i>), és a nem betűérzékeny (<i>case
+        insensitive&thinsp;</i>) változata.
+        <figure>
+          <img src="img/Comparison of objects as Strings.png"/>
+          <figcaption>Comparison of objects as Strings</figcaption>
+        </figure>
   </ol>
-
-  [Object]::ReferenceEqual
-  [Object]::Equal
   <h2>Egy objektum és egy objektumhalmaz összehasonlítása</h2>
-  -eq
-  <h2>Két objektumhalmaz összehasonlítása</h2>
-  Compare-Object
-
-  Bármely egyszerű parancs vagy tetszőlegesen hosszú műveletsor végén
-  az eredményt közölni kell a felhasználóval és/vagy tárolni kell további
-  felhasználás végett. A megfelelően formázott eredmény objektumokat az
-  <kbd>Out</kbd> parancsmagokkal jeleníthetjük meg vagy menthetjük fájlba.
+  Az <kbd>-eq</kbd> operátor sajátos módon működik, ha bal oldalán egy
+  objektumgyűjtemény van. Ilyen esetben a jobb oldalon álló objektumot
+  a szokásos módon összehasonlítja a bal oldalon álló gyűjtemény minden egyes
+  elemével, és eredményül az egyező elemekből álló
+  <strong>(rész)gyűjteményt</strong> adja vissza; akkor is, ha az eredmény
+  gyűjtemény csak egyetlen elemből áll!
   <figure>
-    <img src="img/Get-Help Out-star.png"/>
-    <figcaption>Cmdlets for Data Output</figcaption>
+    <img src="img/Comparison of a collection to an object.png"/>
+    <figcaption>Comparison of a collection to an object</figcaption>
   </figure>
-  A formázó parancsmagokhoz hasonlóan a kiviteli parancsmagoknak is a
-  csővezetéken keresztül szokás a megjelenítendő objektumokat átadni.
-  <ul>
-    <li>A parancsfeldolgozót üzemeltető és a parancsori ablakot is felügyelő
-        <kbd>Host</kbd> gazdaprogram a karakteres képernyőn jeleníti meg az
-        adatokat.
-    <li>A <kbd>GridView</kbd> grafikus ablakban, táblázatos formában jeleníti
-        meg az eredményt, amelynek sorai oszloponként rendezhetők, szűrhetők.
-    <li>A <kbd>File</kbd> kimenetvezérlő szöveges állományba írja az adatokat.
-    <li>A <kbd>Out-Printer</kbd> a megadott (vagy alapértelmezett) nyomtatóra küldi
-        az eredményt. A nyomtatókat a <kbd>*-Printer</kbd> parancsmagokkal
-        felügyelhetjük, az elérhető nyomtatók listáját például a
-        <kbd>Get-Printer</kbd> utasítással kérhetjük el.
-        Tájékozódásképpen adjuk ki a
-        <code>Get-Help *-Printer</code>
-        illetve
-        <code>Get-Printer | Out-GridView</code> parancsokat!
-    <li>Az <kbd>Out-String</kbd> parancsmag szöveges adatokká alakítja az átvett
-        objektumokat, amelyeket azután szövegkezelő eljárásokkal dolgozhatunk fel.
-    <li>Az <kbd>Out-Null</kbd> elnyeli, megsemmisíti az átvett adatokat.
-  </ul>
-  Ha egy utasítás végeredményéről a parancssorban nem rendelkezünk, tehát sem
-  memóriaváltozóba, sem egy kimeneti eszközre nem irányítjuk az objektumokat,
-  akkor az eredményt az <kbd>Out-Default</kbd> parancsmag kapja meg, amely azt
-  az alapértelmezett formázás után a <kbd>Host</kbd> gazdaprogramnak adja át,
-  az pedig a karakteres képernyőn jeleníti meg.
-  A csővezeték tehát akkor is működésbe lép, ha ez a kiadott parancsban nem
-  látszik!
+  <h2>Két objektumhalmaz összehasonlítása</h2>
+  A <kbd>Compare-Object</kbd> parancsmag két objektumhalmaz egyező és különböző
+  elemeit sorolja fel; a felsorolás alapértelmezetten csak a különbséget
+  tartalmazza, de az <kbd>-IncludeEqual</kbd> kapcsolóval az egyező elemeket is
+  megjeleníthetjük, az <kbd>-ExcludeDifferent</kbd> kapcsolóval pedig elrejthetjük
+  a különböző elemeket.
+  A "bal oldali" objektumhalmazt a <kbd>-ReferenceObject</kbd>, a "jobb oldalit"
+  pedig a <kbd>-DifferenceObject</kbd> paraméternek kell átadni.
+  <figure>
+    <img src="img/Comparison of collections.png"/>
+    <figcaption>Comparison of collections</figcaption>
+  </figure>
+  Az összehasonlítás eredménye két oszlopban jelenik meg: az első oszlop
+  tartalmazza a felderített elemeket, a második pedig mutatja, hogy az adott
+  elem a bal oldali, a jobb oldali, vagy mindkét objektumhalmazban szerepel.
+  A betűérzékeny szövegösszehasonlításhoz a <kbd>-CaseSensitive</kbd>
+  kapcsolót, az összehasonlítandó tulajdonságok leszűkítéséhez (felsorolásához)
+  a <kbd>-Property</kbd> paramétert használhatjuk.
+  Ha nemcsak látni szeretnénk az összehasonlítás eredményét, hanem fel is
+  szeretnénk dolgozni a kikeresett objektumokat, akkor azokat a
+  <kbd>-PassThru</kbd> kapcsolóval vehetjük át mint önálló objektumgyűjteményt.
+  <figure>
+    <img src="img/Compare-Object -PassThru.png"/>
+    <figcaption>Compare-Object -PassThru</figcaption>
+  </figure>
   <nav>
     <a href="../index.html?locale=hu-HU&article=Where-Object" target="_top"
      >Objektumok kiválogatása, szűrése</a>
     <p>
-    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_properties"
-     target="_blank">Hogyan derítsük fel az objektumok tulajdonságait?</a>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comparison_operators"
+     target="_blank">Számok összehasonlítása, szövegek összehasonlítása</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_type_operators"
+     target="_blank">Típuskezelő operátorok</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_arrays"
+     target="_blank">Objektumgyűjtemények kezelése</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/compare-object"
+     target="_blank">Objektumgyűjtemények összehasonlítása</a>
   </nav>
 </article>
 </body>

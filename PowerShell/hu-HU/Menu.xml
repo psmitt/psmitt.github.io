@@ -32,8 +32,8 @@
       <menu title="Objektumok összehasonlítása"               link="Compare-Object"/>
       <menu title="Objektumok szűrése"                        link="Where-Object"/>
       <menu title="Objektumok sorba rendezése"                link="Sort-Object"/>
-      <menu title="Objektumok csoportosítása"                 link="Group-Object"/>
       <menu title="Objektumok tulajdonságainak kiválogatása"  link="Select-Object"/>
+      <menu title="Objektumok csoportosítása"                 link="Group-Object"/>
       <menu title="Objektumok megszámolása, mérése"           link="Measure-Object"/>
       <menu title="Objektumok egyenkénti feldolgozása"        link="ForEach-Object"/>
     </menu>
