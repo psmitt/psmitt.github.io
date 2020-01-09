@@ -17,7 +17,7 @@
   várják, hogy feldolgozzák őket. Egyéb utasítás híján az eredményadatok az
   <kbd>Out-Default</kbd> parancsmaghoz kerülnek, amely megfelelően formázva
   azokat a parancssori ablakot felügyelő <kbd>Host</kbd> objektumhoz küldi,
-  és az végül szöveges formában megjeleníti őket a karakteres képernyőn.
+  ami végül szöveges formában megjeleníti őket a karakteres képernyőn.
   <p>
   Az adatobjektumokat szállító mechanizmus neve: <strong>csővezeték</strong>
   (<i>pipeline&thinsp;</i>). A csővezetéken közlekedő objektumok feldolgozásába
@@ -73,18 +73,49 @@
     <img src="img/PowerShell Variable.png"/>
     <figcaption>PowerShell Variable</figcaption>
   </figure>
+  A felhasználótól kért adatot is egy változó tartalmaként őrizhetjük meg.
+  Az adatbekéréshez a <kbd>Read-Host</kbd> parancsot használjuk, amelynek
+  az eredményét közvetlenül egy változóba irányítjuk.
+  <figure>
+    <img src="img/Read-Host.png"/>
+    <figcaption>Read-Host</figcaption>
+  </figure>
+  <h2>A kifejezések értelmezésének kétféle módja</h2>
+  A csővezeték elejére írt kifejezéseket és a parancsmagok argumentumaiként
+  megadott kifejezéseket a parancsértelmező nem ugyanolyan módon kezeli!
+  A csővezeték elejére írt kifejezést a parancsértelmező műveleti jelekre és
+  műveleti tagokra bontja; meghatározza a műveleti tagok értékét és a műveletek
+  végrehajtásának a sorrendjét; majd elvégzi a műveleteket, és az eredményt a
+  megfelelő típusú objektumban a csővezetékre teszi. Egy argumentumkifejezést
+  viszont a parancsértelmező mint egyetlen szövegadatot vesz át; a parancsmag
+  szintaxisa által meghatározott típusú objektummá alakítja, és az objektumot
+  a megfelelő paraméter értékének állítja be.
+  <p>
+  A különbség egyszerűen szemléltethető úgy, hogy egy összetett kifejezést az
+  <kbd>Write-Host</kbd> parancsmagnak előbb a csővezetékből, majd pedig
+  paraméterként (argumentumként) adunk át.
+  <figure>
+    <img src="img/Expression Mode vs Argument Mode.png"/>
+    <figcaption>Expression Mode vs Argument Mode</figcaption>
+  </figure>
+  Az argumentumként átadott kifejezés egészen addig szövegnek minősül, amíg
+  csak lehet, de pl. egy kötőjelet közvetlenül követő szót a parancsértelmező
+  már egy paraméter nevének a kezdeteként próbál meg értelmezni; ha nem sikerül
+  a paramétert egyértelműen meghatározni, akkor hibát jelez. A leghelyesebb
+  ezért a szövegadatnak szánt argumentumot a szövegadatok írásmódjának
+  megfelelően idézőjelezni.
   <nav>
     <a href="../index.html?locale=hu-HU&article=About_Operators" target="_top"
      >PowerShell műveleti jelek és végrehajtási sorrendjük</a>
     <p>
-    <a href="../index.html?locale=hu-HU&article=Get-Member" target="_top"
-     >Egy objektum tulajdonságainak felderítése</a>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parsing"
+     target="_blank">A kifejezések értelmezésének kétféle módja</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_quoting_rules"
+     target="_blank">A szöveges adatok idézőjelezésének szabályai</a>
     <p>
     <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pipelines"
      target="_blank">A csővezeték részletes ismertetése</a>
-    <p>
-    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_properties"
-     target="_blank">Az objektumok tulajdonságainak részletes felderítése</a>
   </nav>
 </article>
 </body>

@@ -16,6 +16,7 @@
     </menu>
     <menu title="A PSReadLine parancssorkezelő">
       <menu title="Áttekintés"                  link="About_PSReadLine"/>
+      <menu title="A parancssori ablak (Host)"  link="About_Host"/>
       <menu title="A parancstörténet (History)" link="About_History"/>
     </menu>
     <menu title="A parancsfeldolgozó működése">

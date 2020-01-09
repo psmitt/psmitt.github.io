@@ -57,6 +57,28 @@
     <img src="img/Command Syntax.png"/>
     <figcaption>PowerShell Command Syntax</figcaption>
   </figure>
+  Egy parancs karaktersori begépelése helyett választhatjuk a parancskiadás
+  "grafikus módját" is: a <kbd>Show-Command</kbd> parancsmag bármely másik
+  parancsmaghoz előállítja azt a grafikus kisablakot, amelyben az argumentumokat
+  egy űrlapon, a paraméterek nevét viselő mezőkbe írhatjuk be. A paraméterek
+  típusáról az űrlapmezők felett felbukkanó súgóablakocska tájékoztat.
+  <figure>
+    <img src="img/Show-Command.png"/>
+    <figcaption>Show command in dialog window</figcaption>
+  </figure>
+  A paraméterek megadása után a <kbd>Run</kbd> gombot megnyomva a teljes
+  parancs megjelenik a parancssorban, amit aztán az <kbd>ENTER</kbd> billentyűvel
+  elindíthatunk. A <kbd>Copy</kbd> gomb csak a vágólapra másolja a teljes
+  parancsot, amelyet azután bárhová beilleszthetünk.
+  <p>
+  Egy-egy paraméter pontos jelentéséről és használatának módjáról a
+  súgórendszertől kérhetünk bővebb információt a kérdéses paraméter nevének
+  megadásával a <kbd>Get-Help</kbd> parancsmag <kbd>-Parameter</kbd> kapcsolója
+  után.
+  <figure>
+    <img src="img/Get-Help -Parameter.png"/>
+    <figcaption>Get help on a specific parameter</figcaption>
+  </figure>
   <nav>
     <a href="../index.html?locale=hu-HU&article=Input" target="_top"
      >A feldolgozandó (input) adatok átadása</a>

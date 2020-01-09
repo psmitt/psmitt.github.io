@@ -11,10 +11,43 @@
 </head>
 <body>
 <article>
-  <h1>Adatbeolvasás és adatkiírás a karakteres képernyőn</h1>
+  <h1>A parancssori ablak beállításai és használata</h1>
+  A <kbd>Host</kbd> program azt az adott operációs rendszeren (platformon) futó
+  folyamatot jelenti, amely a <kbd>PSReadLine</kbd> parancssorkezelőn keresztül
+  a PowerShell parancsértelmezőt összeköti a  felhasználóval.
+  Ez a gazdaprogram a felhasználó számára egy karakteres képernyőablak soraiban
+  jeleníti meg az információt, és ugyanitt teszi visszaolvashatóvá a felhasználó
+  által a billentyűzetről és egérről bevitt karaktersorozatokat, amelyeket
+  azután átad a parancsértelmezőnek.
+  <p>
+  A <kbd>Host</kbd> gazdaprogram tehát úgy jelenik meg számunkra, mint egy
+  parancssori ablak, más néven <a href="https://en.wikipedia.org/wiki/System_console"
+  target="_blank">konzol</a> vagy <a href="https://en.wikipedia.org/wiki/Computer_terminal"
+  target="_blank">terminál</a>. Ezt a programot valamennyi platformon megtaláljuk,
+  és az adott platformra jellemző módon beállíthatjuk a jellemzőit: a betűk és
+  a háttér színét; az ablakon belüli karaktertábla szélességét és magasságát;
+  a betűk megjelenítésére használt karakterkészletet (fontot), a betűk méretét,
+  stb.
+  <figure>
+    <img src="img/Command Line Settings.png"/>
+    <figcaption>Command Line Settings</figcaption>
+  </figure>
+  A <kbd>Write-Host</kbd> parancsmag alapértelmezetten a beállított jellemzőknek
+  megfelelően jeleníti meg az ablakban a megadott üzenetet, amit egy sortöréssel
+  zár. A záró sortörés a <kbd>-NoNewLine</kbd> kapcsolóval elhagyható, a kiírt
+  üzenet hátterét és betűszínét pedig rendre a <kbd>-BackgroundColor</kbd> és
+  <kbd>-ForeGroundColor</kbd> paraméterek segítségével tudjuk megadni, mégpedig
+  a színek angol nevét használva.
+  <figure>
+    <img src="img/Write-Host.png"/>
+    <figcaption>Write-Host</figcaption>
+  </figure>
+
+
+  <h2>Adatbeolvasás és adatkiírás a karakteres képernyőn</h2>
   A PowerShell karakteres felhasználói felülete, rövidebb nevén a
   <strong>konzol</strong> nemcsak az interaktív parancsmódban, hanem a
-  programkódok, szkriptek végrehajtása során is használható 
+  programkódok, szkriptek végrehajtása során is használható
   munkamenet a begépelt sorrendben megőrzi a parancssorban
   kiadott utasításokat, amelyek a nyílbillentyűkkel egyszerűen visszakereshetők
   és megismételhetők. A <kbd>history</kbd> vagy <kbd>Get-History</kbd> parancs
@@ -23,11 +56,9 @@
   jelentésben kell. A parancstörténet a <kbd>Clear-History</kbd> utasítással
   törölhető és újrakezdhető.
   <nav>
-    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_history"
-     target="_blank">A parancstörténet webes tájékoztató oldala</a>
+    <a href="../index.html?locale=hu-HU&article=About_History" target="_top"
+      >A parancssor történeti nyilvántartása</a>
     <p>
-    <a href="../index.html?locale=hu-HU&article=About_Host" target="_top"
-      >A parancssor programozott kezelése: adatbeolvasás és adatkiírás</a>
   </nav>
 </article>
 </body>
