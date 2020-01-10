@@ -15,7 +15,7 @@
   Minden adat, amit a PowerShell parancsértelmező feldolgoz, és minden eredmény,
   amit előállít: egy vagy több <strong>objektum</strong> (<i>Object&thinsp;</i>).
   A képernyőn megjelenített vagy fájlba mentett információ nem más,
-  mint az objektumok szöveges formára alakított "emberi fogyasztásra is
+  mint az objektumok szöveges formára alakított, "emberi fogyasztásra is
   alkalmassá tett" adattartalma.
   <p>
   Egy információ sokféleképpen "tálalható": egy dátum adatot például megadhatunk
@@ -54,16 +54,19 @@
     <figcaption>Cmdlets for Object Members</figcaption>
   </figure>
   A <kbd>Get-Member</kbd> parancsmagnak a csővezetéken szokás átadni a
-  felderítendő objektumot. Egyéb kapcsoló híján a parancsmag az objektum saját
+  vizsgált objektumot. Egyéb kapcsoló híján a parancsmag az objektum saját
   tagjait jeleníti meg; a statikus tagok megjelenítéséhez a <kbd>-Static</kbd>
   kapcsoló használata szükséges. A megjelenítendő tagok típusát a
   <kbd>-MemberType</kbd> paraméter argumentumaként sorolhatjuk fel;
   ennek híján a parancsmag az összes nyilvános tagot felsorolja, a
   <kbd>-Force</kbd> kapcsolóval pedig még a rejtett tagokat is.
-  <p>
+  <figure>
+    <img src="img/Get-Member syntax.png"/>
+    <figcaption>Syntax of Get-Member cmdlet</figcaption>
+  </figure>
   Egy dátum objektum tulajdonságainak felderítéséhez kérjük el az aktuális
   dátumot a <kbd>Get-Date</kbd> paranccsal, és adjuk át a csővezetéken a
-  <kbd>Get-Member</kbd> parancsmagnak bekapcsolva a tulajdonságokat
+  <kbd>Get-Member</kbd> parancsmagnak, bekapcsolva a tulajdonságokat
   megjelenítő paramétert:
   <code>Get-Date | Get-Member -MemberType Properties</code>
   <figure>

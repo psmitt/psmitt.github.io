@@ -14,7 +14,7 @@
   <h1>Az objektumok átadása a megjelenítő vagy tároló eszköznek</h1>
   Bármely egyszerű parancs vagy tetszőlegesen hosszú műveletsor végén
   az eredményt közölni kell a felhasználóval és/vagy tárolni kell további
-  felhasználás végett. A megfelelően formázott eredmény objektumokat az
+  felhasználás végett. A megfelelően formázott eredményobjektumokat az
   <kbd>Out</kbd> parancsmagokkal jeleníthetjük meg vagy menthetjük fájlba.
   <figure>
     <img src="img/Get-Help Out-star.png"/>
@@ -32,16 +32,16 @@
     <li>A <kbd>Tee-Object</kbd> parancsmag képes egyszerre két irányba küldeni
         az adatokat: fájlba menteni és ugyanakkor a képernyőn is megjeleníteni
         őket. Úgy működik tehát, mintha egyszerre használnánk az
-        <kbd>Out-File</kbd> és az <kbd>Out-Host</kbd> parancsmagokat, ld.
-        <code>Get-Help Tee-Object -Online</code>
-    <li>A <kbd>Out-Printer</kbd> a megadott (vagy alapértelmezett) nyomtatóra küldi
-        az eredményt. A nyomtatókat a <kbd>*-Printer</kbd> parancsmagokkal
+        <kbd>Out-File</kbd> és az <kbd>Out-Host</kbd> parancsmagokat
+        (részleteket ld. a <a
+        href="https://docs.microsoft.com/hu-hu/powershell/module/microsoft.powershell.utility/tee-object"
+        target="_blank">súgóban</a>).
+    <li>A <kbd>Out-Printer</kbd> a megadott vagy az alapértelmezett nyomtatóra
+        küldi az eredményt. A nyomtatókat a <kbd>*-Printer</kbd> parancsmagokkal
         felügyelhetjük, az elérhető nyomtatók listáját például a
         <kbd>Get-Printer</kbd> utasítással kérhetjük el.
-        Tájékozódásképpen adjuk ki a
-        <code>Get-Help *-Printer</code>
-        illetve
-        <code>Get-Printer | Out-GridView</code> parancsokat!
+        Tájékozódásképpen adjuk ki a <code>Get-Help *-Printer</code>
+        illetve <code>Get-Printer | Out-GridView</code> parancsokat!
     <li>Az <kbd>Out-String</kbd> parancsmag szöveges adatokká alakítja az átvett
         objektumokat, amelyeket azután szövegkezelő eljárásokkal dolgozhatunk fel.
     <li>Az <kbd>Out-Null</kbd> elnyeli, megsemmisíti az átvett adatokat.

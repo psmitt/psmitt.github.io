@@ -14,21 +14,21 @@
   <h1>Objektumok összehasonlítása</h1>
   A PowerShell nemcsak számokat, dátumokat vagy szövegeket, hanem bármilyen
   két objektumot vagy objektumhalmazt képes összehasonlítani, megállapítani
-  azonosságukat, vagy meghatározni a különbséget közöttük. Egy objektumot vagy
+  azonosságukat, vagy meghatározni a különbséget közöttük.
+  <p>
+  Egy objektumot vagy
   objektumhalmazt önmagával összehasonlítva természetesen nem találhatunk
-  különbséget: az összehasonlított objektumok típusra és adattartalomra nézve
-  is teljesen egyenlők kell hogy legyenek, tekintettel arra, hogy azonosak.
+  különbséget: egy objektum típusra és adattartalomra nézve is teljesen
+  azonos kell hogy legyen önmagával.
+  <p>
   Egymástól különböző változók vagy kifejezések is hivatkozhatnak azonban
   ugyanarra az objektumra, vagy rendelkezhetnek ugyanazzal a típussal és
   adattartalommal; esetleg lehetnek különböző típusúak, de egyenértékűek.
-  <p>
-  Az egyenlőség megállapítására szolgáló általános <kbd>-eq</kbd>
-  operátor különféle típusú objektumok összehasonlításakor különféleképpen
-  viselkedhet, érdemes tehát mindig pontosan megfogalmazni, milyen fajta
+  Érdemes tehát mindig pontosan megfogalmazni, milyen fajta
   azonosság vizsgálatába fogunk, és milyen különbségekre vagyunk kíváncsiak.
   <h2>Két egyedi objektum összehasonlítása</h2>
   <ol>
-    <li><strong>Igaz-e, hogy a két hivatkozás ugyanarra az objektumra
+    <li><strong>Igaz-e, hogy két hivatkozás ugyanarra az objektumra
         vonatkozik?</strong><br>
         Erre a kérdésre az <kbd>Object</kbd> osztály kétargumentumú, statikus
         <kbd>ReferenceEquals</kbd> metódusa ad választ.
@@ -40,7 +40,7 @@
         vagyis valójában egy és ugyanaz az objektum.
         Ha a két objektum nem azonos (False), akkor tovább vizsgálhatjuk az
         objektumok típusának és adattartalmának az egyenlőségét.
-    <li><strong>Igaz-e, hogy a két objektumra típusa megegyezik?</strong><br>
+    <li><strong>Igaz-e, hogy két objektumra típusa megegyezik?</strong><br>
         Ha igaz, akkor a két objektum <strong>ugyanolyan</strong>,
         vagyis ugyanannak az osztálynak egy-egy példánya.
         A pontos válaszhoz a két objektum típusát kérjük el a <kbd>.GetType()</kbd>
@@ -71,7 +71,7 @@
     <li><strong>Ha két objektum azonos típusú, akkor igaz-e, hogy a két objektum
         adattartalma megegyezik, vagyis a két objektum egyenlő?</strong><br>
         Minden objektum rendelkezik az <kbd>.Equals</kbd> metódussal,
-        amelynek egyetlan argumentumként a vele összehasonlítandó objektumot
+        amelynek egyetlen argumentumként a vele összehasonlítandó objektumot
         vagy kifejezést kell átadni, és a metódus megállapítja, hogy egyenértékűek-e.
         Ez az egyenértékűség vagy ekvivalencia az <kbd>Object</kbd> osztály
         kétargumentumú, statikus <kbd>Equals</kbd> metódusával is vizsgálható.
@@ -81,7 +81,7 @@
         </figure>
         Azonos típusú objektumok esetén az <kbd>-eq</kbd> operátor a fenti
         metódusokhoz hasonlóan működik, és velük egyező eredményt ad.
-    <li><strong>Ha a két objektum különböző típusú, akkor van-e olyan objektumtípus
+    <li><strong>Ha két objektum különböző típusú, akkor van-e olyan objektumtípus
         (esetleg a kettő közül az egyik), amelyre átalakítva (konvertálva)
         a két objektum egyenlővé válik? Igaz-e például, hogy a két objektum
         szöveggé alakítva azonos módon jelenik meg?</strong><br>
@@ -89,15 +89,15 @@
         a jobboldali objektumot a baloldali típusára átalakítani, és utána
         megállapítani egyenlőségüket. Az objektumtípusok közötti átalakítás
         nem mindig kölcsönösen egyértelmű, ezért az <kbd>-eq</kbd> reláció
-        különböző típusú objektumok között nem ekvivalenciareláció.
+        különböző típusú objektumok között nem mindig szimmetrikus.
         <figure>
-          <img src="img/Non-equivalence of different objects.png"/>
-          <figcaption>Non-equivalence of different objects</figcaption>
+          <img src="img/Asymmetry of -eq operator.png"/>
+          <figcaption>Asymmetry of -eq operator</figcaption>
         </figure>
         Minden objektum rendelkezik a <kbd>.ToString()</kbd> metódussal,
         amely az objektum szöveges megjelenítési formáját eredményezi.
         Ugyanezt kapjuk az <kbd>-as</kbd> típusoperátor használatával, ha
-        <strong>utána</strong> a <kbd>[String]</kbd> típust adjuk meg.
+        <strong>utána</strong> a <kbd>[String]</kbd> típust adjuk meg;
         továbbá akkor is, ha típuskonverzióhoz az objektum <strong>előtt</strong>
         a <kbd>[String]</kbd> típust jelöljük meg. A terület- és nyelvfüggő
         beállítások azonban okozhatnak meglepetést:
@@ -109,7 +109,7 @@
         operátort, de jegyezzük meg, hogy ez alapértelmezetten nem érzékeny
         a kisbetű-nagybetű eltérésekre. Ha két szöveget betűérzékenyen akarunk
         összehasonlítani, akkor a <kbd>-ceq</kbd> operátort használjuk.
-        Valamennyi más szövegkezelő operátornak is létezik a betűérzékeny
+        Az összes többi szövegkezelő operátornak is létezik a betűérzékeny
         (<i>case sensitive&thinsp;</i>), és a nem betűérzékeny (<i>case
         insensitive&thinsp;</i>) változata.
         <figure>
@@ -130,7 +130,7 @@
   </figure>
   <h2>Két objektumhalmaz összehasonlítása</h2>
   A <kbd>Compare-Object</kbd> parancsmag két objektumhalmaz egyező és különböző
-  elemeit sorolja fel; a felsorolás alapértelmezetten csak a különbséget
+  elemeit deríti fel. A megjelenő eredmény alapértelmezetten csak a különbséget
   tartalmazza, de az <kbd>-IncludeEqual</kbd> kapcsolóval az egyező elemeket is
   megjeleníthetjük, az <kbd>-ExcludeDifferent</kbd> kapcsolóval pedig elrejthetjük
   a különböző elemeket.
@@ -144,7 +144,7 @@
   tartalmazza a felderített elemeket, a második pedig mutatja, hogy az adott
   elem a bal oldali, a jobb oldali, vagy mindkét objektumhalmazban szerepel.
   A betűérzékeny szövegösszehasonlításhoz a <kbd>-CaseSensitive</kbd>
-  kapcsolót, az összehasonlítandó tulajdonságok leszűkítéséhez (felsorolásához)
+  kapcsolót, az összehasonlítandó tulajdonságok leszűkítéséhez
   a <kbd>-Property</kbd> paramétert használhatjuk.
   Ha nemcsak látni szeretnénk az összehasonlítás eredményét, hanem fel is
   szeretnénk dolgozni a kikeresett objektumokat, akkor azokat a

@@ -15,6 +15,10 @@
   Egy parancsmag a feldolgozandó adatokat mindig a szintaxisleírásban
   magadott valamelyik paraméterként veszi át, de hogy melyik input adat
   melyik paraméter értékévé alakul át, az a parancsbeli helyzetétől függ.
+  <figure>
+    <img src="img/Cmdlet Input Arguments.png"/>
+    <figcaption>Cmdlet Input Arguments</figcaption>
+  </figure>
   <ul>
     <li>Ha egy paraméter neve megjelenik a parancsban, akkor annak értéke az őt
         követő argumentum kifejezés értéke lesz; kapcsoló (<i>switch&thinsp;</i>)
@@ -22,12 +26,18 @@
         kapcsoló "be van kapcsolva".
     <li>Ha egy argumentum kifejezés nem egy paraméter neve után jelenik meg,
         akkor ahányadik ezek közül a névtelen argumentumok közül, annyiadik
-        pozícionális paraméter veszi át az értékét a szintaxisleírásban
-        feltüntetettek közül (amelyeknek tehát maga a neve opcionális).
+        pozícionált paraméter veszi át az értékét a szintaxisleírásban
+        feltüntetettek közül. Jegyezzük meg, hogy a paraméter-súgóban
+        a pozíciók számozása nullától kezdődik:
+        <figure>
+          <img src="img/Positional parameters.png"/>
+          <figcaption>Positional parameters</figcaption>
+        </figure>
     <li>Egy parancsmag az őt megelőző kifejezések vagy parancsok eredményét is
-        átveheti az ún. csővezetékből, és a csővezetéken egymás után több
-        objektum is érkezhet; a parancsmag minden egyes beérkező objektumot
-        feldolgoz, és mindegyik esetében előállít valamilyen végeredményt.
+        átveheti az ún. <strong>csővezetékből</strong> (<i>pipeline&thinsp;</i>),
+        és a csővezetéken egymás után több objektum is érkezhet;
+        a parancsmag minden egyes beérkező objektumot feldolgoz,
+        és mindegyik esetében előállít valamilyen végeredményt.
     <li>Lehetnek olyan paraméterek, amelyek akkor is kapnak egy alapértelmezett
         (<i>default&thinsp;</i>) értéket, ha nem jelennek meg a kiadott parancsban.
     <li>Lehetnek olyan parancsmagok is, amelyek input adatok nélkül is
@@ -36,11 +46,11 @@
     <li>Ha egy parancsmagnak nem adjuk meg egy kötelező paraméterét, akkor a
         PowerShell ezt a parancs végrehajtása előtt a felhasználótól elkéri, mert
         enélkül az utasítás nem hajtható végre.
+        <figure>
+          <img src="img/Missing mandatory parameter2.png"/>
+          <figcaption>Missing mandatory parameter</figcaption>
+        </figure>
   </ul>
-  <figure>
-    <img src="img/Cmdlet Input Arguments.png"/>
-    <figcaption>Cmdlet Input Arguments</figcaption>
-  </figure>
   <nav>
     <a href="../index.html?locale=hu-HU&article=Streams" target="_top"
      >Eredménycsatornák: a parancsmagok kimeneti adatfolyamai</a>

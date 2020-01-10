@@ -25,7 +25,7 @@
   target="_blank">konzol</a> vagy <a href="https://en.wikipedia.org/wiki/Computer_terminal"
   target="_blank">terminál</a>. Ezt a programot valamennyi platformon megtaláljuk,
   és az adott platformra jellemző módon beállíthatjuk a jellemzőit: a betűk és
-  a háttér színét; az ablakon belüli karaktertábla szélességét és magasságát;
+  a háttér színét, az ablakon belüli karaktertábla szélességét és magasságát,
   a betűk megjelenítésére használt karakterkészletet (fontot), a betűk méretét,
   stb.
   <figure>
@@ -48,12 +48,55 @@
     <img src="img/Write-Host.png"/>
     <figcaption>Write-Host</figcaption>
   </figure>
+  <h2>Egy utasítás több sorban, több utasítás egy sorban</h2>
+  Ha egy utasítás hossza meghaladja a parancssori ablak szélességét, akkor nem
+  a vízszintes görgetés indul el, hanem a beírt karakterek automatikusan az
+  ablak következő sorába kerülnek. A hosszú utasítássorok tördelése tehát
+  automatikus.
+  <figure>
+    <img src="img/Long line.png"/>
+    <figcaption>Long line</figcaption>
+  </figure>
+  Az <kbd>ENTER</kbd> billentyű leütésekor a parancsértelmező feldolgozza az
+  addig beírt szöveget. Ha a szöveg végén lezáratlan kifejezést talál,
+  akkor nem kezdi meg a befejezetlen parancs feldolgozását, hanem
+  az új sorban egy másodlagos prompt után várja a folytatólagos parancsbevitelt.
+  <figure>
+    <img src="img/Incomplete expression.png"/>
+    <figcaption>Incomplete expression</figcaption>
+  </figure>
+  Ha a teljes beírt szöveg végén álló kifejezés hiánytalan, akkor
+  a parancsértelmező tovább lép a végrehajtás felé, és már csak az esetlegesen
+  hiányzó kötelező paraméterek értékét kéri a felhasználótól,
+  azután végrehajtja a parancsot.
+  <figure>
+    <img src="img/Missing mandatory parameter.png"/>
+    <figcaption>Missing mandatory parameter</figcaption>
+  </figure>
+  Ha a kiadott parancsot eleve több sorba szeretnénk rendezni, a sor végén
+  a <kbd>`</kbd> <i>backtick&thinsp;</i> karakterrel jelezhetjük a
+  parancsfeldolgozónak, hogy az utasítás még nincs lezárva, és a következő
+  sorban folytatódni fog. Ekkor a parancsfeldolgozó automatikusan adja a
+  másodlagos prompt-ot a következő sor elején, és nem kísérletezik a begépelt
+  sor értelmezésével és végrehajtásával.
+  <figure>
+    <img src="img/Multiple lines with backtick.png"/>
+    <figcaption>Multiple lines with backtick</figcaption>
+  </figure>
+  Ha ellenkezőleg, egyetlen sorban több utasítást is szeretnénk elhelyezni,
+  akkor azokat a <kbd>;</kbd> pontosvessző karakterrel kell egymástól
+  elválasztani.
+  <figure>
+    <img src="img/Multiple commands with semicolon.png"/>
+    <figcaption>Multiple commands with semicolon</figcaption>
+  </figure>
+  <h2>Az ablak törlése</h2>
   A parancssori ablak tartalma a <kbd>Clear-Host</kbd> utasítással törölhető:
   ez csak az ablakban lévő karaktertábla tartalmát törli, a legfelső sorba
   állítva a beviteli prompt-ot; a már kiadott parancsok listája, a
   <strong>parancstörténet</strong> (<i>History&thinsp;</i>) megmarad és
   visszakereshető, utolsó elemeként az éppen kiadott <kbd>Clear-Host</kbd>
-  utasítással.
+  utasítással együtt.
   <nav>
     <a href="../index.html?locale=hu-HU&article=About_History" target="_top"
       >A parancssor történeti nyilvántartása</a>
