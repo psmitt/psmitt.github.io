@@ -11,162 +11,220 @@
 </head>
 <body>
 <article>
-  <h1>Objektumok kiválogatása, szűrése</h1>
-
-
-
-
-
-  A PowerShell nemcsak számokat, dátumokat vagy szövegeket, hanem bármilyen
-  két objektumot vagy objektumhalmazt képes összehasonlítani, megállapítani
-  azonosságukat, vagy meghatározni a különbséget közöttük. Egy objektumot vagy
-  objektumhalmazt önmagával összehasonlítva természetesen nem találhatunk
-  különbséget: az összehasonlított objektumok típusra és adattartalomra nézve
-  is teljesen egyenlők kell hogy legyenek, tekintettel arra, hogy azonosak.
-  Egymástól különböző változók vagy kifejezések is hivatkozhatnak azonban
-  ugyanarra az objektumra, vagy rendelkezhetnek ugyanazzal a típussal és
-  adattartalommal; esetleg lehetnek különböző típusúak, de egyenértékűek.
+  <h1>Objektumok feltétel alapú szűrése, kiválogatása, szétválogatása</h1>
+  A <kbd>Where-Object</kbd> parancsmag egy objektumgyűjteményből
+  kiválogatja (kiszűri) a megadott feltételnek megfelelő objektumokat.
+  Az objektumgyűjtemény tipikusan a csővezetéken érkezik, és az
+  eredményhalmaz a csővezetéken megy tovább.
+  A szűrési feltétel az objektumok valamelyik tulajdonságának az értékére
+  vonatkozik: csak az az objektum mehet tovább a csővezetéken, amelyiknek
+  a megnevezett tulajdonságára teljesül a megadott feltétel.
   <p>
-  Az egyenlőség megállapítására szolgáló általános <kbd>-eq</kbd>
-  operátor különféle típusú objektumok összehasonlításakor különféleképpen
-  viselkedhet, érdemes tehát mindig pontosan megfogalmazni, milyen fajta
-  azonosság vizsgálatába fogunk, és milyen különbségekre vagyunk kíváncsiak.
-  <h2>Két egyedi objektum összehasonlítása</h2>
-  <ol>
-    <li><strong>Igaz-e, hogy a két hivatkozás ugyanarra az objektumra
-        vonatkozik?</strong><br>
-        Erre a kérdésre az <kbd>Object</kbd> osztály kétargumentumú, statikus
-        <kbd>ReferenceEquals</kbd> metódusa ad választ.
-        <figure>
-          <img src="img/Object Reference Comparison.png"/>
-          <figcaption>Object Reference Comparison</figcaption>
-        </figure>
-        Ha az eredmény igaz (True), akkor a két objektum <strong>azonos</strong>,
-        vagyis valójában egy és ugyanaz az objektum.
-        Ha a két objektum nem azonos (False), akkor tovább vizsgálhatjuk az
-        objektumok típusának és adattartalmának az egyenlőségét.
-    <li><strong>Igaz-e, hogy a két objektumra típusa megegyezik?</strong><br>
-        Ha igaz, akkor a két objektum <strong>ugyanolyan</strong>,
-        vagyis ugyanannak az osztálynak egy-egy példánya.
-        A pontos válaszhoz a két objektum típusát kérjük el a <kbd>.GetType()</kbd>
-        metódussal, és egyenlőségüket vizsgáljuk az <kbd>-eq</kbd> operátorral.
-        <figure>
-          <img src="img/Object Type Comparison.png"/>
-          <figcaption>Object Type Comparison</figcaption>
-        </figure>
-        Típusvizsgálathoz használhatjuk az <kbd>-is</kbd> vagy <kbd>-isNot</kbd>
-        típusoperátorokat is: ezeknek a bal oldalára kerül a vizsgált objektum,
-        a jobb oldalára pedig az azonosítandó típus. <strong>De vigyázat!</strong>
-        A típusoperátor nemcsak az objektum saját típusára, hanem minden
-        őstípusára is megállapítja az egyezést; egyébként nagyon helyesen,
-        hiszen például minden objektumra igaz, hogy <strong>objektum</strong>,
-        vagyis az <kbd>Object</kbd> alaptípus leszármazottja.
-        <figure>
-          <img src="img/Using the Type Operator.png"/>
-          <figcaption>Using the Type Operator</figcaption>
-        </figure>
-        Arra is figyeljünk oda, hogy ne keverjük össze a típusoperátor
-        használatának módját az egyenlőség operátoréval! Ha a típusoperátor
-        mindkét oldalára az összehasonlítandó objektumok típusát írjuk,
-        akkor nem arra a kérdésre kapunk választ, amit feltettünk.
-        <figure>
-          <img src="img/Misusing the Type Operator.png"/>
-          <figcaption>Misusing the Type Operator</figcaption>
-        </figure>
-    <li><strong>Ha két objektum azonos típusú, akkor igaz-e, hogy a két objektum
-        adattartalma megegyezik, vagyis a két objektum egyenlő?</strong><br>
-        Minden objektum rendelkezik az <kbd>.Equals</kbd> metódussal,
-        amelynek egyetlan argumentumként a vele összehasonlítandó objektumot
-        vagy kifejezést kell átadni, és a metódus megállapítja, hogy egyenértékűek-e.
-        Ez az egyenértékűség vagy ekvivalencia az <kbd>Object</kbd> osztály
-        kétargumentumú, statikus <kbd>Equals</kbd> metódusával is vizsgálható.
-        <figure>
-          <img src="img/Equality of Objects.png"/>
-          <figcaption>Equality of Objects</figcaption>
-        </figure>
-        Azonos típusú objektumok esetén az <kbd>-eq</kbd> operátor a fenti
-        metódusokhoz hasonlóan működik, és velük egyező eredményt ad.
-    <li><strong>Ha a két objektum különböző típusú, akkor van-e olyan objektumtípus
-        (esetleg a kettő közül az egyik), amelyre átalakítva (konvertálva)
-        a két objektum egyenlővé válik? Igaz-e például, hogy a két objektum
-        szöveggé alakítva azonos módon jelenik meg?</strong><br>
-        Különböző objektumtípusok esetén az <kbd>-eq</kbd> operátor megpróbálja
-        a jobboldali objektumot a baloldali típusára átalakítani, és utána
-        megállapítani egyenlőségüket. Az objektumtípusok közötti átalakítás
-        nem mindig kölcsönösen egyértelmű, ezért az <kbd>-eq</kbd> reláció
-        különböző típusú objektumok között nem ekvivalenciareláció.
-        <figure>
-          <img src="img/Non-equivalence of different objects.png"/>
-          <figcaption>Non-equivalence of different objects</figcaption>
-        </figure>
-        Minden objektum rendelkezik a <kbd>.ToString()</kbd> metódussal,
-        amely az objektum szöveges megjelenítési formáját eredményezi.
-        Ugyanezt kapjuk az <kbd>-as</kbd> típusoperátor használatával, ha
-        <strong>utána</strong> a <kbd>[String]</kbd> típust adjuk meg.
-        továbbá akkor is, ha típuskonverzióhoz az objektum <strong>előtt</strong>
-        a <kbd>[String]</kbd> típust jelöljük meg. A terület- és nyelvfüggő
-        beállítások azonban okozhatnak meglepetést:
-        <figure>
-          <img src="img/Conversions to String.png"/>
-          <figcaption>Conversions to String</figcaption>
-        </figure>
-        A szövegadatok összehasonlításához is használhatjuk az <kbd>-eq</kbd>
-        operátort, de jegyezzük meg, hogy ez alapértelmezetten nem érzékeny
-        a kisbetű-nagybetű eltérésekre. Ha két szöveget betűérzékenyen akarunk
-        összehasonlítani, akkor a <kbd>-ceq</kbd> operátort használjuk.
-        Valamennyi más szövegkezelő operátornak is létezik a betűérzékeny
-        (<i>case sensitive&thinsp;</i>), és a nem betűérzékeny (<i>case
-        insensitive&thinsp;</i>) változata.
-        <figure>
-          <img src="img/Comparison of objects as Strings.png"/>
-          <figcaption>Comparison of objects as Strings</figcaption>
-        </figure>
-  </ol>
-  <h2>Egy objektum és egy objektumhalmaz összehasonlítása</h2>
-  Az <kbd>-eq</kbd> operátor sajátos módon működik, ha bal oldalán egy
-  objektumgyűjtemény van. Ilyen esetben a jobb oldalon álló objektumot
-  a szokásos módon összehasonlítja a bal oldalon álló gyűjtemény minden egyes
-  elemével, és eredményül az egyező elemekből álló
-  <strong>(rész)gyűjteményt</strong> adja vissza; akkor is, ha az eredmény
-  gyűjtemény csak egyetlen elemből áll!
+  A <kbd>Where-Object</kbd> szűrőutasítás legegyszerűbb alakja a következő:
+  <code>Where-Object &lt;Property&gt; &lt;ComparisonOperator&gt; &lt;Value&gt;</code>
+  A parancsmag neve után tehát meg kell adni a tulajdonság nevét
+  (<i>Property&thinsp;</i>), amelyet minden egyes objektum esetén a jelzett módon
+  (<i>ComparisonOperator&thinsp;</i>) összehasonlítunk a megadott értékkel
+  (<i>Value&thinsp;</i>).
+  Ahhoz, hogy a kiadott parancs könnyebben érthető, megjegyezhető, a beszélt
+  (angol) nyelvhez jobban idomuló legyen, a parancsmag teljes neve a
+  <kbd>Where</kbd> rövidítéssel is helyettesíthető.
+  Ha például a parancstörténetből szeretnénk kiválogatni az 50 ezredmásodpercnél
+  gyorsabban végrehajtott utasításokat, akkor azt a következőképpen szűrjük:
+  <code>Get-History | Where Duration -lt ([TimeSpan]::FromMilliseconds(50))</code>
   <figure>
-    <img src="img/Comparison of a collection to an object.png"/>
-    <figcaption>Comparison of a collection to an object</figcaption>
+    <img src="img/Get commands from history where duration is short.png"/>
+    <figcaption>Get commands from history where duration is short</figcaption>
   </figure>
-  <h2>Két objektumhalmaz összehasonlítása</h2>
-  A <kbd>Compare-Object</kbd> parancsmag két objektumhalmaz egyező és különböző
-  elemeit sorolja fel; a felsorolás alapértelmezetten csak a különbséget
-  tartalmazza, de az <kbd>-IncludeEqual</kbd> kapcsolóval az egyező elemeket is
-  megjeleníthetjük, az <kbd>-ExcludeDifferent</kbd> kapcsolóval pedig elrejthetjük
-  a különböző elemeket.
-  A "bal oldali" objektumhalmazt a <kbd>-ReferenceObject</kbd>, a "jobb oldalit"
-  pedig a <kbd>-DifferenceObject</kbd> paraméternek kell átadni.
+  <h2>Az összehasonlító (szűrő) operátorok</h2>
+  Az összehasonlító operátorok precedenciája azonos, és balról jobbra értékeljük
+  ki őket. Létezik állító és tagadó formájuk &mdash; ezek elnevezésükben jól
+  megkülönböztethetők, mert a tagadó formában szerepel az angol <i>not</i>
+  tagadószó. Két alapvető fajtájuk: a típus-összehasonlító operátorok
+  (<i>type operators</i>) és a szöveges adatok összehasonlítására
+  (<i>string comparison</i>&thinsp;) is alkalmas operátorok.
+  <p>
+  Utóbbiaknak három változata van: az alapváltozat mellett (pl. <kbd>-eq</kbd>),
+  amely alapértelmezetten nem érzékeny a kis- és nagybetűk eltérésére
+  (<i>case insensitive&thinsp;</i>), létezik a betűérzékeny változat, amely
+  <kbd>c</kbd> karakterrel kezdődik (pl. <kbd>-ceq</kbd>), és a jelzetten
+  nem betűérzékeny változat, amelyik <kbd>i</kbd>-vel (pl. <kbd>-ieq</kbd>).
+  Maguk az operátorok egyébként kisbetűkkel és nagybetűkkel egyaránt írhatók
+  (pl. <kbd>-Eq</kbd>, <kbd>-EQ</kbd>).
+  <p>
+  A szövegeket összehasonlító operátorok jobb oldalán lévő minta (<i>pattern</i>)
+  bizonyos esetekben reguláris kifejezés (<i>regular expression&thinsp;</i>)
+  is lehet, más esetekben helyettesítő karaktereket (<i>wildcards&thinsp;</i>)
+  is tartalmazhat.
+  <table class="wide">
+    <tr>
+      <th class="center">Operátor</th>
+      <th>Jelentés</th>
+      <th>Jobb oldali érték</th>
+    </tr>
+    <tr>
+      <td colspan="3" class="section">Típus-összehasonlító operátorok</td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>-is</kbd></td>
+      <td>Besorolás: IGAZ, ha a bal oldali objektum a jobb oldali típus
+          egy példánya vagy leszármazottja</td>
+      <td>típusnév</td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>-isNot</kbd></td>
+      <td>IGAZ, ha a bal oldali objektum NEM a jobb oldali típus
+          egy példánya vagy leszármazottja</td>
+      <td>típusnév</td>
+    </tr>
+    <tr>
+      <td colspan="3" class="section"><strong>Szövegeket is összehasonlító
+       operátorok</strong></td>
+    </tr>
+    <tr>
+      <td colspan="3" class="section">
+        <a href="../index.html?locale=hu-HU&article=About_Operators"
+         target="_top">Relációs jelek</a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3" class="section">Mintaillesztő operátorok</td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>-like</kbd><br><kbd>-notLike</kbd></td>
+      <td>Szöveg összehasonlítása lineáris mintával</td>
+      <td><a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_wildcards"
+       target="_blank">Helyettesítő karakteres szöveg</a></td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>-match</kbd><br><kbd>-notMatch</kbd></td>
+      <td>Szöveg összehasonlítása reguláris mintával</td>
+      <td><a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_regular_expressions"
+       target="_blank">Reguláris kifejezés</a></td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>-replace</kbd></td>
+      <td>Reguláris szöveghelyettesítés</td>
+      <td><a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_regular_expressions"
+       target="_blank">Reguláris kifejezés</a></td>
+    </tr>
+    <tr>
+      <td colspan="3" class="section">Elemkereső operátorok</td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>-in</kbd><br><kbd>-notIn</kbd></td>
+      <td>Objektum keresése gyűjteményben</td>
+      <td>Gyűjtemény</td>
+    </tr>
+    <tr>
+      <td class="center"><kbd>-contains</kbd><br><kbd>-notContains</kbd></td>
+      <td>Objektum keresése gyűjteményben</td>
+      <td>Objektum</td>
+    </tr>
+  </table>
+  </p>
+  <h2>Szűrés több tulajdonságra, több feltétellel</h2>
+  A többszörös szűrés egymás után elhelyezett szűrőkkel is kivitelezhető abban
+  az esetben, ha a kiválogatandó objektumokra a szűrőfeltételek mindegyikének
+  (egyszerre) teljesülnie kell.
+  <code>Get-History | Where Duration -gt ([TimeSpan]::FromMilliseconds(50))
+        | Where CommandLine -like *Host</code>
   <figure>
-    <img src="img/Comparison of collections.png"/>
-    <figcaption>Comparison of collections</figcaption>
+    <img src="img/Single filters in a row.png"/>
+    <figcaption>Single filters in a row</figcaption>
   </figure>
-  Az összehasonlítás eredménye két oszlopban jelenik meg: az első oszlop
-  tartalmazza a felderített elemeket, a második pedig mutatja, hogy az adott
-  elem a bal oldali, a jobb oldali, vagy mindkét objektumhalmazban szerepel.
-  A betűérzékeny szövegösszehasonlításhoz a <kbd>-CaseSensitive</kbd>
-  kapcsolót, az összehasonlítandó tulajdonságok leszűkítéséhez (felsorolásához)
-  a <kbd>-Property</kbd> paramétert használhatjuk.
-  Ha nemcsak látni szeretnénk az összehasonlítás eredményét, hanem fel is
-  szeretnénk dolgozni a kikeresett objektumokat, akkor azokat a
-  <kbd>-PassThru</kbd> kapcsolóval vehetjük át mint önálló objektumgyűjteményt.
+  Egymás utáni szűrésekkel azonban nem tudunk olyan feltételrendszert érvényesíteni,
+  amelynél nem követelmény, hogy a kiválogatott objektum minden feltételnek megfeleljen,
+  hanem elég csak a feltételek egy részének eleget tennie.
+  <p>
+  Egymás utáni szűrések feltételeit a logikai <kbd>-and</kbd> művelettel
+  összekapcsolva egyetlen összetett feltételhez jutunk. Ezt azonban a PowerShell
+  szabályai szerint nem írhatjuk egyszerűen a <kbd>Where-Object</kbd> parancsmag
+  után: az összetett feltételeket kapcsos zárójelek között, úgynevezett
+  <strong>blokkban</strong> (<i>ScriptBlock&thinsp;</i>) kell megadni.
+  Egy blokkban egy objektum tulajdonságára csak az objektum megjelölésével lehet
+  hivatkozni; nem elegendő tehát leírni a tulajdonság nevét, hanem azt is meg
+  kell mondani, melyik objektum az, amelynek a tulajdonságait éppen vizsgáljuk.
+  A PowerShell csővezetéken keresztül érkező objektumok közül az, amelyiket éppen
+  vizsgáljuk, mindig a <kbd>$_</kbd> nevet viseli, tehát ezzel hivatkozunk rá.
+  <p>
+  További tudnivaló, hogy a blokkban átadott kifejezést a parancsértelmező
+  <strong>kifejezés módban</strong>
+  (<i><a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parsing"
+  target="_blank">expression mode&thinsp;</a></i>) fogja olvasni, ezért a
+  szövegadatokat kötelező
+  <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_quoting_rules"
+  target="_blank">megfelelően idézőjelezni</a>.
+  Az előző, egymás utáni szűrésekkel végrehajtott műveletnek megfelelő egyszeri,
+  összetett szűrés tehát a következő utasítással hajtható végre:
+  <code>Get-History | Where { $_.Duration -gt ([TimeSpan]::FromMilliseconds(50))
+        -and $_.CommandLine -like "*Host" }</code>
+  Blokkban a szűrőfeltételek nemcsak az <kbd>-and</kbd>, hanem az <kbd>-or</kbd> vagy <kbd>-xor</kbd>
+  logikai műveletekkel is összeköthetők, sőt a <kbd>-not</kbd> vagy <kbd>!</kbd> operátorokkal
+  tagadhatók is. Blokkban az objektumok tulajdonságaira vonatkozó bármilyen összetett kifejezés
+  tesztelhető, amelynek logikai értékű (IGAZ vagy HAMIS) végeredménye lehet.
+  <h2>A szűrés számbeli korlátozása, objektumok szétválogatása</h2>
+  A csővezetéken egymás után érkező objektumok együtt egyetlen gyűjteményt alkotnak.
+  Ennek a gyűjteménynek (<i>Array&thinsp;</i>) magának is van egy <kbd>.Where</kbd>
+  metódusa, amely ugyanazon a módon képes egy blokk-kifejezéssel szűrni, mint
+  a <kbd>Where-Object</kbd> parancsmag. Ehhez a blokkot mindössze közvetlenül a
+  metódus neve után kell írni, hogy közöttük szóköz ne legyen:
+  <code>Array.Where{...}</code>
+  A csővezetéken érkező objektumokat egyetlen kollekcióvá úgy alakítjuk, hogy
+  a teljes csővezeték-parancsot zárójelbe tesszük. Az előző, parancsmaggal kiadott
+  szűrésnek megfelelő utasítás a <kbd>.Where</kbd> metódussal tehát így alakul:
+  <code>(Get-History).Where{ $_.Duration -gt ([TimeSpan]::FromMilliseconds(50))
+        -and $_.CommandLine -like "*Host" }</code>
+  A <kbd>.Where</kbd> metódus azonban még ennél is többre képes!
+  Ha a szűrőblokkot a metódusnak közvetlen utána írt <strong>zárójelben</strong> adjuk át
+  mint a metódushívás első argumentumát, akkor utána még két másik argumentum is
+  megadható a zárójelben, egymástól vesszővel elválasztva. A második argumentum
+  a válogatás "helyét" vagy "módját", a harmadik argumentum pedig az eredmény objektumok
+  maximális számát rögzíti.
+  <code>Array.Where({...}, Mode, MaxNumberToReturn)</code>
+  Ha a harmadik argumentumot elhagyjuk, akkor az összes
+  kiválogatott objektum megjelenik az eredménygyűjteményben; máskülönben legfeljebb
+  csak annyi, amennyit a harmadik argumentum megenged.
+  <p>
+  A kiválogatás "helyét" vagy "módját" jelentő második argumentum lehetséges értékei
+  és azok jelentése a következő:
+  <ul>
+    <li><kbd>'Default'</kbd> &ndash; ugyanaz, mint a <kbd>'First'</kbd> mód;
+    <li><kbd>'First'</kbd> &ndash; sorrendben az első valahány objektumot
+        válogatja ki, amelyekre a feltétel teljesül;
+    <li><kbd>'Last'</kbd> &ndash; sorrendben az utolsó valahány objektumot
+        válogatja ki, amelyekre a feltétel teljesül;
+    <li><kbd>'SkipUntil'</kbd> &ndash; az első olyan elemtől kezdve, amelyre
+        a feltétel teljesül, kiválogatja a soron következő összes elemet,
+        amennyit lehet;
+    <li><kbd>'Until'</kbd> &ndash; kiválogatja az összes elemet, amennyit lehet,
+        egészen addig az elemig, amelyre a feltétel először teljesül;
+    <li><kbd>'Split'</kbd> &ndash; két gyűjteményt állít össze: az elsőnek azok
+        az elemei, amelyeket a <kbd>'First'</kbd> válogatás eredményez,
+        a másodiknak az összes többi objektum.
+  </ul>
   <figure>
-    <img src="img/Compare-Object -PassThru.png"/>
-    <figcaption>Compare-Object -PassThru</figcaption>
+    <img src="img/Where Operator Selection Mode.png"/>
+    <figcaption>Where Operator Selection Mode</figcaption>
   </figure>
   <nav>
     <a href="../index.html?locale=hu-HU&article=Sort-Object" target="_top"
-     >Objektumok sorba rendezése</a>
+     >Objektumok sorrendjének megváltoztatása</a>
     <p>
     <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comparison_operators"
      target="_blank">Szűrő operátorok</a>
     <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_wildcards"
+     target="_blank">Helyettesítő karakterek használata</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_regular_expressions"
+     target="_blank">Reguláris kifejezések használata</a>
+    <p>
     <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logical_operators"
      target="_blank">Logikai operátorok</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables"
+     target="_blank">Automatikus változók</a>
     <p>
     <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_arrays#where"
      target="_blank">Objektumgyűjtemények szűrése</a>

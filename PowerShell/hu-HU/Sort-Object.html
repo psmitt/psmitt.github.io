@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="hu-HU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>Objektumok sorrendjének megváltoztatása</h1>
+  Az objektumgyűjteményeket előállító utasítások az eredményhalmazt
+  általában az objektumok neve vagy valamilyen más egyedi azonosító
+  tulajdonsága (<i>default sort property&thinsp;</i>) alapján állítják sorba,
+  és ebben a sorrendben küldik az objektumokat a csővezetékbe.
+  A csővezetékből érkező objektumokat feldolgozó utasítások gyakran nem
+  várják meg, amíg a teljes kollekció beérkezik, hanem azonnal feldolgozzák
+  az éppen beérkező objektumot, és máris továbbküldik a következő parancsmaghoz.
+  Ez lehetőséget ad a teljes feldolgozási idő csökkentésére.
+  <p>
+  A <kbd>Sort-Object</kbd> parancsmag egy vagy több megadott tulajdonság
+  növekvő vagy csökkenő értéke szerint rendezi újra a csővezetéken beérkező
+  objektumokat, és ebben a sorrendben küldi azokat tovább. Mivel lehetséges,
+  hogy az utoljára érkező objektum lesz az első a sorban, ezért a
+  <kbd>Sort-Object</kbd> megvárja az utolsó objektum beérkezését, mielőtt
+  az elsőt a csővezetékbe küldi, még akkor is, ha a beérkezési sorrenden
+  végül nem változtat. Emiatt a rendező utasítások végrehajtása időigényes lehet.
+  <p>
+  A rendezés alapjául szolgáló tulajdonságokat az opcionális <kbd>-Property</kbd>
+  paraméter argumentumaként sorolhatjuk fel. A rendezés iránya alapértelmezetten
+  növekvő (<i>Ascending&thinsp;</i>); a fordított, azaz csökkenő irányt
+  a <kbd>-Descending</kbd> kapcsolóval állíthatjuk be. A parancsmag teljes neve
+  a <kbd>Sort</kbd> rövidítéssel is helyettesíthető.
+  <figure>
+    <img src="img/Simple Sort.png"/>
+    <figcaption>Simple Sort</figcaption>
+  </figure>
+  Ha több tulajdonság szerint, de azokon belül eltérő irányban szeretnénk
+  rendezni az objektumokat, akkor a több tulajdonságot és irányt mint
+  összetartozó párokat kell átadnunk a <kbd>-Property</kbd> paraméternek
+  a következő, úgynevezett <strong>hasító tábla</strong> (<i>hash table&thinsp;</i>)
+  szerkezetben:
+  <code>@{Expression='Property';Descending=$False|$True}</code>
+  <figure>
+    <img src="img/Sort with hash table.png"/>
+    <figcaption>Sort with hash table</figcaption>
+  </figure>
+  A hasító tábla <kbd>Expression</kbd> kifejezéstagjának az értéke nem csak egy
+  tulajdonság neve, de akár egy blokkba zárt, több tulajdonságból képzett,
+  összetett kifejezés is lehet, aminek a kiszámított értéke lesz a rendezés alapja.
+  A hasító táblában a <kbd>Descending</kbd> kifejezéstag helyett használhatjuk
+  a vele ellentétes értelmű <kbd>Ascending</kbd> kifejezéstagot is.
+  <figure>
+    <img src="img/Sort with ScriptBlock Expression.png"/>
+    <figcaption>Sort with ScriptBlock Expression</figcaption>
+  </figure>
+  <h2>Stabil és betűérzékeny rendezések</h2>
+  Két (egymás kizáró) paraméterrel korlátozhatjuk a rendezést követően
+  továbbküldött objektumok számát: a <kbd>Sort-Object</kbd> parancsmag
+  <kbd>-Top</kbd> paraméterrel a sor elejéről, <kbd>-Bottom</kbd>
+  paraméterrel a sor végéről választja le és küldi tovább
+  a paraméternek átadott számú objektumot.
+  <p>
+  Ilyen esetben az is számít, hogy a rendezési kritérium szerint egyenértékű
+  elemek milyen sorrendben állnak egymás után.
+  A <kbd>-Top</kbd> vagy <kbd>-Bottom</kbd> paraméter használata azt eredményezi,
+  hogy a rendezés <strong>stabil</strong> lesz, vagyis az egyenértékű objektumok
+  a beérkezés sorrendjében lesznek egymás mögé rendezve.
+  A stabil rendezést a <kbd>-Stable</kbd> kapcsolóval akkor is biztosíthatjuk,
+  ha egyébként nem korlátozzuk a továbbküldött elemek számát.
+  <p>
+  A rendezés alapértelmezetten nem betűérzékeny, de a <kbd>-CaseSensitive</kbd>
+  kapcsolóval azzá tehető.
+  <p>
+  Az egyenértékű elemek többszörössége a <kbd>-Unique</kbd> kapcsolóval
+  megszüntethető: ilyenkor az egyenértékű elemek közül csak az első jelenik
+  meg a végeredményben, megint jelentősége lehet tehát annak, hogy stabil-e és
+  betűérzékeny-e a rendezés.
+  <figure>
+    <img src="img/Sort -Unique.png"/>
+    <figcaption>Sort -Unique</figcaption>
+  </figure>
+  <nav>
+    <a href="../index.html?locale=hu-HU&article=Sort-Object" target="_top"
+     >Objektumok sorrendjének megváltoztatása</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comparison_operators"
+     target="_blank">Szűrő operátorok</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_wildcards"
+     target="_blank">Helyettesítő karakterek használata</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_regular_expressions"
+     target="_blank">Reguláris kifejezések használata</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logical_operators"
+     target="_blank">Logikai operátorok</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables"
+     target="_blank">Automatikus változók</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_arrays#where"
+     target="_blank">Objektumgyűjtemények szűrése</a>
+  </nav>
+</article>
+</body>
+</html>
