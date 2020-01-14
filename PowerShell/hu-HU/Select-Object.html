@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="hu-HU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>Objektumok sorrend alapú kiválogatása, tulajdonságok kiválasztása</h1>
+  A <kbd>Select-Object</kbd> parancsmag kettős funkcionalitású, vagyis két
+  különböző tevékenységre képes. Egyfelől ki tud válogatni egy objektumgyűjteményből
+  megadott számú elemet azok sorrendi helyzete alapján; másfelől képes az
+  eredeti objektumgyűjtemény elemeiből megadott tulajdonságok
+  alapján összeállítani egy olyan másik, új objektumgyűjteményt,
+  amelyben az elemek csak a kiválasztott tulajdonságokkal rendelkeznek.
+  <p>
+  A parancsmag teljes neve helyett használhatjuk a <kbd>Select</kbd> rövidítést.
+  <h2>Objektumok kiválogatása a sorrendi helyzet alapján</h2>
+  Egy objektumgyűjtemény elejéről a <kbd>-First</kbd>, végéről a <kbd>-Last</kbd>
+  paraméterrel válogathatjuk ki a megadott számú elemet akár egyszerre, egy
+  utasítással is.
+  <figure>
+    <img src="img/Select first and last elements.png"/>
+    <figcaption>Select first and last elements</figcaption>
+  </figure>
+  A <kbd>-Skip</kbd> paraméter hatására a parancs átugorja a megadott számú
+  elemet a sor elején, és csak utána kezdi meg az elemek kiválogatását.
+  Ha a <kbd>-Last</kbd> paraméterrel együtt használjuk, akkor viszont a
+  <kbd>-Skip</kbd> a sor végéről hagyja el a megadott számú elemet,
+  és a parancs csak a megmaradó utolsó elemekből válogat.
+  <figure>
+    <img src="img/Select by skipping elements.png"/>
+    <figcaption>Select by skipping elements</figcaption>
+  </figure>
+  A <kbd>-SkipLast</kbd> paraméter nem használható együtt az előzőekkel,
+  és hatása mindössze annyi, hogy a megadott számú utolsó elemet eltávolítja
+  a gyűjteményből.
+  <p>
+  A <kbd>Select-Object</kbd> parancsmag nemcsak egymás után álló elemek
+  kiválogatására képes. Az <kbd>-Index</kbd> paraméter után vesszővel
+  elválasztva szabadon felsorolhatjuk azoknak az elemeknek a sorszámát,
+  amelyeket ki akarunk válogatni. Jegyezzük meg, hogy az elemek sorszámozása
+  nullával kezdődik, tehát a második elem sorszáma 1, és így tovább!
+  Érdemes azt is tudni, hogy bármilyen sorrendben adjuk is meg az index számokat,
+  a parancsmag mindig az eredeti sorrendnek megfelelően helyezi el a kiválogatott
+  elemeket a csővezetékben.
+  <p>
+  Az elemek sorszám szerinti kiválogatásának van egy rövidebb módja is,
+  ami ráadásul a megadott sorrendben helyezi el az elemeket a csővezetékben.
+  Ehhez az elemgyűjteményt mint egyetlen objektumot kell átvenni
+  (tehát zárójelezni kell a gyűjteményt előállító parancsot), és a
+  sorszámokat közvetlenül az objektumhivatkozás után, szögletes zárójelek
+  között felsorolni.
+  <figure>
+    <img src="img/Select elements by index.png"/>
+    <figcaption>Select elements by index</figcaption>
+  </figure>
+  <h2>Objektumgyűjtemény összeállítása a kiválasztott tulajdonságokkal</h2>
+  Az opcionális <kbd>-Property</kbd> paraméter argumentumaként felsorolt
+  tulajdonságnevek alapján a <kbd>Select-Object</kbd> parancsmag új
+  objektumokat készít: az eredeti objektumgyűjtemény minden egyes elemének
+  megadott tulajdonságértékeit egy-egy új objektumba "csomagolja be" &mdash;
+  az eredeti objektumban nem létező tulajdonságok értéke az új objektumban
+  üresen marad. Az eredmény az új objektumokat tartalmazó gyűjtemény lesz.
+  <figure>
+    <img src="img/Select properties.png"/>
+    <figcaption>Select properties</figcaption>
+  </figure>
+  A tulajdonságok kiválasztásakor helyettesítő karaktereket is alkalmazhatunk.
+  A <kbd>-Property *</kbd> argumentum például a gyűjteménybeli objektumok összes
+  tulajdonságát kiválasztja.
+  <p>
+  A <kbd>-Property</kbd> paraméter ellentétes értelmű párjának az
+  <kbd>-ExcludeProperty</kbd> paraméternek felsorolt tulajdonságokat a
+  <kbd>Select-Object</kbd> parancsmag <strong>nem</strong> válogatja ki.
+  Itt is megengedett a helyettesítő karakterek használata.
+  <nav>
+    <a href="../index.html?locale=hu-HU&article=Group-Object" target="_top"
+     >Objektumok csoportosítása</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_arrays"
+     target="_blank">Objektumgyűjtemények elemeinek indexelt kiválasztása</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_wildcards"
+     target="_blank">Helyettesítő karakterek használata</a>
+  </nav>
+</article>
+</body>
+</html>

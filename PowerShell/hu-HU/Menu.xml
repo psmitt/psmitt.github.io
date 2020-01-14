@@ -27,16 +27,16 @@
       <menu title="Az eredmény megjelenítése (Output)" link="Output"/>
     </menu>
     <menu title="Objektumok a futószalagon">
-      <menu title="A csővezeték (pipeline) működése"          link="About_Pipeline"/>
-      <menu title="Műveletek végrehajtási sorrendje"          link="About_Operators"/>
-      <menu title="Egy objektum tulajdonságainak felderítése" link="Get-Member"/>
-      <menu title="Objektumok összehasonlítása"               link="Compare-Object"/>
-      <menu title="Objektumok szűrése"                        link="Where-Object"/>
-      <menu title="Objektumok sorba rendezése"                link="Sort-Object"/>
-      <menu title="Objektumok tulajdonságainak kiválogatása"  link="Select-Object"/>
-      <menu title="Objektumok csoportosítása"                 link="Group-Object"/>
-      <menu title="Objektumok megszámolása, mérése"           link="Measure-Object"/>
-      <menu title="Objektumok egyenkénti feldolgozása"        link="ForEach-Object"/>
+      <menu title="A csővezeték (pipeline) működése"             link="About_Pipeline"/>
+      <menu title="Műveletek végrehajtási sorrendje"             link="About_Operators"/>
+      <menu title="Egy objektum tulajdonságainak felderítése"    link="Get-Member"/>
+      <menu title="Objektumok összehasonlítása (Compare)"        link="Compare-Object"/>
+      <menu title="Objektumok szűrése (Where)"                   link="Where-Object"/>
+      <menu title="Objektumok sorba rendezése (Sort)"            link="Sort-Object"/>
+      <menu title="Objektumok tulajdonságainak kiválogatása (Select)" link="Select-Object"/>
+      <menu title="Objektumok csoportosítása (Group)"            link="Group-Object"/>
+      <menu title="Objektumok statisztikai összegzése (Measure)" link="Measure-Object"/>
+      <menu title="Objektumok egyenkénti feldolgozása (ForEach)" link="ForEach-Object"/>
     </menu>
   </menu>
   <menu title="Adattárhely-kezelő alapparancsok">
