@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="hu-HU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>Objektumok megszámlálása, gyűjtemények statisztikai összegzése</h1>
+  A <kbd>Group-Object</kbd> parancsmag, amely egy objektumgyűjteményből
+  csoportokat képez, meg is adja az egyes csoportok elemeinek a számát.
+  Egy objektumgyűjtemény méretét, vagyis elemeinek számát a <kbd>.Count</kbd>,
+  <kbd>.Length</kbd> vagy <kbd>.LongLength</kbd> tulajdonságok maguk is
+  tartalmazzák.
+  <figure>
+    <img src="img/Length of an Array.png"/>
+    <figcaption>Length of an Array</figcaption>
+  </figure>
+  A <kbd>Measure-Object</kbd> rövidítéssel is helyettesíthető
+  <kbd>Measure-Object</kbd> parancsmag az objektumok egyszerű megszámlálásán túl
+  alapvető statisztikai összegzésekre is képes. A <kbd>-Property</kbd>
+  paraméternek felsorolt számértékű tulajdonságokra a következő kapcsolók
+  által kérhető összegzéseket jeleníti meg:
+  <ul>
+    <li><kbd>-Average</kbd> = átlag
+    <li><kbd>-Sum</kbd> = összeg
+    <li><kbd>-Maximum</kbd> = legnagyobb érték
+    <li><kbd>-Minimum</kbd> = legkisebb érték
+    <li><kbd>-StandardDeviation</kbd> = szórás
+    <li><kbd>-AllStats</kbd> = minden statisztikai összegzés
+  </ul>
+  Figyeljünk arra, hogy ha egy tulajdonság értékei számként jelennek meg a
+  képernyőn, attól az még nem feltétlenül számértékű tulajdonság. Ilyen
+  esetben meg kell találni a tulajdonság értékét számként visszaadó kifejezést,
+  és azt egy blokkban átadni a <kbd>-Property</kbd> paraméternek.
+  <figure>
+    <img src="img/Statistics of numeric values.png"/>
+    <figcaption>Statistics of numeric values</figcaption>
+  </figure>
+  Szöveges adatok esetén egyszerű szövegstatisztikai összegzésre van lehetőség:
+  a karakterszámot a <kbd>-Character</kbd>, a szavak számát a <kbd>-Word</kbd>,
+  a sorok számát a <kbd>-Line</kbd> kapcsoló hívja elő. A karaktereket szóközök
+  (és más nem nyomtatható karakterek) nélkül is összeszámoltathatjuk, ha a
+  parancsban az <kbd>-IgnoreWhiteSpace</kbd> kapcsolót használjuk.
+  <figure>
+    <img src="img/Text statistics.png"/>
+    <figcaption>Text statistics</figcaption>
+  </figure>
+  A számokra és a szövegekre vonatkozó statisztikai kapcsolók egy parancson
+  belül nem vegyíthetők egymással.
+  <nav>
+    <a href="../index.html?locale=hu-HU&article=ForEach-Object" target="_top"
+     >Objektumok egyenkénti feldolgozása</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_arrays"
+     target="_blank">Objektumgyűjtemények kezelése</a>
+  </nav>
+</article>
+</body>
+</html>

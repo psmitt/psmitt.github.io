@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="hu-HU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>Sok objektum vagy egy objektumgyűjtemény?</h1>
+  Jelentős különbség lehet aközött, hogy objektumok egy halmazát a csővezetéken
+  vagy paraméter argumentumként adjuk át egy parancsmagnak!
+  Az argumentumként átadott objektumgyűjteményt mint <strong>egyetlen</strong>
+  értéket veszi át a paraméter, és a parancsmag erre az egyetlen argumentumra
+  egyszer hajtja végre a feladatát.
+  A csővezetéken érkező objektumgyűjtemény <strong>elemenként</strong> válik
+  a paraméter értékévé, és a parancsmag minden egyes elemre végrehajtódik.
+  <p>
+  Jól megfigyelhető ez a különbség a <kbd>Get-Member</kbd> parancsmag működésében:
+  ha szavak egy halmazát a csővezetéken adjuk át, akkor a parancsmag elemenként
+  azonosítja, és szöveg (<i>String&thinsp;</i>) típusúnak állapítja meg őket;
+  ha azonban ugyanezt a szólistát az <kbd>-InputObject</kbd> paraméter
+  argumentumaként adjuk át, akkor azt a parancsmag egy objektumgyűjteménynek
+  minősíti!
+  <figure>
+    <img src="img/Array input from pipeline vs parameter argument.png"/>
+    <figcaption>Array input from pipeline vs parameter argument</figcaption>
+  </figure>
+  A csővezetéken érkező objektumgyűjtemény felbomlása még inkább előtűnik,
+  ha a gyűjteményben többféle típusú objektum van: ilyen esetben a
+  <kbd>Get-Member</kbd> valamennyi különböző típus adatait megjeleníti.
+  <figure>
+    <img src="img/Mixed array input from pipeline.png"/>
+    <figcaption>Mixed array input from pipeline</figcaption>
+  </figure>
+  A fentiekből már kikövetkeztethető, hogyan lehet egy objektumgyűjtemény
+  tulajdonságait elkérni a <kbd>Get-Member</kbd> parancsmagtól, ha a
+  gyűjteményt mindenképpen a csővezetéken keresztül akarjuk átadni:
+  bele kell tenni a gyűjteményt egy másik (nagyobb) gyűjteménybe!
+  Érdekes módon, erre a PowerShell egy trükkös megoldást is kínál:
+  elegendő, ha a gyűjtemény elé egy vesszőt teszünk, máris egy nagyobb
+  gyűjtemény egyetlen elemévé vált.
+  <figure>
+    <img src="img/Wrapped array input from pipeline.png"/>
+    <figcaption>Wrapped array input from pipeline</figcaption>
+  </figure>
+  <nav>
+    <a href="../index.html?locale=hu-HU&article=Compare-Object" target="_top"
+     >Objektumok összehasonlítása</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_arrays"
+     target="_blank">Objektumgyűjtemények tulajdonságai</a>
+  </nav>
+</article>
+</body>
+</html>

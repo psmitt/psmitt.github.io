@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="hu-HU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>Objektumok csoportosítása</h1>
+  Ha egy objektumgyűjtemény elemeinek valamelyik tulajdonsága nem egyedi,
+  tehát több objektum esetében is ugyanaz a tulajdonság értéke, akkor az
+  elemeket csoportosítani lehet ennek a tulajdonságnak az előforduló értékei
+  alapján. Egy-egy csoportba azok az elemek kerülnek, amelyeknek a kérdéses
+  tulajdonságuk megegyezik.
+  <p>
+  Objektumok táblázatos megjelenítését az egyik oszlop (egyik tulajdonság)
+  szerint csoportosíthatjuk a <kbd>Format-Table</kbd> parancsmag
+  <kbd>-GroupBy</kbd> paramétere segítségével. Ez a művelet mindössze a
+  megjelenítésre korlátozódik, és csak az egymás után következő objektumok
+  megadott tulajdonságának vizsgálatán alapul. Ha az objektumok nem rendezettek,
+  akkor ugyanaz a tulajdonságérték több részcsoportra bomlik.
+  A <kbd>Format-Table -GroupBy</kbd> használata előtt tehát érdemes a
+  megjelenítendő gyűjteményt a csoportosítás alapja szerint rendezni.
+  <figure>
+    <img src="img/Format-Table -GroupBy.png"/>
+    <figcaption>Group table rows by one column</figcaption>
+  </figure>
+  A <kbd>Group-Object</kbd> parancsmag (rövidítve <kbd>Group</kbd>) előzetes
+  rendezés nélkül, akár több tulajdonság alapján is képes csoportokra bontani
+  egy objektumgyűjteményt.
+  <figure>
+    <img src="img/Group-Object Syntax.png"/>
+    <figcaption>Group-Object Syntax</figcaption>
+  </figure>
+  A parancsmag a csővezetékből átvett objektumgyűjtemény elemeit az opcionális
+  <kbd>-Property</kbd> paraméter argumentumaként felsorolt tulajdonságok szerint
+  csoportosítja, és alapértelmezetten egy táblázat formájában jeleníti meg a
+  csoportokat, feltüntetve az egyes csoportokhoz tartozó elemek számát
+  (<i>Count&thinsp;</i>), a csoportosítás alapjául szolgáló tulajdonság
+  közös értékét (<i>Name&thinsp;</i>), valamint &mdash; amennyire ezt a
+  képernyő mérete megengedi &mdash; magukat az elemeket (<i>Group&thinsp;</i>).
+  <figure>
+    <img src="img/Group Commands starting with Get.png"/>
+    <figcaption>Group Commands starting with Get</figcaption>
+  </figure>
+  Több tulajdonság felsorolása esetén a csoportosítás először az első,
+  azon belül a második, stb. tulajdonság szerint történik, és a <i>Name</i>
+  oszlop értékei is ennek megfelelően alakulnak.
+  <p>
+  Amennyiben a csoportosítás után nincs szükségünk az egyes csoportok egyedi
+  elemeire, akkor a <kbd>-NoElement</kbd> kapcsolóval az eredménycsoportok
+  <kbd>.Group</kbd> tulajdonságát üresen hagyhatjuk, és ilyenkor a <i>Group</i>
+  oszlop a képernyőn nem is jelenik meg.
+  <figure>
+    <img src="img/Group by multiple properties.png"/>
+    <figcaption>Group by multiple properties</figcaption>
+  </figure>
+  A <kbd>Group-Object</kbd> parancsmag által képzett csoportokat a csővezetéken
+  egy másik parancsmaghoz továbbítva azonnal feldolgozhatjuk a <kbd>$_.Group</kbd>
+  hivatkozással, ha azonban tárolni akarjuk őket egy későbbi feldolgozás végett,
+  akkor olyan struktúrában érdemes ezt megtenni, hogy utána bármelyik csoport
+  könnyen visszakereshető legyen. Ne kelljen egyesével megvizsgálni a teljes
+  csoportgyűjteményt, hogy kiválaszthassuk belőle valamelyik konkrét csoportot,
+  hanem név szerint hivatkozhassunk rá. Erre való a <strong>hasító tábla</strong>
+  (<i>hash table&thinsp;</i>). Az <kbd>-AsHashTable</kbd> kapcsoló a statisztikai
+  táblázat helyett a csoportokat név szerint helyezi el egy tárolószerkezetben,
+  vagyis a <i>Name</i> oszlop szerinti elnevezése alapján visszakereshetővé teszi.
+  <figure>
+    <img src="img/Group as hash table.png"/>
+    <figcaption>Group as hash table</figcaption>
+  </figure>
+  Vigyázat! A csoportokat tartalmazó hasító tábla kulcsértékei
+  (<i>Name&thinsp;</i>) általában nem szöveges adatok, így a visszakeresésükhöz
+  a megfelelő kulcsobjektumot mindig "le kellene gyártani", ami nem felhasználóbarát.
+  Szerencsére az <kbd>-AsString</kbd> kapcsoló a kulcsértékeket szöveges
+  adattá alakítja, amivel aztán már egyszerűen, név szerint hivatkozhatunk a
+  keresett csoportokra.
+  <figure>
+    <img src="img/Group as hash table with string keys.png"/>
+    <figcaption>Group as hash table with string keys</figcaption>
+  </figure>
+  A csoportosítás alapjául szolgáló tulajdonságértékek között a
+  <kbd>Group-Object</kbd> parancsmag alapértelmezetten nem tesz különbséget,
+  ha csak a kisbetűk és nagybetűk között van eltérés. Amennyiben betűérzékenyen
+  szeretnénk csoportosítani, használjuk a <kbd>-CaseSensitive</kbd> kapcsolót.
+  <nav>
+    <a href="../index.html?locale=hu-HU&article=Measure-Object" target="_top"
+     >Objektumok megszámlálása, gyűjtemények statisztikai összegzése</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/format-table"
+     target="_blank">A Format-Table parancsmag paraméterei</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_hash_tables"
+     target="_blank">Hasító táblák használata</a>
+  </nav>
+</article>
+</body>
+</html>
