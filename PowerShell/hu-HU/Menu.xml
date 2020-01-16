@@ -30,7 +30,7 @@
       <menu title="A csővezeték (pipeline) működése"             link="About_Pipeline"/>
       <menu title="Műveletek végrehajtási sorrendje"             link="About_Operators"/>
       <menu title="Egy objektum tulajdonságainak felderítése"    link="Get-Member"/>
-      <menu title="Sok objektum vagy egy objektumgyűjtemény? (Array)"  link="Array_Input"/>
+      <menu title="Sok objektum vagy egy objektumgyűjtemény (Array)?"  link="Array_Input"/>
       <menu title="Objektumok összehasonlítása (Compare)"        link="Compare-Object"/>
       <menu title="Objektumok szűrése (Where)"                   link="Where-Object"/>
       <menu title="Objektumok sorba rendezése (Sort)"            link="Sort-Object"/>

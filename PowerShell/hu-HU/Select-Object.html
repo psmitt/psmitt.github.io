@@ -79,11 +79,26 @@
   <kbd>-ExcludeProperty</kbd> paraméternek felsorolt tulajdonságokat a
   <kbd>Select-Object</kbd> parancsmag <strong>nem</strong> válogatja ki.
   Itt is megengedett a helyettesítő karakterek használata.
+  <h2>Egyetlen tulajdonság értékeinek felsorolása</h2>
+  Mivel a <kbd>Select-Object</kbd> parancsmag "becsomagolja" a kiválasztott
+  tulajdonságokat egy-egy új objektumba, ezért a tulajdonságok értékei csak
+  az új objektumokon keresztül érhetők el. Ha egy objektumgyűjtemény
+  valamennyi elemének egyetlen tulajdonságát szeretnénk megvizsgálni, és
+  csak ennek a tulajdonságnak az értékére van szükség, akkor ezt a
+  <kbd>ForEach-Object</kbd> parancsmag (röviden <kbd>ForEach</kbd>)
+  képes minden egyes objektumból kiolvasni és a csővezetékbe tenni anélkül,
+  hogy változtatna rajta. Ugyanerre képes az objektumgyűjtemények
+  <kbd>.ForEach</kbd> metódusa, amelynek a kérdéses tulajdonság nevét
+  a megfelelően idézőjelezett szövegként kell átadni.
+  <figure>
+    <img src="img/Select a single property value of each object.png"/>
+    <figcaption>Select a single property value of each object</figcaption>
+  </figure>
   <nav>
     <a href="../index.html?locale=hu-HU&article=Group-Object" target="_top"
      >Objektumok csoportosítása</a>
     <p>
-    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_arrays"
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_arrays#accessing-and-using-array-elements"
      target="_blank">Objektumgyűjtemények elemeinek indexelt kiválasztása</a>
     <p>
     <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_wildcards"

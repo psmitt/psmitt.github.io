@@ -12,22 +12,73 @@
 <body>
 <article>
   <h1>Objektumgyűjtemények elemeinek egyenkénti, programozott feldolgozása</h1>
-  A <kbd>Group-Object</kbd> parancsmag, amely egy objektumgyűjteményből
-  csoportokat képez, meg is adja az egyes csoportok elemeinek a számát.
-  Egy objektumgyűjtemény méretét, vagyis elemeinek számát a <kbd>.Count</kbd>,
-  <kbd>.Length</kbd> vagy <kbd>.LongLength</kbd> tulajdonságok maguk is
-  tartalmazzák.
+  <a href="../index.html?locale=hu-HU&article=Select-Object" target="_top"
+  >Egy előző fejezet végén</a> már láttuk, hogy a <kbd>ForEach-Object</kbd>
+  parancsmag "kiszedegeti" a megadott tulajdonság értékét egy
+  objektumgyűjtemény minden egyes eleméből, és ezt az objektumgyűjtemények
+  <kbd>.ForEach</kbd> metódusa is végrehajtja. Utóbbi a módosítható
+  tulajdonságokat még átírni is képes: ehhez mindössze a tulajdonságok új
+  értékét kell második argumentumként beállítani.
   <figure>
-    <img src="img/Length of an Array.png"/>
-    <figcaption>Length of an Array</figcaption>
+    <img src="img/Set new value for a property of objects.png"/>
+    <figcaption>Set new value for a property of objects</figcaption>
   </figure>
-
+  A <kbd>ForEach-Object</kbd> parancsmag és a <kbd>.ForEach</kbd> metódus
+  nemcsak az objektumok valamely tulajdonságát képes kiolvasni
+  (esetleg megváltoztatni), hanem az objektumok bármelyik metódusát is
+  el tudja indítani! A metódus nevét a parancsmag <kbd>-MemberName</kbd>
+  paraméterének kell átadni, és ha az eljárás futtatásához argumentumokra
+  is szükség van, akkor azokat az <kbd>-ArgumentList</kbd> paraméter után
+  kell felsorolni. A <kbd>.ForEach</kbd> első argumentumként veszi át az
+  elindítandó metódus megfelelően idézőjelezett nevét, amelynek a további
+  lehetséges argumentumait adhatja tovább.
+  <figure>
+    <img src="img/Call method for each object in a collection.png"/>
+    <figcaption>Call method for each object in a collection</figcaption>
+  </figure>
+  A <kbd>.ForEach</kbd> metódussal egy objektumgyűjtemény elemeiből új
+  típusú objektumokat is előállíthatunk. Ehhez a metódusnak egyetlen
+  argumentumként az új típus nevét kell átadnunk szögletes zárójelek között.
+  Az eredmény az új típusú objektumokból álló gyűjtemény lesz.
+  <figure>
+    <img src="img/Convert objects to a specific type.png"/>
+    <figcaption>Convert objects to a specific type</figcaption>
+  </figure>
+  A <kbd>.ForEach</kbd> metódus használatának negyedik módja, amikor egy
+  végrehajtható programkódot adunk át neki egy blokkban. A blokkon belül
+  az objektumokra a szokásos <kbd>$_</kbd> változónévvel hivatkozhatunk,
+  és azokkal bármilyen programozott tevékenységet előírhatunk. Ha a blokk
+  képes paramétereket is átvenni, akkor azokat második, harmadik stb.
+  argumentumként adhatjuk át a <kbd>.ForEach</kbd> metódusnak; máskülönben,
+  ha nincs több argumentum, a blokkot nem kötelező zárójelbe tenni, csak
+  akkor egybe kell írni a metódus nevével (vagyis nem lehet közöttük szóköz).
+  <figure>
+    <img src="img/Execution of ScriptBlock with .ForEach.png"/>
+    <figcaption>Execution of ScriptBlock with .ForEach</figcaption>
+  </figure>
+  Blokkot a <kbd>ForEach-Object</kbd> parancsmag is átvehet, sőt akár többet is!
+  Ha csak egyetlen blokkot adunk át, az alapértelmezetten a <kbd>-Process</kbd>
+  paraméter értéke lesz, és a blokk a csővezetéken érkező minden objektumra
+  külön-külön végrehajtódik. A <kbd>-Begin</kbd> paraméternek átadott blokk
+  az első beérkező objektum előtt, az <kbd>-End</kbd> paraméternek átadott blokk
+  pedig az utolsó beérkezett objektum (és az azt feldolgozó <kbd>-Process</kbd>
+  blokk lefutása) után kerül végrehajtásra; mindkettő pontosan egyszer.
+  <figure>
+    <img src="img/Execution of ScriptBlocks with ForEach-Object.png"/>
+    <figcaption>Execution of ScriptBlocks with ForEach-Object</figcaption>
+  </figure>
+  A végrehajtási idő csökkentése érdekében a <kbd>ForEach-Object</kbd> a
+  csővezetéken beérkező objektumok feldolgozását <strong>párhuzamosan</strong>
+  is megkísérelheti végrehajtani!
   <nav>
     <a href="../index.html?locale=hu-HU&article=ForEach-Object" target="_top"
      >Objektumok egyenkénti feldolgozása</a>
     <p>
-    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_arrays"
-     target="_blank">Objektumgyűjtemények kezelése</a>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_arrays#foreach"
+     target="_blank">A .ForEach metódus használata</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_experimental_features"
+     target="_blank">A PowerShell kísérleti jellegű újdonságai</a>
   </nav>
 </article>
 </body>
