@@ -25,10 +25,41 @@
   <ul>
     <li>A parancsfeldolgozót üzemeltető és a parancsori ablakot is felügyelő
         <kbd>Host</kbd> gazdaprogram a karakteres képernyőn jeleníti meg az
-        adatokat.
+        adatokat. A képernyőnkénti vagy soronkénti megjelenítéshez és
+        lapozáshoz a <kbd>-Paging</kbd> kapcsolót használhatjuk.
     <li>Az <kbd>Out-GridView</kbd> grafikus ablakban, táblázatos formában jeleníti
         meg az eredményt, amelynek sorai oszloponként rendezhetők, szűrhetők.
-    <li>A <kbd>Out-File</kbd> kimenetvezérlő szöveges állományba írja az adatokat.
+        Az ablak címsorába alapértelmezetten a kiadott parancs kerül, de saját
+        címet is adhatunk a <kbd>-Title</kbd> paraméterrel.
+        Az <kbd>-OutputMode</kbd> paraméter lehetővé teszi, hogy a grafikus
+        táblázatból egy vagy több sort válasszunk ki, amelyet az <kbd>OK</kbd>
+        gomb megnyomására a PowerShell a csővezetékbe tesz.
+        Ugyanezt a viselkedést váltja ki a <kbd>-Passthru</kbd> kapcsoló.
+        A <kbd>-Wait</kbd> kapcsoló a grafikus ablak bezárásáig felfüggeszti a
+        parancssori feldolgozást &mdash; ezzel lehetőséget kínál az operációs
+        rendszer szintjén olyan parancsikonokat létrehozni, amelyek eredménye
+        a grafikus ablakban megjelenő táblázat lesz. Például
+        <code>pwsh -WindowStyle Hidden -Command
+              "Get-Service | Out-GridView -Wait"</code>
+    <li>Az <kbd>Out-String</kbd> parancsmag alapértelmezetten egyetlen szöveges
+        adattá vonja össze az átvett objektumokat, még ha az eredmény
+        megjelenítése többsoros is a képernyőn. A <kbd>-Stream</kbd> kapcsoló
+        biztosítja, hogy a sorok egy-egy önálló szöveges adatot képezzenek,
+        tehát az eredmény a sorok gyűjteménye legyen.
+        A gazdaprogram levágja a túl hosszú sorok végét, alapértelmezetten 80
+        karakter után, de ezt a szélességet megváltoztathatjuk a <kbd>-Width</kbd>
+        paraméter segítségével. A <kbd>-NoNewLine</kbd> kapcsoló minden olyan
+        sortörést megszüntet, amely a formázás miatt került volna az eredménybe.
+    <li>A <kbd>Out-File</kbd> kimenetvezérlő szöveges állományba írja az adatokat,
+        és ehhez a fájl nevét várja argumentumként a <kbd>-FilePath</kbd> vagy
+        <kbd>-LiteralPath</kbd> paraméterben. A parancsmag alapértelmezetten
+        felülírja az állományt, ha már létezik; ezt megelőzhetjük a
+        <kbd>-NoClobber</kbd> kapcsolóval, ami felülírás helyett figyelmeztetést
+        küld, illetve az <kbd>-Append</kbd> kapcsolóval, ami felülírás helyett
+        a fájl végére illeszti a kimenetet. A sorok maximális hosszát itt is a
+        <kbd>-Width</kbd> paraméterrel szabályozhatjuk; a <kbd>-NoNewLine</kbd>
+        kapcsoló pedig arról gondoskodik, hogy a fájlba küldött sorok végére
+        ne kerüljön sortörés.
     <li>A <kbd>Tee-Object</kbd> parancsmag képes egyszerre két irányba küldeni
         az adatokat: fájlba menteni és ugyanakkor a képernyőn is megjeleníteni
         őket. Úgy működik tehát, mintha egyszerre használnánk az
@@ -42,8 +73,6 @@
         <kbd>Get-Printer</kbd> utasítással kérhetjük el.
         Tájékozódásképpen adjuk ki a <code>Get-Help *-Printer</code>
         illetve <code>Get-Printer | Out-GridView</code> parancsokat!
-    <li>Az <kbd>Out-String</kbd> parancsmag szöveges adatokká alakítja az átvett
-        objektumokat, amelyeket azután szövegkezelő eljárásokkal dolgozhatunk fel.
     <li>Az <kbd>Out-Null</kbd> elnyeli, megsemmisíti az átvett adatokat.
   </ul>
   Ha egy utasítás végeredményéről a parancssorban nem rendelkezünk, tehát sem

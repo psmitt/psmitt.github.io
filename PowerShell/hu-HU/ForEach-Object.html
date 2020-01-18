@@ -50,7 +50,7 @@
   és azokkal bármilyen programozott tevékenységet előírhatunk. Ha a blokk
   képes paramétereket is átvenni, akkor azokat második, harmadik stb.
   argumentumként adhatjuk át a <kbd>.ForEach</kbd> metódusnak; máskülönben,
-  ha nincs több argumentum, a blokkot nem kötelező zárójelbe tenni, csak
+  ha nincs több argumentum, a blokkot nem kötelező zárójelbe tenni, de
   akkor egybe kell írni a metódus nevével (vagyis nem lehet közöttük szóköz).
   <figure>
     <img src="img/Execution of ScriptBlock with .ForEach.png"/>
@@ -67,9 +67,38 @@
     <img src="img/Execution of ScriptBlocks with ForEach-Object.png"/>
     <figcaption>Execution of ScriptBlocks with ForEach-Object</figcaption>
   </figure>
+  Az <kbd>-OutBuffer</kbd> általános paraméter segítségével az objektumok
+  a csővezetékben "tömbösíthetők". Az adott parancsmag nem egyesével helyezi
+  a keletkező objektumokat a csővezetékbe, hanem az <kbd>-OutBuffer</kbd>
+  paraméterben gyűjti a megadott számú objektumot, és ha a puffer betelt,
+  akkor a rákövetkező objektummal együtt, egyszerre küldi el az összegyűlt
+  elemeket.
+  <figure>
+    <img src="img/Using the -OutBuffer common parameter.png"/>
+    <figcaption>Using the -OutBuffer common parameter</figcaption>
+  </figure>
+  A <kbd>-PipelineVariable</kbd> általános paraméter segítségével minden egyes
+  parancsmag által létrehozott objektumot külön névvel láthatunk el, és a
+  csővezetéken később következő utasításokban e névvel hivatkozhatunk rájuk.
+  Ezen a módon lehetőség van különböző fázisokban keletkező objektumokat
+  együtt kezelni, egyetlen kifejezésbe foglalni.
+  <figure>
+    <img src="img/Using the -PipelineVariable common parameter.png"/>
+    <figcaption>Using the -PipelineVariable common parameter</figcaption>
+  </figure>
   A végrehajtási idő csökkentése érdekében a <kbd>ForEach-Object</kbd> a
   csővezetéken beérkező objektumok feldolgozását <strong>párhuzamosan</strong>
-  is megkísérelheti végrehajtani!
+  is megkísérelheti végrehajtani! Ehhez a blokkot a <kbd>-Parallel</kbd>
+  paraméternek kell átadni. Az egyszerre párhuzamosan végrehajtható
+  feldolgozások maximális számát a <kbd>-ThrottleLimit</kbd> paraméterben
+  lehet korlátozni. A párhuzamosan indított tevékenységekhez a
+  <kbd>-TimeoutSeconds</kbd> paraméterrel megadható egy időkorlát, amelynek
+  letelte után a feldolgozási folyamat megáll, és a feldolgozatlanul maradt
+  objektumokra már nem kerül sor.
+  <figure>
+    <img src="img/Parallel processing.png"/>
+    <figcaption>Parallel processing</figcaption>
+  </figure>
   <nav>
     <a href="../index.html?locale=hu-HU&article=ForEach-Object" target="_top"
      >Objektumok egyenkénti feldolgozása</a>

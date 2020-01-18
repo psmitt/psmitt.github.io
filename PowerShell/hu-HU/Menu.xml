@@ -33,7 +33,7 @@
       <menu title="Sok objektum vagy egy objektumgyűjtemény (Array)?"  link="Array_Input"/>
       <menu title="Objektumok összehasonlítása (Compare)"        link="Compare-Object"/>
       <menu title="Objektumok szűrése (Where)"                   link="Where-Object"/>
-      <menu title="Objektumok sorba rendezése (Sort)"            link="Sort-Object"/>
+      <menu title="Objektumok újrarendezése (Sort)"              link="Sort-Object"/>
       <menu title="Objektumok tulajdonságainak kiválogatása (Select)" link="Select-Object"/>
       <menu title="Objektumok csoportosítása (Group)"            link="Group-Object"/>
       <menu title="Objektumok statisztikai összegzése (Measure)" link="Measure-Object"/>

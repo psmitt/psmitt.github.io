@@ -79,6 +79,20 @@
   <kbd>-ExcludeProperty</kbd> paraméternek felsorolt tulajdonságokat a
   <kbd>Select-Object</kbd> parancsmag <strong>nem</strong> válogatja ki.
   Itt is megengedett a helyettesítő karakterek használata.
+  <p>
+  Az <kbd>-ExpandProperty</kbd> paraméternek átadott tulajdonságokat a
+  <kbd>Select-Object</kbd> parancsmag "kibontja", mégpedig a következőképpen:
+  <ul>
+    <li>Ha a megadott tulajdonság értéke egy objektumgyűjtemény,
+        akkor annak minden tagja megjelenik az eredményben.
+    <li>Ha a megadott tulajdonság értéke nem egy gyűjtemény, hanem csak egyetlen
+        objektum, akkor annak az összes tulajdonsága hozzáadódik
+        a parancsban felsorolt és kiválogatott tualjdonságokhoz.
+  </ul>
+  <figure>
+    <img src="img/Expand a property.png"/>
+    <figcaption>Expand a property</figcaption>
+  </figure>
   <h2>Egyetlen tulajdonság értékeinek felsorolása</h2>
   Mivel a <kbd>Select-Object</kbd> parancsmag "becsomagolja" a kiválasztott
   tulajdonságokat egy-egy új objektumba, ezért a tulajdonságok értékei csak
@@ -93,6 +107,17 @@
   <figure>
     <img src="img/Select a single property value of each object.png"/>
     <figcaption>Select a single property value of each object</figcaption>
+  </figure>
+  <h2>Egyedi elemek kiválogatása</h2>
+  A <kbd>Select-Object</kbd> parancsmag <kbd>-Unique</kbd> kapcsolója
+  bármely fentebb tárgyalt esetben alkalmazható, hogy a végeredményből
+  eltávolítsuk az ismétlődő elemeket. Fontos azonban megjegyezni, hogy &mdash;
+  a <kbd>Sort-Object</kbd> azonos nevű kapcsolójától eltérően &mdash;
+  a <kbd>Select-Object</kbd> <kbd>-Unique</kbd> kapcsolója
+  <strong>betűérzékeny</strong> (<i>case sensitive&thinsp;</i>)!
+  <figure>
+    <img src="img/Case sensitivity of unique selection.png"/>
+    <figcaption>Case sensitivity of unique selection</figcaption>
   </figure>
   <nav>
     <a href="../index.html?locale=hu-HU&article=Group-Object" target="_top"

@@ -32,14 +32,14 @@
     <img src="img/Get-Help Write-star.png"/>
     <figcaption>Get-Help Write-*</figcaption>
   </figure>
-  Nem minden adatfolyamra küldött üzenet jut el a parancssori ablakot felügyelő
-  <kbd>Host</kbd> gazdaprogramhoz, ennélfogva nem minden adatfolyam tartalma
-  olvasható közvetlenül a képernyőn.
+  Alapértelmezetten nem minden adatfolyamra küldött üzenet jut el a parancssori
+  ablakot felügyelő <kbd>Host</kbd> gazdaprogramhoz, ennélfogva nem minden
+  adatfolyam tartalma olvasható közvetlenül a képernyőn.
   <figure>
     <img src="img/Write into Streams.png"/>
     <figcaption>Write Message to Streams</figcaption>
   </figure>
-  Ahhoz, hogy a különböző adatfolyamok tartalmát láthatóvá tegyük, át kell
+  Ahhoz, hogy a különböző adatfolyamok tartalmát láthatóvá tegyük, át lehet
   irányítani azokat egy hozzáférhető csatornába. Ekkor az is láthatóvá válik,
   hogy a gazdaprogram &ndash; a felhasználó beállításainak megfelelően &ndash;
   milyen színekkel teszi feltűnőbbé a különféle adatfolyamok megjelenített
@@ -48,12 +48,68 @@
     <img src="img/Write Streams from Function.png"/>
     <figcaption>Write Streams from Function</figcaption>
   </figure>
+  <h2>Általános vagy közös paraméterek (<i>Common Parameters&thinsp;</i>)</h2>
+  Az általános vagy közös paramétereket minden parancsmag ismeri és elfogadja,
+  szerepük pedig a parancsértelmező működésének általános szabályozásában van
+  a tekintetben, hogy mi történjen kockázatos műveletek vagy hibajelenségek
+  esetén: a szabályozás a parancsfeldolgozás megszakításától a jelzés nélküli
+  folytatásig; a felhasználó soron kívüli tájékoztatásától a jóváhagyáskérésig;
+  illetőleg bizonyos kimeneti változók átdefiniálásig terjed.
+  <p>
+  A legtöbb általános kapcsoló valamilyen előre beállított viselkedési jellemzőt
+  módosít. A parancsfeldolgozás előírt viselkedésformái (<i>ActionPreference&thinsp;</i>)
+  a következők lehetnek:
+  <ol start="0">
+    <li><kbd>SilentlyContinue</kbd> &mdash; folytatás jelzés nélkül, de
+        az esetleges hibaüzenetek a megfelelő automatikus változókba kerülnek
+        (pl. <kbd>$Error</kbd>);
+    <li><kbd>Stop</kbd> &mdash; hibajelzés és megállás;
+    <li><kbd>Continue</kbd> &mdash; hibajelzés és folytatás;
+    <li><kbd>Inquire</kbd> &mdash; hibajelzés és megerősítés kérés a folytatáshoz;
+    <li><kbd>Ignore</kbd> &mdash; hiba figyelmen kívül hagyása és folytatás;
+    <li><kbd>Suspend</kbd> &mdash; munkafolyamat (<i>workflow@thinsp;</i>)
+        felfüggesztése;
+  </ol>
+  Az általános paraméterek és rövid jelentésük vagy szerepük a következő
+  (részleteket ld. a
+  <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters"
+  target="_blank">súgóban</a>):
+  <ul>
+    <li><kbd>-Debug</kbd>: a <kbd>$DebugPreference = 'Continue'</kbd>
+        beállítással bekapcsolja a Debug csatorna megjelenítését;
+    <li><kbd>-ErrorAction</kbd>: az <kbd>$ErrorActionPreference</kbd>
+        változó beállítása a megadott értékre, Error csatorna ki/be kapcsolása;
+    <li><kbd>-ErrorVariable</kbd>: másodlagos hibaváltozó beállítása;
+    <li><kbd>-InformationAction</kbd>: az <kbd>$InformationPreference</kbd>
+        változó beállítása a megadott értékre, Information csatorna ki/be kapcsolása;
+    <li><kbd>-InformationVariable</kbd>: információtároló változó beállítása;
+    <li><kbd>-OutVariable</kbd>: a csővezetékre tett objektumokat a megadott
+        változóban is eltárolja;
+    <li><kbd>-OutBuffer</kbd>: visszatartja, és a megadott adagokban küldi az
+        objektumokat a csővezetékbe ahelyett, hogy egyesével küldené;
+    <li><kbd>-PipelineVariable</kbd>: hivatkozás készítése a kifejezetten ebből
+        a parancsból a csővezetékre tett objektumra;
+    <li><kbd>-Verbose</kbd>: a <kbd>$VerbosePreference = 'Continue'</kbd>
+        beállítással bekapcsolja a Verbose csatorna megjelenítését;
+    <li><kbd>-WarningAction</kbd>: az <kbd>$WarningPreference</kbd>
+        változó beállítása a megadott értékre, Warning csatorna ki/be kapcsolása;
+    <li><kbd>-WarningVariable</kbd>: figyelmeztetéseket tároló változó beállítása;
+    <li><kbd>-WhatIf</kbd>: a parancs végrehajtása helyett üzenetben tájékoztat
+        a parancs végrehajtásának várható következményeiről;
+    <li><kbd>-Confirm</kbd>: a parancs végrehajtása előtt annak megerősítését kéri.
+  </ul>
   <nav>
     <a href="../index.html?locale=hu-HU&article=Format" target="_top"
      >Az eredmény elrendezése szöveges formában</a>
     <p>
     <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_redirection"
      target="_blank">Az adatfolyamok átirányítása</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters"
+     target="_blank">Általános paraméterek</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_preference_variables"
+     target="_blank">A parancsfeldolgozást szabályozó változók</a>
   </nav>
 </article>
 </body>

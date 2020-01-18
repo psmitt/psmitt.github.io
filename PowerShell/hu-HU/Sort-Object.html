@@ -72,13 +72,18 @@
   A stabil rendezést a <kbd>-Stable</kbd> kapcsolóval akkor is biztosíthatjuk,
   ha egyébként nem korlátozzuk a továbbküldött elemek számát.
   <p>
-  A rendezés alapértelmezetten nem betűérzékeny, de a <kbd>-CaseSensitive</kbd>
-  kapcsolóval azzá tehető.
-  <p>
+  Szöveges adatok rendezésekor a területi és nyelvi beállítások határozzák meg
+  az ábécésorrendet. A <kbd>-Culture</kbd> paraméterrel az alapértelmezettől
+  eltérő beállítás is megadható. A rendezés alapértelmezetten nem betűérzékeny,
+  de a <kbd>-CaseSensitive</kbd> kapcsolóval azzá tehető.
+  <figure>
+    <img src="img/Sort -Culture.png"/>
+    <figcaption>Sort -Culture</figcaption>
+  </figure>
   Az egyenértékű elemek többszörössége a <kbd>-Unique</kbd> kapcsolóval
   megszüntethető: ilyenkor az egyenértékű elemek közül csak az első jelenik
-  meg a végeredményben, megint jelentősége lehet tehát annak, hogy stabil-e és
-  betűérzékeny-e a rendezés.
+  meg a végeredményben, vagyis előbb történik az egyelés, és csak utána a rendezés.
+  Ismét jelentősége lehet tehát annak, hogy az eljárás stabil-e és betűérzékeny-e.
   <figure>
     <img src="img/Sort -Unique.png"/>
     <figcaption>Sort -Unique</figcaption>
