@@ -42,10 +42,15 @@
   következő PowerShell utasítással:
   <code>
     Invoke-Expression "& { $(Invoke-RestMethod -Uri
-    https://aka.ms/install-powershell.ps1) } -UseMSI -AddToPath -Preview -Quiet"
+    https://aka.ms/install-powershell.ps1) } -UseMSI"
   </code>
-  Az utasítás kiadása előtt természetesen el kell indítani a PowerShell
-  parancsértelmezőt a konzolon a <kbd>pswh</kbd> vagy <kbd>pwsh-preview</kbd>
+  Az előzetes verziót pedig a következő, hasonló utasítással telepíthetjük:
+  <code>
+    Invoke-Expression "& { $(Invoke-RestMethod -Uri
+    https://aka.ms/install-powershell.ps1) } -UseMSI -Preview"
+  </code>
+  Az utasítás(ok) kiadása előtt természetesen el kell indítani a PowerShell
+  parancsértelmezőt a konzolon a <kbd>pwsh</kbd> vagy <kbd>pwsh-preview</kbd>
   paranccsal.
   <h2>A PowerShell verziófrissítése csomagkezelő használatával</h2>
   A .NET globális eszközként telepített PowerShell programcsomag valamennyi
