@@ -11,7 +11,8 @@
 </head>
 <body>
 <article>
-  <h1>Adatelemek felderítése</h1>
+  <h1>Adatelemek kezelése</h1>
+  <h2>Adatelemek felderítése</h2>
   <a href="../index.html?locale=hu-HU&article=Select-Object" target="_top"
   >Egy előző fejezetben</a> már láttuk, hogy a <kbd>Resolve-Path</kbd>
   parancsmag segítségével egy adott tárhelyen elérhető valamennyi adatelemet
@@ -39,17 +40,7 @@
   használhatók, mivel a <kbd>.</kbd> pont karakternek a relatív elérési utakban
   különleges jelentése van. További finomításként a megengedett elérési utak az
   <kbd>-Include</kbd>, míg a kizárt elérési utak az <kbd>-Exclude</kbd>
-  paraméternek sorolhatók fel. A két paraméter viselkedése azonban nem egyforma:
-  az <kbd>-Include</kbd> megkívánja a <kbd>*</kbd> helyettesítő karaktert a
-  <kbd>-Path</kbd> végén ahhoz, hogy megfelelően szűrjön; az <kbd>-Exclude</kbd>
-  számára viszont a csillag azt jelenti, hogy az utasítás <strong>rekurzív</strong>,
-  vagyis a beágyazott tárhelyekben is el kell végezni a felderítést!
-  <figure>
-    <img src="img/Using -Include and -Exclude.png"/>
-    <figcaption>Using -Include and -Exclude</figcaption>
-  </figure>
-
-
+  paraméternek sorolhatók fel.
   <p>
 
   A listázást a <kbd>-Recurse</kbd> kapcsolóval a beágyazott tárhelyekre

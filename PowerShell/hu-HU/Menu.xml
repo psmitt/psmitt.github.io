@@ -41,9 +41,10 @@
     </menu>
   </menu>
   <menu title="Adattárkezelő alapparancsok">
-    <menu title="Path adatelérési utak"       link="About_Path"/>
-    <menu title="Location tárhelyek kezelése" link="About_Locations"/>
-    <menu title="Item adatelemek kezelése"    link="About_Items"/>
+    <menu title="Path adatelérési utak"            link="About_Path"/>
+    <menu title="Location tárhelyek kezelése"      link="About_Locations"/>
+    <menu title="ChildItem adatelemek felderítése" link="About_ChildItems"/>
+    <menu title="Item adatelemek kezelése"         link="About_Items"/>
     <menu title="PSProvider adattár-szolgáltatók és PSDrive meghajtók">
       <menu title="Áttekintés" link="About_PSProvider"/>
       <menu title="Fájlrendszer" link="File_System_Provider"/>
