@@ -12,10 +12,36 @@
 <body>
 <article>
   <h1>Adatelemek kezelése</h1>
-  Egy adott tárhelyen elérhető valamennyi adatelemet kilistázhatjuk a
-  <kbd>Get-ChildItem</kbd> parancsmaggal. Ha nem adunk meg konkrét tárhelyet,
-  akkor a parancs az aktuális munkakönyvtárban tárolt adatelemeket listázza,
-  beleértve a beágyazott tárhelyeket (alkönyvtárakat, almappákat) is.
+  <h2>Adatelemek felderítése</h2>
+  <a href="../index.html?locale=hu-HU&article=Select-Object" target="_top"
+  >Egy előző fejezetben</a> már láttuk, hogy a <kbd>Resolve-Path</kbd>
+  parancsmag segítségével egy adott tárhelyen elérhető valamennyi adatelemet
+  azonosíthatjuk. A <kbd>Resolve-Path</kbd> ezügyben ennél többre nem is képes:
+  a felderített elemeknek kizárólag az elérési útját jeleníti meg.
+  <p>
+  A <kbd>Get-ChildItem</kbd> parancsmag ennél lényegesen többet tud: az adott
+  tárhelyen lévő összes adatelemet és beágyazott tárhelyet (alkönyvtárat,
+  almappát) felderíti, és nem <i>PathInfo</i> típusú objektumokat, hanem
+  a felderített adatelemekre jellemző teljes információs objektumokat (
+  <i>DirectoryInfo</i>, <i>FileInfo</i>, <i>RegistryKey</i> stb.) eredményez.
+  Ez alól az egyetlen kivétel, ha az utasítást a <kbd>-Name</kbd> kapcsolóval
+  futtatjuk: ebben az esetben csupán az adatelemek nevét mint szöveges adatot
+  kapjuk eredményül.
+  <figure>
+    <img src="img/Discovery of Items on a Location.png"/>
+    <figcaption>Discovery of Items on a Location</figcaption>
+  </figure>
+  A <kbd>Get-ChildItem</kbd> utasítás az opcionális <kbd>-Path</kbd> paraméternek
+  megadott tárhelyeket deríti fel; ha ez a lista hiányzik, akkor a felderítés
+  csak az aktuális tárhelyen (munkakönyvtárban) történik.
+  A felderítendő adatelemek elérési útjára vonatkozó szűrőfeltétel a
+  <kbd>-Filter</kbd> paraméternek adható &mdash; ennek szöveges argumentumában
+  csupán a <kbd>*</kbd> és <kbd>?</kbd> helyettesítő karakterek használhatók.
+  További finomításként a megengedett elérési utak az <kbd>-Include</kbd>,
+  míg a kizárt elérési utak az <kbd>-Exclude</kbd> paraméternek sorolhatók fel,
+  és mindkettő argumentumában minden helyettesítő karakter szerepelhet.
+  <p>
+
   A listázást a <kbd>-Recurse</kbd> kapcsolóval a beágyazott tárhelyekre
   is kiterjeszthetjük, ugyanakkor a tárolt adatelemek felsorolását akár név
   szerint, akár leíró tulajdonságaik (attribútumaik) szerint szűkíthetjük a
