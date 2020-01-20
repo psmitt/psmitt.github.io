@@ -46,22 +46,38 @@
     <img src="img/Get-ChildItem -Directory.png"/>
     <figcaption>Get-ChildItem -Directory</figcaption>
   </figure>
+  <h2>Útinaplók</h2>
   A felkeresett tárhelyeket mint a közlekedés "állomásait" egyfajta útinaplóként
   feljegyezhetjük, ha a váltáshoz a <kbd>Push-Location</kbd> parancsot használjuk.
   A feljegyzett állomásokat fordított sorrendben azután újra felkereshetjük a
-  <kbd>Pop-Location</kbd> parancsmag segítségével. Arra is van lehetőség, hogy
-  egyszerre több útinaplót használjunk: ezek nevét az említett parancsmagoknak
-  a <kbd>-StackName</kbd> paraméterrel adhatjuk át.
+  <kbd>Pop-Location</kbd> parancsmag segítségével. Az útinaplóban feljegyzett
+  állomásokat bármikor megtekinthetjük a <kbd>Get-Location -Stack</kbd> utasítással.
   <figure>
-    <img src="img/Push-Location, Pop-Location.png"/>
-    <figcaption>Push-Location, Pop-Location</figcaption>
+    <img src="img/Usage of the Location Stack.png"/>
+    <figcaption>Usage of the Location Stack</figcaption>
+  </figure>
+  Arra is van lehetőség, hogy egyszerre több útinaplót használjunk! Ehhez a
+  különböző útinaplóknak nevet kell adni. Egy új útinapló akkor jön létre,
+  ha a <kbd>Push-Location</kbd> parancsmaggal feljegyezzük bele az első
+  elérési utat; ehhez az útinapló nevét a <kbd>-StackName</kbd> paraméterrel kell
+  beállítani. Ugyanezzel a paraméterrel jelölhetjük meg a <kbd>Pop-Location</kbd>
+  parancsmagnak, hogy melyik útinaplóból olvassa ki a visszatérési utat.
+  <p>
+  A <kbd>Set-Location -StackName</kbd> paranccsal beállíthatjuk, hogy melyik
+  útinapló legyen az aktuális &mdash; ezek után a <kbd>Push-Location</kbd>
+  és <kbd>Pop-Location</kbd> utasítások már névhivatkozás nélkül is ezt az
+  útinaplót használják. A névtelen útinaplóra bármikor visszatérhetünk a
+  <code>Set-Location -StackName ''</code> utasítással.
+  <figure>
+    <img src="img/Usage of Named Location Stack.png"/>
+    <figcaption>Usage of Named Location Stack</figcaption>
   </figure>
   <nav>
-    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_Locations"
-     target="_blank">Get-Help about_Locations</a>
-    <p>
     <a href="../index.html?locale=hu-HU&article=About_Item" target="_top"
       >A tárolt adatelemek kezelése</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_Locations"
+     target="_blank">Get-Help about_Locations</a>
   </nav>
 </article>
 </body>

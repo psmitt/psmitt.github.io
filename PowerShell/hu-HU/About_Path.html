@@ -13,63 +13,85 @@
 <article>
   <h1>Path adatelérési utak</h1>
   Azokat a parancsmagokat, amelyekkel kifejezetten a PowerShell-hez kifejlesztett,
-  hierarchikus felépítésű <kbd>PSProvider</kbd> adattárhelyeken tárolt adatelemeket
-  kezeljük, a PowerShell alapparancsainak (<i>core commands&thinsp;</i>) nevezzük.
-  A PSProvider adattárhelyeken tárolt adatelemeket egyedi azonosítóját
+  hierarchikus felépítésű <kbd>PSProvider</kbd> adattár-szolgáltatók által tárolt
+  adatelemeket kezeljük, a PowerShell alapparancsainak (<i>core commands&thinsp;</i>)
+  nevezzük. Az adattárakban tárolt adatelemeket egyedi azonosítóját
   <strong>adatelérési útnak</strong> (<i>Path&thinsp;</i>) hívjuk.
   <p>
   Egy adatelérési út lehet abszolút vagy relatív. Egy abszolút adatelérési út
-  a hierarchikus (faszerkezetű) adattárhely gyökerénél kezdődik,
-  amit meghajtónak (<i>PSDrive&thinsp;</i>) nevezünk. Minden meghajtónak egyedi megnevezése van.
+  a hierarchikus (faszerkezetű) adattár gyökerénél kezdődik, amit meghajtónak
+  (<i>PSDrive&thinsp;</i>) nevezünk. Minden meghajtónak egyedi megnevezése van.
   Az abszolút adatelérési út a meghajtótól az egymásba ágyazott tárhelyeken
   (<i>Location&thinsp;</i>) keresztül vezet egészen a tárolt adatelemig
   (<i>Item</i>), és annak a nevével végződik. A meghajtó elé tetszés szerint
-  feltüntethető az adattárhely neve is, tehát egy abszolút elérési út teljes
+  feltüntethető az adattár neve is, tehát egy abszolút elérési út teljes
   szerkezete a következőképpen írható le:
   <code>Path = [&lt;PSProvider&gt;::][&lt;PSDrive&gt;:]\[&lt;Location&gt;\…]&lt;Item&gt;</code>
   Abszolút elérési utat láthatunk például a parancssor elejét jelző
   ún. <i>prompt&thinsp;</i> karakterláncban.
   <figure>
-    <img src="img/command prompt.png"/>
+    <img src="img/Command Prompt.png"/>
     <figcaption>Command Prompt</figcaption>
   </figure>
   Egy relatív elérési út egy adott tárhelytől indul, és a hierarchiában fel-le
   közlekedve ér el az azonosított adatelemig. A relatív elérési út leírásában
   <kbd>.</kbd> az aktuális tárhelyet, <kbd>..</kbd> pedig a hierarchiában eggyel magasabb
   szintet jelöli. Egy <kbd>A</kbd> tárhelyről a vele szomszédos <kbd>B</kbd>
-  tárhelyre tehát a <kbd>../B</kbd> relatív útvonallal hivatkozhatunk.
-  <figure>
-    <img src="img/relative path to sibling.png"/>
-    <figcaption>Relative Path to Sibling</figcaption>
-  </figure>
+  tárhelyre például a <kbd>../B</kbd> relatív útvonallal hivatkozhatunk.
   Relatív elérési utak abszolút alakjának meghatározására szolgál a
   <kbd>Convert-Path</kbd> parancsmag.
-  <p>
-  Adatelérési utak kezdő- és végszakaszát a <kbd>Join-Path</kbd> parancsmaggal
-  összeilleszthetjük még akkor is, ha az útszakaszok leírásában a <kbd>*</kbd>
-  helyettesítő karaktert használjuk: a <kbd>-Resolve</kbd> kapcsoló felderíti
-  számunkra az összes létező adatelérési utat, amely a megadott kezdő- és
-  végszakaszra illeszkedik (ld. még <kbd>Test-Path</kbd>, <kbd>Resolve-Path</kbd>).
+  <figure>
+    <img src="img/Convert Relative Path to Absolute Path.png"/>
+    <figcaption>Convert Relative Path to Absolute Path</figcaption>
+  </figure>
+  A <kbd>Resolve-Path</kbd> parancsmag a megadott adatelérési utat a benne
+  szereplő helyettesítő karakterek összes lehetséges feloldásával érvényes
+  (létező) adatelérési utakra egészíti ki. Az eredmény gyűjtemény
+  alapértelmezetten <i>PathInfo</i> típusú objektumokból áll, amelyek
+  abszolút elérési útként jelennek meg a képernyőn; a <kbd>-Relative</kbd>
+  kapcsolóval az aktuális prompt-hoz képest relatív, szöveges eredmény
+  útvonalakat kapunk.
+  <figure>
+    <img src="img/Resolve-Path.png"/>
+    <figcaption>Resolve-Path</figcaption>
+  </figure>
+  Adatelérési utak kezdő-, középső, és végszakaszát a <kbd>Join-Path</kbd>
+  parancsmaggal illeszthetjük össze, alapértelmezetten az esetleges helyettesítő
+  karakterek feloldása nélkül. Nem biztos azonban, hogy ilyenkor érvényes
+  (létező) adatelérési utakhoz jutunk. A <kbd>-Resolve</kbd> kapcsoló
+  felderíti számunkra az összes érvényes adatelérési utat, amely a helyettesítő
+  karakterek feloldásával a megadott szakaszokra illeszkedik.
   <figure>
     <img src="img/Join-Path -Resolve.png"/>
     <figcaption>Join-Path -Resolve</figcaption>
   </figure>
-  A <kbd>Split-Path</kbd> parancsmag egy adatelérési út meghatározott részét
-  adja eredményül aszerint, hogy melyiket adjuk meg az alábbi kapcsolók közül:
+  A <kbd>Test-Path</kbd> parancsmag többféle szempontból képes ellenőrizni
+  egy konkrét elérési út érvényességét, az elérési út szerkezeti felépítésétől
+  kezdve az elérési út által azonosított adatelem létezéséig bezárólag.
+  (Ld. <kbd>Get-Help Test-Path -Online</kbd>).
+  <p>
+  A <kbd>Split-Path</kbd> parancsmag egy vagy több adatelérési út meghatározott
+  részét adja eredményül aszerint, hogy melyiket adjuk meg az alábbi kapcsolók
+  közül, nevezetesen:
   <ul>
     <li><kbd>-Qualifier</kbd> a meghajtó nevét kettősponttal zárva;
     <li><kbd>-NoQualifier</kbd> az elérési utat a meghajtó neve nélkül;
     <li><kbd>-Parent</kbd> az elérési út által meghatározott adatelem tárhelyét;
     <li><kbd>-LeafBase</kbd> az elérési út által meghatározott adatelem nevét;
     <li><kbd>-Extension</kbd> az elérési út által meghatározott adatelem kiterjesztését;
-    <li><kbd>-Leaf</kbd> az elérési út által meghatározott adatelem nevét és kiterjesztését.
+    <li><kbd>-Leaf</kbd> az elérési út által meghatározott adatelem nevét és kiterjesztését;
+    <li><kbd>-IsAbsolute</kbd> IGAZ értéket, ha az adatelérési út abszolút.
   </ul>
+  <figure>
+    <img src="img/Split-Path.png"/>
+    <figcaption>Split-Path</figcaption>
+  </figure>
   <nav>
-    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_path_syntax"
-     target="_blank">Get-Help about_Path_Syntax</a>
-    <p>
     <a href="../index.html?locale=hu-HU&article=About_Location" target="_top"
       >Közlekedés a tárhelyek között</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_path_syntax"
+     target="_blank">Get-Help about_Path_Syntax</a>
   </nav>
 </article>
 </body>

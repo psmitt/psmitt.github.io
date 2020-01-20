@@ -40,11 +40,11 @@
       <menu title="Objektumok egyenkénti feldolgozása (ForEach)" link="ForEach-Object"/>
     </menu>
   </menu>
-  <menu title="Adattárhely-kezelő alapparancsok">
+  <menu title="Adattárkezelő alapparancsok">
     <menu title="Path adatelérési utak"       link="About_Path"/>
     <menu title="Location tárhelyek kezelése" link="About_Location"/>
     <menu title="Item adatelemek kezelése"    link="About_Item"/>
-    <menu title="PSProvider adattárolók és PSDrive meghajtók">
+    <menu title="PSProvider adattár-szolgáltatók és PSDrive meghajtók">
       <menu title="Áttekintés" link="About_PSProvider"/>
       <menu title="Fájlrendszer" link="File_System_Provider"/>
       <menu title="Regisztrációs adatbázis" link="Registry_Provider"/>
