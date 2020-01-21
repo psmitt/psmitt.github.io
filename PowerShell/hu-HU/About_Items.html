@@ -11,43 +11,7 @@
 </head>
 <body>
 <article>
-  <h1>Adatelemek felderítése</h1>
-  <a href="../index.html?locale=hu-HU&article=Select-Object" target="_top"
-  >Egy előző fejezetben</a> már láttuk, hogy a <kbd>Resolve-Path</kbd>
-  parancsmag segítségével egy adott tárhelyen elérhető valamennyi adatelemet
-  azonosíthatjuk. A <kbd>Resolve-Path</kbd> ezügyben ennél többre nem is képes:
-  a felderített elemeknek kizárólag az elérési útját jeleníti meg.
-  <p>
-  A <kbd>Get-ChildItem</kbd> parancsmag ennél lényegesen többet tud: az adott
-  tárhelyen lévő összes adatelemet és beágyazott tárhelyet (alkönyvtárat,
-  almappát) felderíti, és nem <i>PathInfo</i> típusú objektumokat, hanem
-  a felderített adatelemekre jellemző teljes információs objektumokat (
-  <i>DirectoryInfo</i>, <i>FileInfo</i>, <i>RegistryKey</i> stb.) eredményez.
-  Ez alól az egyetlen kivétel, ha az utasítást a <kbd>-Name</kbd> kapcsolóval
-  futtatjuk: ebben az esetben csupán az adatelemek nevét mint szöveges adatot
-  kapjuk eredményül.
-  <figure>
-    <img src="img/Discovery of Items on a Location.png"/>
-    <figcaption>Discovery of Items on a Location</figcaption>
-  </figure>
-  A <kbd>Get-ChildItem</kbd> utasítás az opcionális <kbd>-Path</kbd> paraméternek
-  megadott tárhelyeket deríti fel; ha ez a lista hiányzik, akkor a felderítés
-  csak az aktuális tárhelyen (munkakönyvtárban) történik.
-  A felderítendő adatelemek elérési útjára vonatkozó szűrőfeltétel a
-  <kbd>-Filter</kbd> paraméternek adható &mdash; ennek szöveges argumentumában
-  azonban csupán a <kbd>*</kbd> és <kbd>?</kbd> helyettesítő karakterek
-  használhatók, mivel a <kbd>.</kbd> pont karakternek a relatív elérési utakban
-  különleges jelentése van. További finomításként a megengedett elérési utak az
-  <kbd>-Include</kbd>, míg a kizárt elérési utak az <kbd>-Exclude</kbd>
-  paraméternek sorolhatók fel. A két paraméter viselkedése azonban nem egyforma:
-  az <kbd>-Include</kbd> megkívánja a <kbd>*</kbd> helyettesítő karaktert a
-  <kbd>-Path</kbd> végén ahhoz, hogy megfelelően szűrjön; az <kbd>-Exclude</kbd>
-  számára viszont a csillag azt jelenti, hogy az utasítás <strong>rekurzív</strong>,
-  vagyis a beágyazott tárhelyekben is el kell végezni a felderítést!
-  <figure>
-    <img src="img/Using -Include and -Exclude.png"/>
-    <figcaption>Using -Include and -Exclude</figcaption>
-  </figure>
+  <h1>Adatelemek kezelése</h1>
 
 
   <p>

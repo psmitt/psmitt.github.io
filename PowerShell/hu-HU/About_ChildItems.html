@@ -11,12 +11,11 @@
 </head>
 <body>
 <article>
-  <h1>Adatelemek kezelése</h1>
-  <h2>Adatelemek felderítése</h2>
-  <a href="../index.html?locale=hu-HU&article=Select-Object" target="_top"
+  <h1>Adatelemek felderítése</h1>
+  <a href="../index.html?locale=hu-HU&article=About_Path" target="_top"
   >Egy előző fejezetben</a> már láttuk, hogy a <kbd>Resolve-Path</kbd>
   parancsmag segítségével egy adott tárhelyen elérhető valamennyi adatelemet
-  azonosíthatjuk. A <kbd>Resolve-Path</kbd> ezügyben ennél többre nem is képes:
+  azonosíthatjuk. A <kbd>Resolve-Path</kbd> ez ügyben ennél többre nem is képes:
   a felderített elemeknek kizárólag az elérési útját jeleníti meg.
   <p>
   A <kbd>Get-ChildItem</kbd> parancsmag ennél lényegesen többet tud: az adott
@@ -40,27 +39,60 @@
   használhatók, mivel a <kbd>.</kbd> pont karakternek a relatív elérési utakban
   különleges jelentése van. További finomításként a megengedett elérési utak az
   <kbd>-Include</kbd>, míg a kizárt elérési utak az <kbd>-Exclude</kbd>
-  paraméternek sorolhatók fel.
+  paraméternek sorolhatók fel. A két paraméter viselkedése azonban nem egyforma:
+  az <kbd>-Include</kbd> megkívánja a <kbd>*</kbd> helyettesítő karaktert a
+  <kbd>-Path</kbd> végén ahhoz, hogy megfelelően szűrjön; az <kbd>-Exclude</kbd>
+  számára viszont a csillag azt jelenti, hogy az utasítás <strong>rekurzív</strong>,
+  vagyis a beágyazott tárhelyekben is el kell végezni a felderítést!
+  <figure>
+    <img src="img/Using -Include and -Exclude.png"/>
+    <figcaption>Using -Include and -Exclude</figcaption>
+  </figure>
+  A félreértések elkerülése végett a beágyazott tárhelyekre is kiterjesztett
+  felderítést mindig a <kbd>-Recurse</kbd> kapcsolóval érdemes beállítani.
+  A rekurzió mélységét a <kbd>-Depth</kbd> paraméterrel szabályozhatjuk.
+  A <kbd>-FollowSymlink</kbd> kapcsoló csak a fájlrendszerben használható,
+  és azokban a tárhelyekben is elvégezteti a felderítést, amelyekre csak
+  egy hivatkozás (parancsikon) mutat.
   <p>
-
-  A listázást a <kbd>-Recurse</kbd> kapcsolóval a beágyazott tárhelyekre
-  is kiterjeszthetjük, ugyanakkor a tárolt adatelemek felsorolását akár név
-  szerint, akár leíró tulajdonságaik (attribútumaik) szerint szűkíthetjük a
-  megfelelő paraméterek használatával (ld.
-  <a href="https://docs.microsoft.com/hu-hu/powershell/module/microsoft.powershell.management/get-childitem"
-  target="_blank">Get-Help Get-ChildItem</a>).
-  <p>
-  Az (abszolút vagy relatív) elérési úttal azonosított adatelemeket
-  (<i>Item&thinsp;</i>), azok tulajdonságait (<i>ItemProperty&thinsp;</i>),
-  valamint adattartalmát (<i>Content&thinsp;</i>) a nekik megfelelő
-  alapparancsokkal deríthetjük fel, módosíthatjuk, törölhetjük, vagy hozhatjuk
-  létre. Az alapparancsok használatáról a súgóban tájékozódjunk:
-  <code>Get-Help *-Item</code>
-  <code>Get-Help *-ItemProperty</code>
-  <code>Get-Help *-Content</code>
+  A keresett elemeket nemcsak név (illetve elérési út), hanem jellemzőik
+  szerint is szűrhetjük az <kbd>-Attributes</kbd> paraméter segítségével.
+  A lehetséges attribútumokat a súgó által megadott szintaxisleírásban
+  olvashatjuk, és ezekre logikai műveleteket is alkalmazhatunk:
+  <ul>
+    <li>a <kbd>,</kbd> vesszővel felsorolt attribútumok vagylagosak: elegendő,
+        ha közülük csak az egyik jellemző a felderített elemre, hogy megjelenjen
+        a találatok között;
+    <li>a <kbd>+</kbd> plusz jellel felsorolt attribútumok együttesek: mindegyiknek
+        jellemeznie kell a felderített elemre, hogy megjelenjen a találatok között;
+    <li>a <kbd>!</kbd> felkiáltójellel felsorolt attribútumok tagadottak: akkor
+        jeleznek találatot, ha nem jellemzők a felderített elemre.
+  </ul>
+  <figure>
+    <img src="img/Get-ChildItem Syntax.png"/>
+    <figcaption>Get-ChildItem Syntax</figcaption>
+  </figure>
+  Bizonyos attribútumok külön kapcsolóként is működnek &mdash; ilyen esetben
+  kötelező jellemzőként a keresett adatelemekre. A kapcsolók és az
+  attribútumbeállítások közötti megfeleltetés a következő:
+  <ul>
+    <li><kbd>-Directory</kbd> csak a tárhelyeket keresi meg, tehát az
+        <kbd>-Attributes Directory</kbd> megfelelője;
+    <li><kbd>-File</kbd> kihagyja a tárhelyeket a keresésből, tehát az
+        <kbd>-Attributes !Directory</kbd> megfelelője;
+    <li><kbd>-Force</kbd> a rejtett és rendszerszintű adatelemeket
+        <strong>is</strong> megtalálja, tehát az
+        <kbd>-Attributes Hidden + System</kbd> megfelelője;
+    <li><kbd>-Hidden</kbd> csak a rejtett adatelemek között kutat,
+        tehát az <kbd>-Attributes Hidden</kbd> megfelelője;
+    <li><kbd>-ReadOnly</kbd> a csak olvasható (nem módosítható) adatelemeket
+        keresi, tehát az <kbd>-Attributes ReadOnly</kbd> megfelelője;
+    <li><kbd>-System</kbd> csak a rendszerszintű adatelemeket keresi,
+        tehát az <kbd>-Attributes System</kbd> megfelelője;
+  </ul>
   <nav>
-    <a href="../index.html?locale=hu-HU&article=About_PSProvider" target="_top"
-      >PSProvider adattár-szolgáltatók és PSDrive meghajtók</a>
+    <a href="../index.html?locale=hu-HU&article=About_Items" target="_top"
+      >A tárolt adatelemek kezelése</a>
     <p>
     <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_Core_Commands"
      target="_blank">Get-Help about_Core_Commands</a>
