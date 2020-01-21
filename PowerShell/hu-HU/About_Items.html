@@ -12,31 +12,23 @@
 <body>
 <article>
   <h1>Adatelemek kezelése</h1>
+  Egy PowerShell adattárban tárolható, egyedi adatelérési úttal azonosított
+  elem (<i>Item&thinsp;</i>) létrehozható és megsemmisíthető; más tárhelyre
+  másolható vagy mozgatható; megkereshető és átnevezhető; megnyitható vagy
+  futtatható; tartalma módosítható vagy törölhető. Mindezeket a megfelelő
+  parancsmag biztosítja. Hasonló műveletek az elemek tulajdonságaival is
+  végrehajthatók.
+  <figure>
+    <img src="img/Cmdlets for managing Items, their Properties and Contents.png"/>
+    <figcaption>Cmdlets for managing Items, their Properties and Contents</figcaption>
+  </figure>
 
-
-  <p>
-
-  A listázást a <kbd>-Recurse</kbd> kapcsolóval a beágyazott tárhelyekre
-  is kiterjeszthetjük, ugyanakkor a tárolt adatelemek felsorolását akár név
-  szerint, akár leíró tulajdonságaik (attribútumaik) szerint szűkíthetjük a
-  megfelelő paraméterek használatával (ld.
-  <a href="https://docs.microsoft.com/hu-hu/powershell/module/microsoft.powershell.management/get-childitem"
-  target="_blank">Get-Help Get-ChildItem</a>).
-  <p>
-  Az (abszolút vagy relatív) elérési úttal azonosított adatelemeket
-  (<i>Item&thinsp;</i>), azok tulajdonságait (<i>ItemProperty&thinsp;</i>),
-  valamint adattartalmát (<i>Content&thinsp;</i>) a nekik megfelelő
-  alapparancsokkal deríthetjük fel, módosíthatjuk, törölhetjük, vagy hozhatjuk
-  létre. Az alapparancsok használatáról a súgóban tájékozódjunk:
-  <code>Get-Help *-Item</code>
-  <code>Get-Help *-ItemProperty</code>
-  <code>Get-Help *-Content</code>
   <nav>
-    <a href="../index.html?locale=hu-HU&article=About_PSProvider" target="_top"
-      >PSProvider adattár-szolgáltatók és PSDrive meghajtók</a>
+    <a href="../index.html?locale=hu-HU&article=About_Providers" target="_top"
+      >Adattár-szolgáltatók és meghajtók</a>
     <p>
     <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_Core_Commands"
-     target="_blank">Get-Help about_Core_Commands</a>
+     target="_blank">Adattárkezelő alapparancsok</a>
   </nav>
 </article>
 </body>

@@ -11,7 +11,7 @@
 </head>
 <body>
 <article>
-  <h1>Adatelemek felderítése</h1>
+  <h1>Tárolt elemek felderítése</h1>
   <a href="../index.html?locale=hu-HU&article=About_Path" target="_top"
   >Egy előző fejezetben</a> már láttuk, hogy a <kbd>Resolve-Path</kbd>
   parancsmag segítségével egy adott tárhelyen elérhető valamennyi adatelemet
@@ -22,7 +22,7 @@
   tárhelyen lévő összes adatelemet és beágyazott tárhelyet (alkönyvtárat,
   almappát) felderíti, és nem <i>PathInfo</i> típusú objektumokat, hanem
   a felderített adatelemekre jellemző teljes információs objektumokat (
-  <i>DirectoryInfo</i>, <i>FileInfo</i>, <i>RegistryKey</i> stb.) eredményez.
+  <i>DirectoryInfo</i>, <i>FileInfo</i>, <i>RegistryKey&thinsp;</i> stb.) eredményez.
   Ez alól az egyetlen kivétel, ha az utasítást a <kbd>-Name</kbd> kapcsolóval
   futtatjuk: ebben az esetben csupán az adatelemek nevét mint szöveges adatot
   kapjuk eredményül.
@@ -51,8 +51,8 @@
   A félreértések elkerülése végett a beágyazott tárhelyekre is kiterjesztett
   felderítést mindig a <kbd>-Recurse</kbd> kapcsolóval érdemes beállítani.
   A rekurzió mélységét a <kbd>-Depth</kbd> paraméterrel szabályozhatjuk.
-  A <kbd>-FollowSymlink</kbd> kapcsoló csak a fájlrendszerben használható,
-  és azokban a tárhelyekben is elvégezteti a felderítést, amelyekre csak
+  A <kbd>-FollowSymlink</kbd> kapcsoló csak a fájlrendszer adattárban használható,
+  és azokban a mappákban is elvégezi a felderítést, amelyekre csak
   egy hivatkozás (parancsikon) mutat.
   <p>
   A keresett elemeket nemcsak név (illetve elérési út), hanem jellemzőik
@@ -63,10 +63,10 @@
     <li>a <kbd>,</kbd> vesszővel felsorolt attribútumok vagylagosak: elegendő,
         ha közülük csak az egyik jellemző a felderített elemre, hogy megjelenjen
         a találatok között;
-    <li>a <kbd>+</kbd> plusz jellel felsorolt attribútumok együttesek: mindegyiknek
-        jellemeznie kell a felderített elemre, hogy megjelenjen a találatok között;
-    <li>a <kbd>!</kbd> felkiáltójellel felsorolt attribútumok tagadottak: akkor
-        jeleznek találatot, ha nem jellemzők a felderített elemre.
+    <li>a <kbd>+</kbd> plusz jellel felsorolt attribútumok közösek: mindegyiknek
+        jellemeznie kell a felderített elemet, hogy az megjelenjen a találatok között;
+    <li>a <kbd>!</kbd> felkiáltójellel felsorolt attribútumok nemlegesek: akkor
+        eredményeznek találatot, ha nem jellemzők a felderített elemre.
   </ul>
   <figure>
     <img src="img/Get-ChildItem Syntax.png"/>
@@ -76,19 +76,18 @@
   kötelező jellemzőként a keresett adatelemekre. A kapcsolók és az
   attribútumbeállítások közötti megfeleltetés a következő:
   <ul>
-    <li><kbd>-Directory</kbd> csak a tárhelyeket keresi meg, tehát az
-        <kbd>-Attributes Directory</kbd> megfelelője;
-    <li><kbd>-File</kbd> kihagyja a tárhelyeket a keresésből, tehát az
-        <kbd>-Attributes !Directory</kbd> megfelelője;
-    <li><kbd>-Force</kbd> a rejtett és rendszerszintű adatelemeket
-        <strong>is</strong> megtalálja, tehát az
-        <kbd>-Attributes Hidden + System</kbd> megfelelője;
-    <li><kbd>-Hidden</kbd> csak a rejtett adatelemek között kutat,
-        tehát az <kbd>-Attributes Hidden</kbd> megfelelője;
-    <li><kbd>-ReadOnly</kbd> a csak olvasható (nem módosítható) adatelemeket
-        keresi, tehát az <kbd>-Attributes ReadOnly</kbd> megfelelője;
-    <li><kbd>-System</kbd> csak a rendszerszintű adatelemeket keresi,
-        tehát az <kbd>-Attributes System</kbd> megfelelője;
+    <li>A <kbd>-Directory</kbd> kapcsoló az <kbd>-Attributes Directory</kbd>
+        megfelelője: csak a tárhelyeket keresi meg.
+    <li>A <kbd>-File</kbd> kapcsoló az <kbd>-Attributes !Directory</kbd>
+      megfelelője: kihagyja a tárhelyeket a keresésből.
+    <li>A <kbd>-Force</kbd> kapcsoló a rejtett és rendszerszintű adatelemeket
+        is megtalálja, teljes körűvé téve a keresést.
+    <li>A <kbd>-Hidden</kbd> kapcsoló az <kbd>-Attributes Hidden</kbd>
+        megfelelője: csak a rejtett adatelemek között kutat.
+    <li>A <kbd>-ReadOnly</kbd> kapcsoló az <kbd>-Attributes ReadOnly</kbd>
+        megfelelője: a csak olvasható (nem módosítható) adatelemeket keresi.
+    <li>A <kbd>-System</kbd> kapcsoló az <kbd>-Attributes System</kbd>
+        megfelelője: csak a rendszerszintű adatelemeket keresi.
   </ul>
   <nav>
     <a href="../index.html?locale=hu-HU&article=About_Items" target="_top"

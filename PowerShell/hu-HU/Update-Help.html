@@ -16,13 +16,6 @@
   már használatba vett csomagok, modulok és szriptek verziószámát növeljük,
   mindig érdemes azonnal frissíteni a helyben tárolt súgófájlokat is.
   A helyi súgórendszer frissítése az <kbd>Update-Help</kbd> paranccsal történik.
-  A súgórendszer csak rendszergazdai jogosultságokkal frissíthető, a parancs
-  végrehajtásához tehát a PowerShell parancsértelmező felhasználói ablakát eleve
-  rendszergazdaként kell elindítani.
-  <figure>
-    <img src="img/Run PowerShell as Administrator.png"/>
-    <figcaption>Run PowerShell as Administrator</figcaption>
-  </figure>
   <p>
   Az <kbd>Update-Help</kbd> parancs önmagában (vagyis alapértelmezett paraméterekkel)
   csak az aktuális felhasználói profil regionális beállításaiban szereplő
@@ -31,7 +24,7 @@
   angol nyelvterülethez készülnek, a súgófájlok frissítésekor érdemes kifejezetten
   megjelölni az amerikai angol területi beállításokat.
   A megfelelően felparaméterezett parancs a következő:
-  <code>Update-Help -UICulture en-US -Force -Verbose</code>
+  <code>Update-Help -UICulture en-US -Force</code>
   <figure>
     <img src="img/Update-Help.png"/>
     <figcaption>Update-Help</figcaption>
