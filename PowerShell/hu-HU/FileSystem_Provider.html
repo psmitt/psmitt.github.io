@@ -11,7 +11,29 @@
 </head>
 <body>
 <article>
-  <h1>PSProvider adattárhelyek és PSDrive meghajtók</h1>
+  <h1>Az adatállományok tárhelye a merevlemezen: a fájlrendszer</h1>
+  A fájlrendszer a hierarchikus adattárak ősmintája: a PowerShell alapparancsok
+  alapvetően fájlok és mappák kezelésére készültek, ezért is fedezhető fel a
+  paraméterezésben kifejezetten sok csak fájlokra és mappákra vonatkoztatható
+  beállítás. A PowerShell parancssori ablak is a fájlrendszerre nyílik, hacsak
+  a <kbd>--WorkingDirectory</kbd> paraméterrel mást nem állítunk be a
+  <kbd>pwsh</kbd> eszköz indításakor.
+  <p>
+  A fájlrendszerben a tárhelyek hagyományos neve <strong>könyvtár</strong>
+  (<i>Directory&thinsp;</i>) &mdash; a grafikus felületeken elterjedt <strong>mappa</strong>
+  (<i>Folder&thinsp;</i>) elnevezést a PowerShell terminológiában nemigen használjuk.
+  A tárolt elemek neve <strong>adatállomány</strong> vagy <strong>fájl</strong>
+  (<i>File&thinsp;</i>). Ennek megfelelően egy tárhelyen elérhető beágyazott tárhelyek
+  tulajdonságait <kbd>[DirectoryInfo]</kbd>, az adatállományok tulajdonságait
+  pedig <kbd>[FileInfo]</kbd> típusú objektumokban vehetjük át.
+  <figure>
+    <img src="img/Directory and File properties.png"/>
+    <figcaption>Directory and File properties</figcaption>
+  </figure>
+  A 
+
+
+
   A PowerShell-ben elérhető és az alapparancsokkal kezelhető tárhelyszolgáltatók
   névsorát a <kbd>Get-PSProvider</kbd> utasítással jeleníthetjük meg.
   <figure>
@@ -46,7 +68,7 @@
     <figcaption>Help topics about PSProviders</figcaption>
   </figure>
   <nav>
-    <a href="../index.html?locale=hu-HU&article=FileSystem_Provider" target="_top"
+    <a href="../index.html?locale=hu-HU&article=File_System_Provider" target="_top"
       >Az adatállományok tárhelye a merevlemezen: a fájlrendszer</a>
     <p>
     <a href="../index.html?locale=hu-HU&article=Registry_Provider" target="_top"

@@ -46,8 +46,8 @@
     <menu title="Tárolt elemek felderítése - ChildItem" link="About_ChildItems"/>
     <menu title="Adatelemek kezelése - Item, ItemProperty, Content" link="About_Items"/>
     <menu title="Adattár-szolgáltatók és meghajtók - PSProvider, PSDrive">
-      <menu title="Áttekintés" link="About_Providers"/>
-      <menu title="A fájlrendszer - File System"             link="File_System_Provider"/>
+      <menu title="Áttekintés"                               link="About_Providers"/>
+      <menu title="A fájlrendszer - File System"             link="FileSystem_Provider"/>
       <menu title="A regisztrációs adatbázis - Registry"     link="Registry_Provider"/>
       <menu title="Környezeti változók - Environment"        link="Environment_Provider"/>
       <menu title="Automatikus és felhasználói változók - Variable" link="Variable_Provider"/>
