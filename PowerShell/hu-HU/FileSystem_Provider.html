@@ -20,8 +20,8 @@
   <kbd>pwsh</kbd> eszköz indításakor.
   <p>
   A fájlrendszerben a tárhelyek hagyományos neve <strong>könyvtár</strong>
-  (<i>Directory&thinsp;</i>) &mdash; a grafikus felületeken elterjedt <strong>mappa</strong>
-  (<i>Folder&thinsp;</i>) elnevezést a PowerShell terminológiában nemigen használjuk.
+  (<i>Directory&thinsp;</i>), de a dokumentációkban a grafikus felületeken
+  elterjedt <strong>mappa</strong> (<i>Folder&thinsp;</i>) elnevezést is használjuk.
   A tárolt elemek neve <strong>adatállomány</strong> vagy <strong>fájl</strong>
   (<i>File&thinsp;</i>). Ennek megfelelően egy tárhelyen elérhető beágyazott tárhelyek
   tulajdonságait <kbd>[DirectoryInfo]</kbd>, az adatállományok tulajdonságait
@@ -30,64 +30,100 @@
     <img src="img/Directory and File properties.png"/>
     <figcaption>Directory and File properties</figcaption>
   </figure>
-  A 
+  Egy mappában fellelhető alkönyvtár <kbd>.Parent</kbd> tulajdonsága, és egy
+  ugyanabban a mappában megtalálható adatállomány <kbd>.Directory</kbd>
+  tulajdonsága egyaránt az őket tartalmazó mappát jelenti. A mappa abszolút
+  elérési útját az adatállomány <kbd>.DirectoryName</kbd> tulajdonsága
+  tartalmazza, az alkönyvtárak pedig rendelkeznek egy <kbd>.Root</kbd>
+  tulajdonsággal is, amely a gyökérmappára (meghajtóra) mutat. Az adatállományok
+  bájtokban mért hosszát a <kbd>.Length</kbd> tulajdonság hordozza.
+  <figure>
+    <img src="img/Measure folder size.png"/>
+    <figcaption>Measure folder size</figcaption>
+  </figure>
+  Az <kbd>Invoke-Item</kbd> parancsmag kifejezetten fájlok megnyitására szolgál,
+  az adott platformon beállított alkalmazástársításnak megfelelően. Futtatható
+  állományok esetében ugyanez a parancs a program elindítását jelenti.
+  <p>
+  Az fájlok <kbd>.isReadOnly</kbd> attribútumát a <kbd>Set-ItemPropery</kbd>
+  paranccsal, tartalmukat pedig a <kbd>*-Content</kbd> parancsmagokkal
+  módosíthatjuk.
+  <h2>Adattár-specifikus dinamikus paraméterek</h2>
+  <a href="../index.html?locale=hu-HU&article=About_ChildItems" target="_top"
+  >Egy előző fejezetben</a> már láttuk, hogy a <kbd>Get-ChildItem</kbd>
+  parancsmagnak vannak kifejezetten fájlokra és mappákra vonatkozó paraméterei.
+  Ugyanez számos más alapparancsra is igaz. A <kbd>New-Item</kbd> parancs
+  <kbd>-ItemType</kbd> paraméterének a lehetséges értéke például adattáranként
+  változik; a fájlrendszer esetében a megadható argumentumok a következők:
+  <ul>
+    <li><kbd>Directory</kbd>
+    <li><kbd>File</kbd>
+    <li><kbd>HardLink</kbd>
+    <li><kbd>Junction</kbd>
+    <li><kbd>SymbolicLink</kbd>
+  </ul>
+  A szöveges állományok tartalmának megfelelő kezeléséhez ismerni kell az
+  alkalmazott szövegkódolást, amit az <kbd>-Encoding</kbd> paraméter
+  argumentumaként állíthatunk be az alábbi módokon:
+  <ul>
+    <li><kbd>Default</kbd> &mdash; az adott platformon beállított parancssori
+        kódlap szerinti kódolás (<kbd>[System.Text.Encoding]::Default</kbd>);
+    <li><kbd>Oem</kbd> &mdash; MS-DOS és konzol programok számára beállított
+        alapértelmezett kódolás;
+    <li><kbd>String</kbd> &mdash; szövegadatok alapértelmezett kódolása;
+    <li><kbd>Ascii</kbd> &mdash; a 7-bites ASCII kódkészlet;
+    <li><kbd>Byte</kbd> &mdash; bájtkódolás;
+    <li><kbd>UTF7</kbd> &mdash; UTF-7 kódolás;
+    <li><kbd>UTF8</kbd> &mdash; UTF-8 kódolás;
+    <li><kbd>UTF8BOM</kbd> &mdash; UTF-8 kódolás bájtsorrend-jelzéssel;
+    <li><kbd>UTF8NOBOM</kbd> &mdash; UTF-8 kódolás bájtsorrend-jelzés nélkül;
+    <li><kbd>UTF32</kbd> &mdash; UTF-32 kódolás;
+    <li><kbd>Unicode</kbd> &mdash; növekvő bájtsorrendű
+        (<i>little-endian&thinsp;</i>) UTF-16 kódolás;
+    <li><kbd>BigEndianUnicode</kbd> &mdash; csökkenő bájtsorrendű
+        (<i>big-endian&thinsp;</i>) UTF-16 kódolás;
+    <li><kbd>BigEndianUFT32</kbd> &mdash;  csökkenő bájtsorrendű
+        (<i>big-endian&thinsp;</i>) UTF-32 kódolás;
+    <li><kbd>Unknown</kbd> &mdash; ismeretlen vagy érvénytelen szövegkódolás
+        (például bináris adatok részére);
+  </ul>
+  Az <kbd>-AsByteStream</kbd> kapcsoló hatására parancsmag az <kbd>-Encoding</kbd>
+  paramétert figyelmen kívül hagyja, és az állomány tartalmát bájtsorozatként
+  olvassa be.
+  <p>
+  A <kbd>Get-Content</kbd> parancsmag az <kbd>-Encoding</kbd> paraméteren kívül
+  további fájlrendszer-specifikus paramétereket és kapcsolókat is elfogad:
+  <ul>
+    <li><kbd>-Raw</kbd>: csak önállóan használható kapcsoló. Hatására a
+        parancsmag az állomány tartalmát egyetlen szövegadatként olvassa be.
+    <li><kbd>-Delimiter</kbd>: a szöveges adatállomány tartalmának belső
+        szakaszhatára (alapértelmezetten a <kbd>\n</kbd> sorvége karakter).
+        A szöveges állomány tartalmát a parancsmag olyan gyűjteményként
+        (tömbként) adja vissza, amelynek minden eleme a szakaszhatárnál végződik.
+        Ha a megadott argumentum az állományban nem fordul elő, akkor a
+        végeredmény egyetlen szövegadat lesz.
+    <li><kbd>-Wait</kbd>: kapcsoló. Hatására a parancsmag a csővezetékbe olvassa
+        a megadott állományt, majd a <kbd>Ctrl+C</kbd> megszakításig folyamatosan
+        figyeli. Ha az állományba új sorok kerülnek, azokat is a csővezetékbe teszi;
+        ha az állomány tartalma más módon változik, akkor újra beolvassa a teljes fájlt.
+  </ul>
 
 
+  <h2>Különleges parancsok fájlok és mappák kezelésére</h2>
+  *-File
+  *-Acl
+  *-AuthenticodeSignature
 
-  A PowerShell-ben elérhető és az alapparancsokkal kezelhető tárhelyszolgáltatók
-  névsorát a <kbd>Get-PSProvider</kbd> utasítással jeleníthetjük meg.
-  <figure>
-    <img src="img/Get-PSProvider.png"/>
-    <figcaption>Get-PSProvider</figcaption>
-  </figure>
-  Hasonló tartalmú listát kapunk meghajtókra lebontva a <kbd>Get-PSDrive</kbd>
-  utasítással.
-  <figure>
-    <img src="img/Get-PSDrive.png"/>
-    <figcaption>Get-PSDrive</figcaption>
-  </figure>
-  Kiegészítő modulok és szkriptek újabb tárhelyekkel és meghajtókkal bővíthetik
-  a PowerShell munkakörnyezetet; tipikus példa erre a vállalati környezetben
-  használt Active Directory modul, amely importáláskor az AD: meghajtót telepíti.
-  <figure>
-    <img src="img/Get-PSProvider AD.png"/>
-    <figcaption>Active Directory Module with AD: drive</figcaption>
-  </figure>
-  Új meghajtók létrehozásához (például megosztott hálózati mappák felcsatolásához)
-  a <kbd>New-PSDrive</kbd> parancsmagot, létező meghajtók eltávolításához
-  a <kbd>Remove-PSDrive</kbd> parancsmagot használjuk. Ezek alkalmazására
-  jó példákat láthatunk a parancsmagok súgójában:
-  <figure>
-    <img src="img/Examples of PSDrive creation and removal.png"/>
-    <figcaption>Examples of PSDrive creation and removal</figcaption>
-  </figure>
-  Az adattár-szolgáltatókról elérhető tájékoztató oldalakat a
-  <code>Get-Help about_*_provider</code> utasítással kérhetjük a képernyőre.
-  <figure>
-    <img src="img/Help topics about PSProviders.png"/>
-    <figcaption>Help topics about PSProviders</figcaption>
-  </figure>
+
   <nav>
-    <a href="../index.html?locale=hu-HU&article=File_System_Provider" target="_top"
-      >Az adatállományok tárhelye a merevlemezen: a fájlrendszer</a>
-    <p>
     <a href="../index.html?locale=hu-HU&article=Registry_Provider" target="_top"
       >A rendszerbeállítások tárhelye: a regisztrációs adatbázis</a>
     <p>
-    <a href="../index.html?locale=hu-HU&article=Environment_Provider" target="_top"
-      >A környezeti változók tára</a>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_filesystem_provider"
+     target="_blank">A fájlrendszer mint PowerShell adattár</a>
     <p>
-    <a href="../index.html?locale=hu-HU&article=Variable_Provider" target="_top"
-      >Az automatikus és a felhasználói változók tára</a>
-    <p>
-    <a href="../index.html?locale=hu-HU&article=Function_Provider" target="_top"
-      >A PowerShell függvények tára</a>
-    <p>
-    <a href="../index.html?locale=hu-HU&article=Alias_Provider" target="_top"
-      >A PowerShell parancsok rövidítéseinek tára</a>
-    <p>
-    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_providers"
-     target="_blank">Get-Help about_Providers</a>
+    <a href="https://hu.wikipedia.org/wiki/Bájtsorrend"
+     target="_blank">Mit jelent a bájtsorrend?</a>
   </nav>
 </article>
 </body>

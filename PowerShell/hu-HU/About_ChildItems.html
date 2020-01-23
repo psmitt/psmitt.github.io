@@ -51,12 +51,15 @@
   A félreértések elkerülése végett a beágyazott tárhelyekre is kiterjesztett
   felderítést mindig a <kbd>-Recurse</kbd> kapcsolóval érdemes beállítani.
   A rekurzió mélységét a <kbd>-Depth</kbd> paraméterrel szabályozhatjuk.
-  A <kbd>-FollowSymlink</kbd> kapcsoló csak a fájlrendszer adattárban használható,
-  és azokban a mappákban is elvégezi a felderítést, amelyekre csak
-  egy hivatkozás (parancsikon) mutat.
+  <h2>Adattár-specifikus dinamikus paraméterek</h2>
+  A <kbd>Get-ChildItem</kbd> parancsmagnak vannak <strong>csak a fájlrendszer
+  adattárban használható</strong>, úgynevezett dinamikus paraméterei is.
+  A <kbd>-FollowSymlink</kbd> kapcsoló hatására például azokban a mappákban
+  is elvégezi a felderítést, amelyekre csak egy hivatkozás (parancsikon) mutat.
   <p>
-  A keresett elemeket nemcsak név (illetve elérési út), hanem jellemzőik
-  szerint is szűrhetjük az <kbd>-Attributes</kbd> paraméter segítségével.
+  A fájrendszerben a keresett elemeket nemcsak nevük (illetve elérési útjuk),
+  hanem jellemzőik szerint is szűrhetjük az <kbd>-Attributes</kbd> paraméter
+  segítségével.
   A lehetséges attribútumokat a súgó által megadott szintaxisleírásban
   olvashatjuk, és ezekre logikai műveleteket is alkalmazhatunk:
   <ul>
@@ -95,6 +98,9 @@
     <p>
     <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_Core_Commands"
      target="_blank">Get-Help about_Core_Commands</a>
+    <p>
+    <a href="../index.html?locale=hu-HU&article=FileSystem_Provider" target="_top"
+      >Az adatállományok tárhelye a merevlemezen: a fájlrendszer</a>
   </nav>
 </article>
 </body>

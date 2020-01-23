@@ -22,7 +22,57 @@
     <img src="img/Cmdlets for managing Items, their Properties and Contents.png"/>
     <figcaption>Cmdlets for managing Items, their Properties and Contents</figcaption>
   </figure>
-
+  Jegyezzük meg: <strong>Egy adattár nem támogatja az összes alapparancsot,
+  csak azokat, amelyek a benne tárolt adatelemekre alkalmazhatók!</strong>
+  Így például a <kbd>Clear-Item</kbd> parancsmagot használhatjuk változók
+  értékének törléséhez, de fájlok tartalmát már a <kbd>Clear-Content</kbd>
+  paranccsal kell törölni. Az <kbd>*-ItemProperty</kbd> parancsok pedig
+  tipikusan a regisztrációs adatbázis adatelemeinek kezelésére szolgálnak.
+  <p>
+  Az adatelemek kezelését végző parancsmagok paraméterei részben hasonlóak,
+  részben az adott parancsmagra jellemzőek. A szóban forgó adatelemeket például
+  minden esetben a helyettesítő karaktereket is feloldó <kbd>-Path</kbd>
+  paraméter, vagy az argumentumot puszta szöveként értelmező
+  <kbd>-LiteralPath</kbd> paraméter pontosítja.
+  <p>
+  A <kbd>-Force</kbd> kapcsoló a legtöbb esetben azt jelenti, hogy a kiadott
+  utasítást akkor is végre kell hajtani, ha ezzel egy már létező elemet
+  megsemmisítünk (pl. felülírjuk egy újonnan létrehozott, vagy egy
+  áthelyezett/átmásolt azonos nevű elemmel), vagy egy korlátozást áthágunk
+  (pl. megváltoztatunk egy csak olvashatónak beállított elemet).
+  A <kbd>-Recurse</kbd> kapcsoló a kiadott utasítást (pl. másolást, törlést)
+  a beágyazott tárhelyekre is kiterjeszti, ezért használata óvatosságot igényel.
+  <p>
+  A <kbd>New-Item</kbd> parancsmag által létrehozott elem típusát az
+  <kbd>-ItemType</kbd> paraméterrel határozhatjuk meg; kezdeti értékét a
+  <kbd>-Value</kbd> paraméterrel állíthatjuk be. E kettő lehetséges értékei
+  adattáranként eltérőek lehetnek.
+  <p>
+  Egy elem átnevezéséhez az új nevet a <kbd>-NewName</kbd> paraméter
+  argumentumaként adjuk át a <kbd>Rename-Item</kbd> parancsmagnak.
+  <p>
+  A <kbd>Copy-Item</kbd> és <kbd>Move-Item</kbd> parancs számára a céltárhelyet
+  a <kbd>-Destination</kbd> paraméternek kell átadni.
+  A másolás alapértelmezetten megőrzi a társzerkezetet, vagyis a tárhelyek
+  egymásba ágyazását, és a bennük tárolt adatelemeket &mdash; ezt a
+  <kbd>-Container</kbd> kapcsolóval explicit módon jelezhetjük is.
+  Másolni távoli adattárakból és adattárakba is lehet a <kbd>-FromSession</kbd>
+  és <kbd>-ToSession</kbd> paraméterek segítségével.
+  <p>
+  A <kbd>Get-Item</kbd> parancsmag egy vagy több tárhelyet vagy adatelemet,
+  a <kbd>Get-ItemProperty</kbd> parancsmag azoknak egy vagy több tulajdonságát,
+  a <kbd>Get-ItemPropertyValue</kbd> pedig a megnevezett tulajdonságok
+  szöveges adattá alakított értékét adja vissza.
+  <p>
+  A <kbd>Get-Content</kbd> parancsmag a megadott adatelem tartalmát mint
+  objektumgyűjteményt eredményezi (fájlok esetében ez állhat például a fájl
+  soraiból, vagy akár a bájtjaiból is). A tartalom csővezetékbe olvasása
+  alapértelmezetten egységenként történik, de a <kbd>-ReadCount</kbd>
+  paraméterrel előírhatjuk, hogy a parancsmag egyszerre hány egységet küldjön
+  tovább a csővezetéken. A <kbd>-TotalCount</kbd> (más néven <kbd>-First</kbd>
+  vagy <kbd>-Head</kbd>) paraméter a tartalom elejéről, a <kbd>-Tail</kbd>
+  (más néven <kbd>-Last</kbd>) paraméter a tartalom végéről beolvasandó elemek
+  maximális számát korlátozza.
   <nav>
     <a href="../index.html?locale=hu-HU&article=About_Providers" target="_top"
       >Adattár-szolgáltatók és meghajtók</a>
