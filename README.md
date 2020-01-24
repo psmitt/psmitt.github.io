@@ -1,4 +1,4 @@
-## My [GitHub.com](github.com/psmitt) Projects
+## My [GitHub.com](https://github.com/psmitt) Projects
 
 ### Metalanguage Package for Atom
 
