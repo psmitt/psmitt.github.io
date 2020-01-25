@@ -13,7 +13,7 @@
 <article>
   <h1>Közlekedés a tárhelyek között</h1>
   A legfontosabb szabály: a PowerShell rendszerben mindig benne vagyunk egy
-  tárhely-hierarchiában, mindig éppen egy adott tárhelyet és annak adatelemeit
+  adattárban, mindig éppen egy adott tárhelyet és annak adatelemeit
   látjuk. A <kbd>pwsh</kbd> indításakor ez a tárhely lehet a felhasználói mappa,
   vagy egy rendszermappa (ha az eszközt rendszergazdaként indítjuk), de
   a <kbd>--WorkingDirectory</kbd> paraméterrel megadhatjuk bármelyik
@@ -24,13 +24,13 @@
   </figure>
   Az éppen adott tárhelyet (aktuális munkakönyvtárat) a <kbd>Get-Location</kbd>
   utasítással jeleníthetjük meg. Ennek eredményeképpen megkapjuk az aktuális
-  tárhely abszolút elérési útját, ugyanazt a karaktersorozatot, amelyet a
+  tárhely abszolút elérési útját: ugyanazt a karaktersorozatot, amelyet a
   parancssor prompt-jában is látunk.
   <figure>
     <img src="img/Get-Location.png"/>
     <figcaption>Get-Location</figcaption>
   </figure>
-  Az aktuális tárhely a <kbd>Set-Location</kbd> paranccsal megváltoztatható;
+  Az aktuális tárhely a <kbd>Set-Location</kbd> paranccsal megváltoztatható:
   paraméterként az új tárhely (abszolút vagy relatív) adatelérési útját kell
   csak megadni.
   <figure>

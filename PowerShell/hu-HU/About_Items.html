@@ -42,6 +42,9 @@
   (pl. megváltoztatunk egy csak olvashatónak beállított elemet).
   A <kbd>-Recurse</kbd> kapcsoló a kiadott utasítást (pl. másolást, törlést)
   a beágyazott tárhelyekre is kiterjeszti, ezért használata óvatosságot igényel.
+  A <kbd>-PassThru</kbd> kapcsoló visszajelzést ad a képernyőre (csővezetékbe)
+  olyan esetekben, amikor a végrehajtott művelet alapértelmezetten nem eredményez
+  kimeneti objektumot.
   <p>
   A <kbd>New-Item</kbd> parancsmag által létrehozott elem típusát az
   <kbd>-ItemType</kbd> paraméterrel határozhatjuk meg; kezdeti értékét a
@@ -63,16 +66,6 @@
   a <kbd>Get-ItemProperty</kbd> parancsmag azoknak egy vagy több tulajdonságát,
   a <kbd>Get-ItemPropertyValue</kbd> pedig a megnevezett tulajdonságok
   szöveges adattá alakított értékét adja vissza.
-  <p>
-  A <kbd>Get-Content</kbd> parancsmag a megadott adatelem tartalmát mint
-  objektumgyűjteményt eredményezi (fájlok esetében ez állhat például a fájl
-  soraiból, vagy akár a bájtjaiból is). A tartalom csővezetékbe olvasása
-  alapértelmezetten egységenként történik, de a <kbd>-ReadCount</kbd>
-  paraméterrel előírhatjuk, hogy a parancsmag egyszerre hány egységet küldjön
-  tovább a csővezetéken. A <kbd>-TotalCount</kbd> (más néven <kbd>-First</kbd>
-  vagy <kbd>-Head</kbd>) paraméter a tartalom elejéről, a <kbd>-Tail</kbd>
-  (más néven <kbd>-Last</kbd>) paraméter a tartalom végéről beolvasandó elemek
-  maximális számát korlátozza.
   <nav>
     <a href="../index.html?locale=hu-HU&article=About_Providers" target="_top"
       >Adattár-szolgáltatók és meghajtók</a>

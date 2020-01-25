@@ -51,56 +51,9 @@
   A félreértések elkerülése végett a beágyazott tárhelyekre is kiterjesztett
   felderítést mindig a <kbd>-Recurse</kbd> kapcsolóval érdemes beállítani.
   A rekurzió mélységét a <kbd>-Depth</kbd> paraméterrel szabályozhatjuk.
-  <h2>Adattár-specifikus dinamikus paraméterek</h2>
-  A <kbd>Get-ChildItem</kbd> parancsmagnak vannak <strong>csak a fájlrendszer
-  adattárban használható</strong>, úgynevezett dinamikus paraméterei is.
-  A <kbd>-FollowSymlink</kbd> kapcsoló hatására például azokban a mappákban
-  is elvégezi a felderítést, amelyekre csak egy hivatkozás (parancsikon) mutat.
-  <p>
-  A fájrendszerben a keresett elemeket nemcsak nevük (illetve elérési útjuk),
-  hanem jellemzőik szerint is szűrhetjük az <kbd>-Attributes</kbd> paraméter
-  segítségével.
-  A lehetséges attribútumokat a súgó által megadott szintaxisleírásban
-  olvashatjuk, és ezekre logikai műveleteket is alkalmazhatunk:
-  <ul>
-    <li>a <kbd>,</kbd> vesszővel felsorolt attribútumok vagylagosak: elegendő,
-        ha közülük csak az egyik jellemző a felderített elemre, hogy megjelenjen
-        a találatok között;
-    <li>a <kbd>+</kbd> plusz jellel felsorolt attribútumok közösek: mindegyiknek
-        jellemeznie kell a felderített elemet, hogy az megjelenjen a találatok között;
-    <li>a <kbd>!</kbd> felkiáltójellel felsorolt attribútumok nemlegesek: akkor
-        eredményeznek találatot, ha nem jellemzők a felderített elemre.
-  </ul>
-  <figure>
-    <img src="img/Get-ChildItem Syntax.png"/>
-    <figcaption>Get-ChildItem Syntax</figcaption>
-  </figure>
-  Bizonyos attribútumok külön kapcsolóként is működnek &mdash; ilyen esetben
-  kötelező jellemzőként a keresett adatelemekre. A kapcsolók és az
-  attribútumbeállítások közötti megfeleltetés a következő:
-  <ul>
-    <li>A <kbd>-Directory</kbd> kapcsoló az <kbd>-Attributes Directory</kbd>
-        megfelelője: csak a tárhelyeket keresi meg.
-    <li>A <kbd>-File</kbd> kapcsoló az <kbd>-Attributes !Directory</kbd>
-      megfelelője: kihagyja a tárhelyeket a keresésből.
-    <li>A <kbd>-Force</kbd> kapcsoló a rejtett és rendszerszintű adatelemeket
-        is megtalálja, teljes körűvé téve a keresést.
-    <li>A <kbd>-Hidden</kbd> kapcsoló az <kbd>-Attributes Hidden</kbd>
-        megfelelője: csak a rejtett adatelemek között kutat.
-    <li>A <kbd>-ReadOnly</kbd> kapcsoló az <kbd>-Attributes ReadOnly</kbd>
-        megfelelője: a csak olvasható (nem módosítható) adatelemeket keresi.
-    <li>A <kbd>-System</kbd> kapcsoló az <kbd>-Attributes System</kbd>
-        megfelelője: csak a rendszerszintű adatelemeket keresi.
-  </ul>
   <nav>
     <a href="../index.html?locale=hu-HU&article=About_Items" target="_top"
       >A tárolt adatelemek kezelése</a>
-    <p>
-    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_Core_Commands"
-     target="_blank">Get-Help about_Core_Commands</a>
-    <p>
-    <a href="../index.html?locale=hu-HU&article=FileSystem_Provider" target="_top"
-      >Az adatállományok tárhelye a merevlemezen: a fájlrendszer</a>
   </nav>
 </article>
 </body>

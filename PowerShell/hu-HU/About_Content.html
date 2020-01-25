@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="hu-HU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>Adatállományok tartalmának kezelése</h1>
+  <h2>Adatállományok tartalmának beállítása, módosítása</h2>
+  <a href="../index.html?locale=hu-HU&article=Output" target="_top"
+  >Egy előző fejezetben</a> röviden tárgyaltuk az <kbd>Out-File</kbd> kimeneti
+  parancs működését, amely eredményadatok állományba mentésére szolgál.
+  Ugyanezt a feladatot a <kbd>Set-Content</kbd>, illetve <kbd>Add-Content</kbd>
+  parancsmagok, sőt a kimenet átirányítására szolgáló <kbd>&gt;</kbd>,
+  illetve <kbd>&gt;&gt;</kbd> operátorok is végrehajtják.
+  <p>
+  <table class="wide">
+    <tr>
+      <th>Feladat</th>
+      <th>Kimenetvezérlő</th>
+      <th>Parancsmag</th>
+      <th>Operátor</th>
+    </tr>
+    <tr>
+      <td>Fájl tartalmának felülírása</td>
+      <td><kbd>Out-File</kbd></td>
+      <td><kbd>Set-Content</kbd></td>
+      <td><kbd>&gt;</kbd></td>
+    </tr>
+    <tr>
+      <td>Hozzáírás a fájl tartalmához</td>
+      <td><kbd>Out-File -Append</kbd></td>
+      <td><kbd>Add-Content</kbd></td>
+      <td><kbd>&gt;&gt;</kbd></td>
+    </tr>
+  </table>
+  <p>
+  A <kbd>Tee-Object</kbd> parancsmag egyszerre képes a csővezetékben továbbítani
+  és egy állományba is elmenteni az átvett adatokat, így az eredményről a
+  képernyőn is láthatunk visszajelzést. A <kbd>Set-Content</kbd> és
+  <kbd>Add-Content</kbd> parancsmagok alapértelmezetten visszajelzés nélkül
+  rendelnek tartalmat egy adatállományhoz, de a képernyőn is visszaolvashatóvá
+  teszik azt a <kbd>-PassThru</kbd> kapcsoló hatására.
+  <p>
+  A paraméterezési lehetőségeken kívül a fő különbség a fenti eszközök között
+  elsősorban az, hogy a <kbd>Set-Content</kbd> és <kbd>Add-Content</kbd>
+  parancsmagok a kiírandó objektumokat a <kbd>.ToString()</kbd> metódus
+  meghívásával szöveges adatokká alakítják, és így küldik az állományba.
+  A többi eljárás a kiírandó objektumok alapértelmezett formázásának
+  megfelelően készíti el a fájl tartalmát. Ez utóbbi eredményt a
+  <kbd>Set-Content</kbd> és <kbd>Add-Content</kbd> parancsmagokkal is
+  elérhetjük, ha a kiírás előtt az adatokat átküldjük az <kbd>Out-String</kbd>
+  parancsmagon.
+  <p>
+  A fájlok tartalmát felülíró parancsok létre is hozzák az adatállományt,
+  amennyiben az nem létezik.
+  <h2>Adatállományok tartalmának kódolása</h2>
+  A szöveges állományok tartalmának megfelelő kezeléséhez ismerni kell az
+  alkalmazott szövegkódolást is, amit az <kbd>-Encoding</kbd> paraméter
+  argumentumaként állíthatunk be az alábbi módokon:
+  <ul>
+    <li><kbd>Default</kbd> &mdash; az adott platformon beállított parancssori
+        kódlap szerinti kódolás (<kbd>[System.Text.Encoding]::Default</kbd>);
+    <li><kbd>Oem</kbd> &mdash; MS-DOS és konzol programok számára beállított
+        alapértelmezett kódolás;
+    <li><kbd>String</kbd> &mdash; szövegadatok alapértelmezett kódolása;
+    <li><kbd>Ascii</kbd> &mdash; a 7-bites ASCII kódkészlet;
+    <li><kbd>Byte</kbd> &mdash; bájtkódolás;
+    <li><kbd>UTF7</kbd> &mdash; UTF-7 kódolás;
+    <li><kbd>UTF8</kbd> &mdash; UTF-8 kódolás;
+    <li><kbd>UTF8BOM</kbd> &mdash; UTF-8 kódolás bájtsorrend-jelzéssel;
+    <li><kbd>UTF8NOBOM</kbd> &mdash; UTF-8 kódolás bájtsorrend-jelzés nélkül;
+    <li><kbd>UTF32</kbd> &mdash; UTF-32 kódolás;
+    <li><kbd>Unicode</kbd> &mdash; növekvő bájtsorrendű
+        (<i>little-endian&thinsp;</i>) UTF-16 kódolás;
+    <li><kbd>BigEndianUnicode</kbd> &mdash; csökkenő bájtsorrendű
+        (<i>big-endian&thinsp;</i>) UTF-16 kódolás;
+    <li><kbd>BigEndianUFT32</kbd> &mdash;  csökkenő bájtsorrendű
+        (<i>big-endian&thinsp;</i>) UTF-32 kódolás;
+    <li><kbd>Unknown</kbd> &mdash; ismeretlen vagy érvénytelen szövegkódolás
+        (például bináris adatok részére);
+  </ul>
+  <h2>Adatállományok tartalmának olvasása</h2>
+  A <kbd>Get-Content</kbd> parancsmag a megadott adatelem tartalmát mint
+  objektumgyűjteményt eredményezi, fájlok esetében ez állhat például a fájl
+  soraiból, vagy akár a bájtjaiból is. A tartalom csővezetékbe olvasása
+  alapértelmezetten egységenként történik, de a <kbd>-ReadCount</kbd>
+  paraméterrel előírhatjuk, hogy a parancsmag egyszerre hány egységet küldjön
+  tovább a csővezetéken. A <kbd>-TotalCount</kbd> (más néven <kbd>-First</kbd>
+  vagy <kbd>-Head</kbd>) paraméter a tartalom elejéről, a <kbd>-Tail</kbd>
+  (más néven <kbd>-Last</kbd>) paraméter a tartalom végéről beolvasandó elemek
+  maximális számát korlátozza.
+  <p>
+  A <kbd>Get-Content</kbd> parancsmag az <kbd>-Encoding</kbd> paraméteren kívül
+  további fájlrendszer-specifikus paramétereket és kapcsolókat is elfogad:
+  <ul>
+    <li><kbd>-Raw</kbd>: csak önállóan használható kapcsoló. Hatására a
+        parancsmag az állomány tartalmát egyetlen szövegadatként olvassa be.
+    <li><kbd>-Delimiter</kbd>: a szöveges adatállomány tartalmának belső
+        szakaszhatára (alapértelmezetten a <kbd>\n</kbd> sorvége karakter).
+        A szöveges állomány tartalmát a parancsmag olyan gyűjteményként
+        (tömbként) adja vissza, amelynek minden eleme a szakaszhatárnál végződik.
+        Ha a megadott argumentum az állományban nem fordul elő, akkor a
+        végeredmény egyetlen szövegadat lesz.
+    <li><kbd>-Wait</kbd>: kapcsoló. Hatására a parancsmag a csővezetékbe olvassa
+        a megadott állományt, majd a <kbd>Ctrl+C</kbd> megszakításig folyamatosan
+        figyeli. Ha az állományba új sorok kerülnek, azokat is a csővezetékbe teszi;
+        ha az állomány tartalma más módon változik, akkor újra beolvassa a teljes fájlt.
+  </ul>
+  Az <kbd>-AsByteStream</kbd> kapcsoló hatására parancsmag az <kbd>-Encoding</kbd>
+  paramétert figyelmen kívül hagyja, és az állomány tartalmát bájtsorozatként
+  olvassa be.
+  <p>
+  Érdekes módon egy adatállomány tartalmát mint egy memóriaváltozót is elérhetjük
+  ha az állomány abszolút elérési útját mint betű szerinti (<i>literal&thinsp;</i>)
+  szöveges adatot, idézőjelek nélkül, kapcsos zárójelek között adjuk meg a
+  <kbd>$</kbd> változójel után (<i>namespace variable notation&thinsp;</i>).
+  Amennyiben a fájl az aktuális munkakönyvtárban van, akkor megengedett rövidítés,
+  hogy a kapcsos zárójelek között csak a meghajtó nevét és a fájl nevét használjuk.
+  <nav>
+    <a href="../index.html?locale=hu-HU&article=Registry_Provider" target="_top"
+      >A rendszerbeállítások tárhelye: a regisztrációs adatbázis</a>
+    <p>
+    <a href="https://hu.wikipedia.org/wiki/Bájtsorrend"
+     target="_blank">Mit jelent a bájtsorrend?</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_redirection"
+     target="_blank">A kimenet átirányítására szolgáló operátorok</a>
+  </nav>
+</article>
+</body>
+</html>

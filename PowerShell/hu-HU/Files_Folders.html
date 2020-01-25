@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="hu-HU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>Fájlok és mappák felderítése</h1>
+  <a href="../index.html?locale=hu-HU&article=About_ChildItems" target="_top"
+  >Egy előző fejezetben</a> már láttuk, hogy tárhelyeket és adatelemeket a
+  <kbd>Resolve-Path</kbd>, illetve <kbd>Get-ChildItem</kbd> parancsmag
+  segítségével kereshetünk egy adattárban. A <kbd>Get-ChildItem</kbd>
+  parancsmagnak vannak csak a fájlrendszer adattárban használható,
+  úgynevezett dinamikus paraméterei is. A <kbd>-FollowSymlink</kbd> kapcsoló
+  hatására például azokban a mappákban is elvégezi a felderítést,
+  amelyekre csak egy hivatkozás mutat.
+  <p>
+  A fájrendszerben a keresett elemeket nemcsak nevük (illetve elérési útjuk),
+  hanem jellemzőik szerint is szűrhetjük az <kbd>-Attributes</kbd> paraméter
+  segítségével. A lehetséges attribútumokat a súgó által megadott
+  szintaxisleírásban olvashatjuk, és ezekre logikai műveleteket is alkalmazhatunk:
+  <ul>
+    <li>a <kbd>,</kbd> vesszővel felsorolt attribútumok vagylagosak: elegendő,
+        ha közülük csak az egyik jellemző a felderített elemre, hogy megjelenjen
+        a találatok között;
+    <li>a <kbd>+</kbd> plusz jellel felsorolt attribútumok közösek: mindegyiknek
+        jellemeznie kell a felderített elemet, hogy az megjelenjen a találatok között;
+    <li>a <kbd>!</kbd> felkiáltójellel felsorolt attribútumok nemlegesek: akkor
+        eredményeznek találatot, ha nem jellemzők a felderített elemre.
+  </ul>
+  <figure>
+    <img src="img/Get-ChildItem Syntax.png"/>
+    <figcaption>Get-ChildItem Syntax</figcaption>
+  </figure>
+  Bizonyos attribútumok külön kapcsolóként is működnek &mdash; ilyen esetben
+  kötelező jellemzőként a keresett adatelemekre. A kapcsolók és az
+  attribútumbeállítások közötti megfeleltetés a következő:
+  <ul>
+    <li>A <kbd>-Directory</kbd> kapcsoló az <kbd>-Attributes Directory</kbd>
+        megfelelője: csak a tárhelyeket keresi meg.
+    <li>A <kbd>-File</kbd> kapcsoló az <kbd>-Attributes !Directory</kbd>
+      megfelelője: kihagyja a tárhelyeket a keresésből.
+    <li>A <kbd>-Force</kbd> kapcsoló a rejtett és rendszerszintű adatelemeket
+        is megtalálja, teljes körűvé téve a keresést.
+    <li>A <kbd>-Hidden</kbd> kapcsoló az <kbd>-Attributes Hidden</kbd>
+        megfelelője: csak a rejtett adatelemek között kutat.
+    <li>A <kbd>-ReadOnly</kbd> kapcsoló az <kbd>-Attributes ReadOnly</kbd>
+        megfelelője: a csak olvasható (nem módosítható) adatelemeket keresi.
+    <li>A <kbd>-System</kbd> kapcsoló az <kbd>-Attributes System</kbd>
+        megfelelője: csak a rendszerszintű adatelemeket keresi.
+  </ul>
+  <nav>
+    <a href="../index.html?locale=hu-HU&article=About_Content" target="_top"
+     >Adatállományok tartalmának kezelése</a>
+  </nav>
+</article>
+</body>
+</html>

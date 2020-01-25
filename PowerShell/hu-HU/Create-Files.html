@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="hu-HU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>Fájlok és mappák létrehozása és törlése</h1>
+  Fájlrendszerbeli tárhelyek és adatelemek létrehozására a <kbd>New-Item</kbd>
+  alapparancs a kézenfekvő megoldás. Az új tárhelyek vagy adatelemek a
+  <kbd>-Path</kbd> paraméter által meghatározott elérési úton,
+  a <kbd>-Name</kbd> paraméterben megadott néven jön létre.
+  A parancs <kbd>-ItemType</kbd> paraméterének a fájlrendszerben elfogadott
+  argumentumai a következők:
+  <ul>
+    <li><kbd>Directory</kbd> &mdash; alkönyvtár vagy mappa létrehozására szolgál;
+    <li><kbd>File</kbd> &mdash; adatállomány létrehozására szolgál;
+    <li><kbd>HardLink</kbd> &mdash; azonos meghajtón található adatállomány
+        újabb azonosítójának (adatelérési útjának) létrehozására szolgál;
+    <li><kbd>Junction</kbd> &mdash; azonos operációs rendszeren megtalálható
+        könyvtár (mappa) újabb azonosítójának (adatelérési útjának) létrehozására
+        szolgál;
+    <li><kbd>SymbolicLink</kbd> &mdash; hivatkozást hoz létre tetszőleges
+        (akár hálózati) elérési úton azonosított fájlra vagy mappára.
+  </ul>
+  Új azonosító vagy hivatkozás (<i></i>) létrehozásakor a már létező célt a
+  <kbd>-Value</kbd> paraméter értéke pontosítja. Ez a paraméter máskülönben
+  az új adatelem kezdeti tartalmának beállítására szolgál.
+  <p>
+  A <kbd>New-Item</kbd> parancs alapértelmezetten hibajelzést generál,
+  amennyiben az adott elérési úton a megadott nevű elem már létezik;
+  a létező elem helyett egy új létrehozását (vagyis a létező elem felülírását)
+  a <kbd>-Force</kbd> kapcsolóval kényszeríthetjük ki.
+  <p>
+  Új adatállomány objektumok fájlba irányításával, vagyis tartalomkezelő
+  parancsokkal is létrehozható.
+  <nav>
+    <a href="../index.html?locale=hu-HU&article=About_Content" target="_top"
+     >Adatállományok tartalmának kezelése</a>
+  </nav>
+</article>
+</body>
+</html>

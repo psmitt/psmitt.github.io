@@ -62,68 +62,46 @@
     <li><kbd>Junction</kbd>
     <li><kbd>SymbolicLink</kbd>
   </ul>
-  A szöveges állományok tartalmának megfelelő kezeléséhez ismerni kell az
-  alkalmazott szövegkódolást, amit az <kbd>-Encoding</kbd> paraméter
-  argumentumaként állíthatunk be az alábbi módokon:
-  <ul>
-    <li><kbd>Default</kbd> &mdash; az adott platformon beállított parancssori
-        kódlap szerinti kódolás (<kbd>[System.Text.Encoding]::Default</kbd>);
-    <li><kbd>Oem</kbd> &mdash; MS-DOS és konzol programok számára beállított
-        alapértelmezett kódolás;
-    <li><kbd>String</kbd> &mdash; szövegadatok alapértelmezett kódolása;
-    <li><kbd>Ascii</kbd> &mdash; a 7-bites ASCII kódkészlet;
-    <li><kbd>Byte</kbd> &mdash; bájtkódolás;
-    <li><kbd>UTF7</kbd> &mdash; UTF-7 kódolás;
-    <li><kbd>UTF8</kbd> &mdash; UTF-8 kódolás;
-    <li><kbd>UTF8BOM</kbd> &mdash; UTF-8 kódolás bájtsorrend-jelzéssel;
-    <li><kbd>UTF8NOBOM</kbd> &mdash; UTF-8 kódolás bájtsorrend-jelzés nélkül;
-    <li><kbd>UTF32</kbd> &mdash; UTF-32 kódolás;
-    <li><kbd>Unicode</kbd> &mdash; növekvő bájtsorrendű
-        (<i>little-endian&thinsp;</i>) UTF-16 kódolás;
-    <li><kbd>BigEndianUnicode</kbd> &mdash; csökkenő bájtsorrendű
-        (<i>big-endian&thinsp;</i>) UTF-16 kódolás;
-    <li><kbd>BigEndianUFT32</kbd> &mdash;  csökkenő bájtsorrendű
-        (<i>big-endian&thinsp;</i>) UTF-32 kódolás;
-    <li><kbd>Unknown</kbd> &mdash; ismeretlen vagy érvénytelen szövegkódolás
-        (például bináris adatok részére);
-  </ul>
-  Az <kbd>-AsByteStream</kbd> kapcsoló hatására parancsmag az <kbd>-Encoding</kbd>
-  paramétert figyelmen kívül hagyja, és az állomány tartalmát bájtsorozatként
-  olvassa be.
-  <p>
-  A <kbd>Get-Content</kbd> parancsmag az <kbd>-Encoding</kbd> paraméteren kívül
-  további fájlrendszer-specifikus paramétereket és kapcsolókat is elfogad:
-  <ul>
-    <li><kbd>-Raw</kbd>: csak önállóan használható kapcsoló. Hatására a
-        parancsmag az állomány tartalmát egyetlen szövegadatként olvassa be.
-    <li><kbd>-Delimiter</kbd>: a szöveges adatállomány tartalmának belső
-        szakaszhatára (alapértelmezetten a <kbd>\n</kbd> sorvége karakter).
-        A szöveges állomány tartalmát a parancsmag olyan gyűjteményként
-        (tömbként) adja vissza, amelynek minden eleme a szakaszhatárnál végződik.
-        Ha a megadott argumentum az állományban nem fordul elő, akkor a
-        végeredmény egyetlen szövegadat lesz.
-    <li><kbd>-Wait</kbd>: kapcsoló. Hatására a parancsmag a csővezetékbe olvassa
-        a megadott állományt, majd a <kbd>Ctrl+C</kbd> megszakításig folyamatosan
-        figyeli. Ha az állományba új sorok kerülnek, azokat is a csővezetékbe teszi;
-        ha az állomány tartalma más módon változik, akkor újra beolvassa a teljes fájlt.
-  </ul>
-
 
   <h2>Különleges parancsok fájlok és mappák kezelésére</h2>
+
+
+  https://docs.microsoft.com/hu-hu/archive/blogs/askcore/alternate-data-streams-in-ntfs
+  get-item * -Stream * | Select PSChildName
+  get-item * -Stream Zone.Identifier
+  get-item pille2* -Stream Zone.Identifier | Get-Content ==> ZoneId
+  Value Setting
+  ——————————
+  0 My Computer
+  1 Local Intranet Zone
+  2 Trusted sites Zone
+  3 Internet Zone
+  4 Restricted Sites Zone
+  public enum SecurityZone
+  {
+    NoZone = -1,
+    MyComputer = 0,
+    Intranet = 1,
+    Trusted = 2,
+    Internet = 3,
+    Untrusted = 4,
+  }
+  Unblock-File
+
   *-File
   *-Acl
   *-AuthenticodeSignature
 
 
   <nav>
+    <a href="../index.html?locale=hu-HU&article=Files_Folders" target="_top"
+     >Fájlok és mappák keresése</a>
+    <p>
     <a href="../index.html?locale=hu-HU&article=Registry_Provider" target="_top"
-      >A rendszerbeállítások tárhelye: a regisztrációs adatbázis</a>
+     >A rendszerbeállítások tárhelye: a regisztrációs adatbázis</a>
     <p>
     <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_filesystem_provider"
      target="_blank">A fájlrendszer mint PowerShell adattár</a>
-    <p>
-    <a href="https://hu.wikipedia.org/wiki/Bájtsorrend"
-     target="_blank">Mit jelent a bájtsorrend?</a>
   </nav>
 </article>
 </body>
