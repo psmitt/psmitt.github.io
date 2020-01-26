@@ -24,8 +24,8 @@
   a felderített adatelemekre jellemző teljes információs objektumokat (
   <i>DirectoryInfo</i>, <i>FileInfo</i>, <i>RegistryKey&thinsp;</i> stb.) eredményez.
   Ez alól az egyetlen kivétel, ha az utasítást a <kbd>-Name</kbd> kapcsolóval
-  futtatjuk: ebben az esetben csupán az adatelemek nevét mint szöveges adatot
-  kapjuk eredményül.
+  futtatjuk: ebben az esetben csupán az adatelemek <kbd>-Path</kbd>-hoz relatív
+  elérési útját mint szöveges adatot kapjuk eredményül.
   <figure>
     <img src="img/Discovery of Items on a Location.png"/>
     <figcaption>Discovery of Items on a Location</figcaption>
@@ -50,7 +50,12 @@
   </figure>
   A félreértések elkerülése végett a beágyazott tárhelyekre is kiterjesztett
   felderítést mindig a <kbd>-Recurse</kbd> kapcsolóval érdemes beállítani.
-  A rekurzió mélységét a <kbd>-Depth</kbd> paraméterrel szabályozhatjuk.
+  A rekurzió mélységét a <kbd>-Depth</kbd> paraméterrel szabályozhatjuk;
+  az alapértelmezetten korlátlan mélységű felderítés nagyon hosszú ideig tarthat.
+  <figure>
+    <img src="img/Locate pwsh executable.png"/>
+    <figcaption>Locate pwsh executable on C: drive</figcaption>
+  </figure>
   <nav>
     <a href="../index.html?locale=hu-HU&article=About_Items" target="_top"
       >A tárolt adatelemek kezelése</a>
