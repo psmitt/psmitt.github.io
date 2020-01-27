@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="hu-HU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>PowerShell rövidítések és álnevek</h1>
+  Előző fejezetekben láttuk, hogy a csővezetéken érkező objektumokat feldolgozó
+  <kbd>*-Object</kbd> parancsmagok neve az igei előtagra rövidíthető (pl.
+  <kbd>Select</kbd>, <kbd>Sort</kbd>, <kbd>Measure</kbd>).
+  Ezzel analóg módon a leggyakoribb igének számító <kbd>Get-</kbd> előtag is
+  elhagyható a parancsmagok nevéből &mdash; a PowerShell parancsértelmező ezt
+  automatikusan pótolja, ha a megmaradt főnévhez egyébként nem talál érvényes
+  függvényt vagy parancsfájlt (mint pl. a <kbd>help</kbd> esetében).
+  <figure>
+    <img src="img/Shortened usage of Get commands.png"/>
+    <figcaption>Shortened usage of Get commands</figcaption>
+  </figure>
+  Rövidítést vagy álnevet bármely parancsmag, függvény, vagy parancssorból
+  meghívható állomány kaphat. Ehhez mindössze létre kell hozni egy bejegyzést
+  az <i>Alias&thinsp;</i> adattárba, amelynek alapján a parancsértelmező
+  már képes lesz feloldani az adott rövidítést vagy álnevet.
+  <p>
+  Az <i>Alias&thinsp;</i> adattárban nincsenek tárhelyek.
+  Minden adatelem az adattár gyökérelemében, vagyis az <kbd>Alias:</kbd>
+  meghajtón tárolódik. A <kbd>Set-Location Alias:</kbd> paranccsal beléphetünk
+  ugyan a meghajtóra, de ez két okból nem szokás: egyfelől a meghajtót az
+  adatelemek kezelésére szolgáló <kbd>*-Item</kbd> parancsok <kbd>-Path</kbd>
+  paraméterében is megadhatjuk, másfelől az álnevek kezelésére önálló
+  parancsmagok is léteznek.
+  <p>
+  <table class="wide">
+    <tr>
+      <th>Feladat</th>
+      <th>Alapparancs</th>
+      <th>Önálló parancsmag</th>
+    </tr>
+    <tr>
+      <td>Álnevek felderítése</td>
+      <td><kbd>Get-ChildItem</kbd></td>
+      <td><kbd>Get-Alias</kbd></td>
+    </tr>
+    <tr>
+      <td>Álnevek létrehozása</td>
+      <td><kbd>New-Item</kbd></td>
+      <td><kbd>New-Alias</kbd></td>
+    </tr>
+    <tr>
+      <td>Álnevek módosítása</td>
+      <td><kbd>Set-Item</kbd></td>
+      <td><kbd>Set-Alias</kbd></td>
+    </tr>
+    <tr>
+      <td>Álnevek törlése</td>
+      <td><kbd>Clear-Item</kbd><br><kbd>Remove-Item</kbd></td>
+      <td><kbd>Remove-Alias</kbd></td>
+    </tr>
+    <tr>
+      <td>Álnevek CSV fájlba mentése</td>
+      <td></td>
+      <td><kbd>Export-Alias</kbd></td>
+    </tr>
+    <tr>
+      <td>Álnevek beolvasása CSV fájlból</td>
+      <td></td>
+      <td><kbd>Import-Alias</kbd></td>
+    </tr>
+  </table>
+  <p>
+
+
+  <figure>
+    <img src="img/Shortened usage of Get commands.png"/>
+    <figcaption>Shortened usage of Get commands</figcaption>
+  </figure>
+
+
+  <nav>
+    <a href="../index.html?locale=hu-HU&article=Find-Files" target="_top"
+     >Fájlok és mappák keresése</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_alias_provider"
+     target="_blank">Rövidítések és álnevek adattára</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_aliases"
+     target="_blank">Rövidítések és álnevek használata</a>
+  </nav>
+</article>
+</body>
+</html>

@@ -55,11 +55,11 @@
         <menu title="Alternatív adatfolyamok - ADS"             link="About_ADS"/>
         <menu title="Hozzáférés-szabályozás - ACL"              link="About_ACL"/>
       </menu>
-      <menu title="A regisztrációs adatbázis - Registry"     link="Registry_Provider"/>
-      <menu title="Környezeti változók - Environment"        link="Environment_Provider"/>
-      <menu title="Automatikus és felhasználói változók - Variable" link="Variable_Provider"/>
-      <menu title="PowerShell függvények - Function"         link="Function_Provider"/>
       <menu title="PowerShell parancsok rövidítései - Alias" link="Alias_Provider"/>
+      <menu title="Automatikus és felhasználói változók - Variable" link="Variable_Provider"/>
+      <menu title="Környezeti változók - Environment"        link="Environment_Provider"/>
+      <menu title="PowerShell függvények - Function"         link="Function_Provider"/>
+      <menu title="A regisztrációs adatbázis - Registry"     link="Registry_Provider"/>
     </menu>
   </menu>
   <menu title="A .NET keretrendszer felderítése">
