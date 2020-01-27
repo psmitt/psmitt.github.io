@@ -32,22 +32,18 @@
     <img src="img/Get-Help Write-star.png"/>
     <figcaption>Get-Help Write-*</figcaption>
   </figure>
-  Alapértelmezetten nem minden adatfolyamra küldött üzenet jut el a parancssori
-  ablakot felügyelő <kbd>Host</kbd> gazdaprogramhoz, ennélfogva nem minden
-  adatfolyam tartalma olvasható közvetlenül a képernyőn.
+  Alapértelmezetten nem minden adatfolyamra küldött üzenet megy tovább a
+  csővezetéken, és jut el a parancssori ablakot felügyelő <kbd>Host</kbd>
+  gazdaprogramhoz: a részletes jelentés és a futásellenőrzési információ
+  megjelenítését egy-egy általános kapcsolóval lehet engedélyezni;
+  az információs csatorna viselkedését pedig külön be kell állítani ahhoz,
+  hogy az üzenet a csővezetékbe kerüljön.
   <figure>
     <img src="img/Write into Streams.png"/>
     <figcaption>Write Message to Streams</figcaption>
   </figure>
-  Ahhoz, hogy a különböző adatfolyamok tartalmát láthatóvá tegyük, át lehet
-  irányítani azokat egy hozzáférhető csatornába. Ekkor az is láthatóvá válik,
-  hogy a gazdaprogram &ndash; a felhasználó beállításainak megfelelően &ndash;
-  milyen színekkel teszi feltűnőbbé a különféle adatfolyamok megjelenített
-  tartalmát.
-  <figure>
-    <img src="img/Write Streams from Function.png"/>
-    <figcaption>Write Streams from Function</figcaption>
-  </figure>
+  A különféle csatornákról érkező üzeneteket a <kbd>Host</kbd> a beállításoknak
+  megfelelően, figyelemfelkeltő módon színezi és címkézi.
   <h2>Általános vagy közös paraméterek (<i>Common Parameters&thinsp;</i>)</h2>
   Az általános vagy közös paramétereket minden parancsmag ismeri és elfogadja,
   szerepük pedig a parancsértelmező működésének általános szabályozásában van

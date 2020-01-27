@@ -19,8 +19,11 @@
   parancsmagnak vannak csak a fájlrendszer adattárban használható,
   úgynevezett dinamikus paraméterei is. A <kbd>-FollowSymlink</kbd> kapcsoló
   hatására például azokban a mappákban is elvégezi a felderítést,
-  amelyekre csak egy hivatkozás mutat.
-  <p>
+  amelyekre csak egy hivatkozás (<i>Junction</i> vagy <i>Symbolic Link</i>) mutat.
+  <figure>
+    <img src="img/Follow folder links in finding files.png"/>
+    <figcaption>Follow folder links in finding files</figcaption>
+  </figure>
   A fájrendszerben a keresett elemeket nemcsak nevük (illetve elérési útjuk),
   hanem jellemzőik szerint is szűrhetjük az <kbd>-Attributes</kbd> paraméter
   segítségével. A lehetséges attribútumokat a súgó által megadott

@@ -48,51 +48,6 @@
   Az fájlok <kbd>.isReadOnly</kbd> attribútumát a <kbd>Set-ItemPropery</kbd>
   paranccsal, tartalmukat pedig a <kbd>*-Content</kbd> parancsmagokkal
   módosíthatjuk.
-  <h2>Adattár-specifikus dinamikus paraméterek</h2>
-  <a href="../index.html?locale=hu-HU&article=About_ChildItems" target="_top"
-  >Egy előző fejezetben</a> már láttuk, hogy a <kbd>Get-ChildItem</kbd>
-  parancsmagnak vannak kifejezetten fájlokra és mappákra vonatkozó paraméterei.
-  Ugyanez számos más alapparancsra is igaz. A <kbd>New-Item</kbd> parancs
-  <kbd>-ItemType</kbd> paraméterének a lehetséges értéke például adattáranként
-  változik; a fájlrendszer esetében a megadható argumentumok a következők:
-  <ul>
-    <li><kbd>Directory</kbd>
-    <li><kbd>File</kbd>
-    <li><kbd>HardLink</kbd>
-    <li><kbd>Junction</kbd>
-    <li><kbd>SymbolicLink</kbd>
-  </ul>
-
-  <h2>Különleges parancsok fájlok és mappák kezelésére</h2>
-
-
-  https://docs.microsoft.com/hu-hu/archive/blogs/askcore/alternate-data-streams-in-ntfs
-  get-item * -Stream * | Select PSChildName
-  get-item * -Stream Zone.Identifier
-  get-item pille2* -Stream Zone.Identifier | Get-Content ==> ZoneId
-  Value Setting
-  ——————————
-  0 My Computer
-  1 Local Intranet Zone
-  2 Trusted sites Zone
-  3 Internet Zone
-  4 Restricted Sites Zone
-  public enum SecurityZone
-  {
-    NoZone = -1,
-    MyComputer = 0,
-    Intranet = 1,
-    Trusted = 2,
-    Internet = 3,
-    Untrusted = 4,
-  }
-  Unblock-File
-
-  *-File
-  *-Acl
-  *-AuthenticodeSignature
-
-
   <nav>
     <a href="../index.html?locale=hu-HU&article=Find-Files" target="_top"
      >Fájlok és mappák keresése</a>

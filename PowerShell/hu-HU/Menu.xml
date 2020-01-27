@@ -49,8 +49,8 @@
       <menu title="Áttekintés"                    link="About_Providers"/>
       <menu title="A fájlrendszer - File System">
         <menu title="Áttekintés"                  link="FileSystem_Provider"/>
-        <menu title="Fájlok és mappák keresése - ChildItem"     link="Find-Files"/>
         <menu title="Fájlok és mappák létrehozása és törlése"   link="Create-Files"/>
+        <menu title="Fájlok és mappák keresése - ChildItem"     link="Find-Files"/>
         <menu title="Állományok tartalmának kezelése - Content" link="About_Content"/>
         <menu title="Alternatív adatfolyamok - ADS"             link="About_ADS"/>
         <menu title="Hozzáférés-szabályozás - ACL"              link="About_ACL"/>

@@ -19,6 +19,8 @@
   Ugyanezt a feladatot a <kbd>Set-Content</kbd>, illetve <kbd>Add-Content</kbd>
   parancsmagok, sőt a kimenet átirányítására szolgáló <kbd>&gt;</kbd>,
   illetve <kbd>&gt;&gt;</kbd> operátorok is végrehajtják.
+  A fájlok tartalmát felülíró parancsok létre is hozzák az adatállományt,
+  amennyiben az nem létezik.
   <p>
   <table class="wide">
     <tr>
@@ -45,9 +47,14 @@
   és egy állományba is elmenteni az átvett adatokat, így az eredményről a
   képernyőn is láthatunk visszajelzést. A <kbd>Set-Content</kbd> és
   <kbd>Add-Content</kbd> parancsmagok alapértelmezetten visszajelzés nélkül
-  rendelnek tartalmat egy adatállományhoz, de a képernyőn is visszaolvashatóvá
-  teszik azt a <kbd>-PassThru</kbd> kapcsoló hatására.
-  <p>
+  rendelnek tartalmat egy adatállományhoz, ám a képernyőn is visszaolvashatóvá
+  tehetik a fájlba irányított objektumokat a <kbd>-PassThru</kbd> kapcsoló
+  hatására. <strong>De vigyázat!</strong> A képernyőn megjelenő és a fájlba írt
+  sorok különbözhetnek egymástól!
+  <figure>
+    <img src="img/Send objects into file.png"/>
+    <figcaption>Send objects into file</figcaption>
+  </figure>
   A paraméterezési lehetőségeken kívül a fő különbség a fenti eszközök között
   elsősorban az, hogy a <kbd>Set-Content</kbd> és <kbd>Add-Content</kbd>
   parancsmagok a kiírandó objektumokat a <kbd>.ToString()</kbd> metódus
@@ -56,10 +63,12 @@
   megfelelően készíti el a fájl tartalmát. Ez utóbbi eredményt a
   <kbd>Set-Content</kbd> és <kbd>Add-Content</kbd> parancsmagokkal is
   elérhetjük, ha a kiírás előtt az adatokat átküldjük az <kbd>Out-String</kbd>
-  parancsmagon.
-  <p>
-  A fájlok tartalmát felülíró parancsok létre is hozzák az adatállományt,
-  amennyiben az nem létezik.
+  parancsmagon, amely az alapértelmezett formázás szerinti szöveges adatokká
+  alakítja azokat.
+  <figure>
+    <img src="img/Send formatted objects into file.png"/>
+    <figcaption>Send formatted objects into file</figcaption>
+  </figure>
   <h2>Adatállományok tartalmának kódolása</h2>
   A szöveges állományok tartalmának megfelelő kezeléséhez ismerni kell az
   alkalmazott szövegkódolást is, amit az <kbd>-Encoding</kbd> paraméter
@@ -116,7 +125,10 @@
   Az <kbd>-AsByteStream</kbd> kapcsoló hatására parancsmag az <kbd>-Encoding</kbd>
   paramétert figyelmen kívül hagyja, és az állomány tartalmát bájtsorozatként
   olvassa be.
-  <p>
+  <figure>
+    <img src="img/Set and get file content.png"/>
+    <figcaption>Set and get file content</figcaption>
+  </figure>
   Érdekes módon egy adatállomány tartalmát mint egy memóriaváltozót is elérhetjük
   ha az állomány abszolút elérési útját mint betű szerinti (<i>literal&thinsp;</i>)
   szöveges adatot, idézőjelek nélkül, kapcsos zárójelek között adjuk meg a

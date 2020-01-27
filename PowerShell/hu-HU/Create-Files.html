@@ -15,8 +15,8 @@
   <h2>Fájlrendszerbeli elemek létrehozása</h2>
   Fájlrendszerbeli tárhelyek és adatelemek létrehozására a <kbd>New-Item</kbd>
   alapparancs a kézenfekvő megoldás. Az új tárhelyek vagy adatelemek a
-  <kbd>-Path</kbd> paraméter által meghatározott elérési úton,
-  a <kbd>-Name</kbd> paraméterben megadott néven jön létre.
+  <kbd>-Path</kbd> paraméter által meghatározott elérési utakon,
+  a <kbd>-Name</kbd> paraméterben megadott néven jönnek létre.
   A parancs <kbd>-ItemType</kbd> paraméterének a fájlrendszerben elfogadott
   argumentumai a következők:
   <ul>
@@ -30,15 +30,20 @@
     <li><kbd>SymbolicLink</kbd> &mdash; hivatkozást hoz létre tetszőleges
         (akár hálózati) elérési úton azonosított fájlra vagy mappára.
   </ul>
-  Új azonosító vagy hivatkozás (<i></i>) létrehozásakor a már létező célt a
+  Új azonosító vagy hivatkozás létrehozásakor a már létező célt a
   <kbd>-Value</kbd> paraméter értéke pontosítja. Ez a paraméter máskülönben
   az új adatelem kezdeti tartalmának beállítására szolgál.
   <p>
   A <kbd>New-Item</kbd> parancs alapértelmezetten hibajelzést generál,
   amennyiben az adott elérési úton a megadott nevű elem már létezik;
   a létező elem helyett egy új létrehozását (vagyis a létező elem felülírását)
-  a <kbd>-Force</kbd> kapcsolóval kényszeríthetjük ki.
-  <p>
+  a <kbd>-Force</kbd> kapcsolóval kényszeríthetjük ki. <i>HardLink</i> vagy
+  <i>SymbolicLink</i> létrehozásához rendszergazdai jogosultság szükséges
+  &mdash; ennek hiányában az utasítás hibaüzenetet produkál.
+  <figure>
+    <img src="img/Creation of new items in File System.png"/>
+    <figcaption>Creation of new items in File System</figcaption>
+  </figure>
   Új adatállomány objektumok fájlba irányításával, vagyis
   <a href="../index.html?locale=hu-HU&article=About_Content" target="_top"
   >tartalomkezelő parancsokkal</a> is létrehozható.
