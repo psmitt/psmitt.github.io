@@ -49,15 +49,20 @@
       <menu title="Áttekintés"                    link="About_Providers"/>
       <menu title="A fájlrendszer - File System">
         <menu title="Áttekintés"                  link="FileSystem_Provider"/>
-        <menu title="Fájlok és mappák létrehozása és törlése"   link="Create-Files"/>
+        <menu title="Fájlok, mappák és hivatkozások - Item"     link="Create-Files"/>
         <menu title="Fájlok és mappák keresése - ChildItem"     link="Find-Files"/>
         <menu title="Állományok tartalmának kezelése - Content" link="About_Content"/>
         <menu title="Alternatív adatfolyamok - ADS"             link="About_ADS"/>
         <menu title="Hozzáférés-szabályozás - ACL"              link="About_ACL"/>
       </menu>
       <menu title="PowerShell parancsok rövidítései - Alias" link="Alias_Provider"/>
-      <menu title="Automatikus és felhasználói változók - Variable" link="Variable_Provider"/>
-      <menu title="Környezeti változók - Environment"        link="Environment_Provider"/>
+      <menu title="A memóriaváltozók két adattára">
+        <menu title="Áttekintés - Variable"             link="Variable_Provider"/>
+        <menu title="Felhasználói változók"             link="User_Variables"/>
+        <menu title="Automatikus változók"              link="Automatic_Variables"/>
+        <menu title="Preferencia változók"              link="Preference_Variables"/>
+        <menu title="Környezeti változók - Environment" link="Environment_Provider"/>
+      </menu>
       <menu title="PowerShell függvények - Function"         link="Function_Provider"/>
       <menu title="A regisztrációs adatbázis - Registry"     link="Registry_Provider"/>
       <menu title="A tanúsítványtár - Certificate"           link="Certificate_Provider"/>

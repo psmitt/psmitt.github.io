@@ -11,7 +11,9 @@
 </head>
 <body>
 <article>
-  <h1>PowerShell rövidítések és álnevek</h1>
+  <h1>Automatikus és felhasználói változók kezelése</h1>
+  
+
   Előző fejezetekben láttuk, hogy a csővezetéken érkező objektumokat feldolgozó
   <kbd>*-Object</kbd> parancsmagok neve az igei előtagra rövidíthető (pl.
   <kbd>Select</kbd>, <kbd>Sort</kbd>, <kbd>Measure</kbd>).
@@ -35,111 +37,25 @@
   adatelemek kezelésére szolgáló <kbd>*-Item</kbd> parancsok <kbd>-Path</kbd>
   paraméterében is megadhatjuk, másfelől az álnevek kezelésére önálló
   parancsmagok is léteznek.
-  <p>
-  <table class="wide">
-    <tr>
-      <th>Feladat</th>
-      <th>Alapparancs</th>
-      <th>Önálló parancsmag</th>
-    </tr>
-    <tr>
-      <td>Álnevek felderítése</td>
-      <td><kbd>Get-ChildItem</kbd></td>
-      <td><kbd>Get-Alias</kbd></td>
-    </tr>
-    <tr>
-      <td>Álnevek létrehozása</td>
-      <td><kbd>New-Item</kbd></td>
-      <td><kbd>New-Alias</kbd></td>
-    </tr>
-    <tr>
-      <td>Álnevek módosítása</td>
-      <td><kbd>Set-Item</kbd></td>
-      <td><kbd>Set-Alias</kbd></td>
-    </tr>
-    <tr>
-      <td>Álnevek másolása</td>
-      <td><kbd>Copy-Item</kbd></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Álnevek törlése</td>
-      <td><kbd>Clear-Item</kbd><br><kbd>Remove-Item</kbd></td>
-      <td><kbd>Remove-Alias</kbd></td>
-    </tr>
-    <tr>
-      <td>Álnevek CSV fájlba mentése</td>
-      <td></td>
-      <td><kbd>Export-Alias</kbd></td>
-    </tr>
-    <tr>
-      <td>Álnevek beolvasása CSV fájlból</td>
-      <td></td>
-      <td><kbd>Import-Alias</kbd></td>
-    </tr>
-  </table>
-  <p>
-  A létező rövidítések és álnevek felderítéséhez tehát használhatjuk a
-  <kbd>Get-ChildItem</kbd>, <kbd>Get-Item</kbd> vagy <kbd>Get-Alias</kbd>
-  parancsmagokat, sőt egy konkrét álnév feloldását akár a <kbd>változójellel</kbd>
-  is lekérdezhetjük.
-  <figure>
-    <img src="img/Alias discovery.png"/>
-    <figcaption>Alias discovery</figcaption>
-  </figure>
-  Új álnevet a <kbd>-Name</kbd> paraméterrel hozhatunk létre, jelentését pedig
-  a <kbd>-Value</kbd> paraméterrel állíthajtuk be. A <kbd>New-Alias</kbd>
-  parancsmagnak van egy különleges paramétere is, amely a létrehozott álnév
-  láthatóságát és állandóságát biztosítja. Az <kbd>-Option</kbd> paraméter
-  lehetséges értékei a következők:
-  <ul>
-    <li><kbd>None</kbd> &mdash; nincs korlátozás (ez a paraméter alapértelmezett
-        értéke);
-    <li><kbd>ReadOnly</kbd> &mdash; az álnév jelentése csak a <kbd>-Force</kbd>
-        kapcsolóval változtatható meg;
-    <li><kbd>Constant</kbd> &mdash; az álnév jelentése nem változtatható meg,
-        és az álnév nem törölhető, tehát csak akkor szűnik meg, ha az aktuális
-        futási környezet (<i>scope</i>) is megszűnik, például bezárjuk a
-        parancssori ablakot;
-    <li><kbd>Private</kbd> &mdash; az álnév csak abban a környezetben látható,
-        amelyben keletkezett;
-    <li><kbd>AllScope</kbd> &mdash; az álnév minden olyan környezetben látható,
-        amely (közvetlenül vagy közvetetten) abból a környezetből jött létre,
-        amelyben az álnév is keletkezett;
-    <li><kbd>Unspecified</kbd> &mdash; a paraméter nincs meghatározva.
-  </ul>
   <figure>
     <img src="img/Alias options.png"/>
     <figcaption>Alias options</figcaption>
   </figure>
-  Egy álnév másolásával is készíthetünk másik álnevet ugyanahhoz a parancsmaghoz,
-  függvényhez vagy állományhoz: a <kbd>Copy-Item</kbd> parancsmagnak a
-  <kbd>-Path</kbd> paraméterében kell megadni az eredeti álnevet, és a
-  <kbd>-Destination</kbd> paraméterben az új álnév nevét; természetesen mindkettőt
-  az <kbd>Alias:</kbd> meghajtón keresztül. Jegyezzük meg azonban, hogy egy álnév
-  másolata nem kapja meg az eredetinek sem a <kbd>.Description</kbd>, sem az
-  <kbd>.Option</kbd> beállításait!
-  <p>
-  Mivel a parancssori ablak bezárásával még a konstans álnevek is megszűnnek,
-  csak úgy gondoskodhatunk az általunk létrehozott álnevek megtartásáról,
-  hogy az <kbd>Export-Alias</kbd> paranccsal egy CSV állományba menjük őket,
-  majd a következő munkamenet elején ugyanezt az állományt beolvassuk az
-  <kbd>Import-Alias</kbd> paranccsal. A másik megoldás az, ha a kívánt álnevek
-  létrehozását a <kbd>profile.ps1</kbd> felhasználói szkript állományban
-  helyezzük el, amit a parancssori ablak induláskor automatikusan beolvas
-  és végrehajt.
   <nav>
     <a href="../index.html?locale=hu-HU&article=Variable_Provider" target="_top"
       >A környezeti változók adattára</a>
     <p>
-    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_alias_provider"
-     target="_blank">Rövidítések és álnevek adattára</a>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_variables"
+     target="_blank">Mik azok a változók?</a>
     <p>
-    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_aliases"
-     target="_blank">Rövidítések és álnevek használata</a>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_variable_provider"
+     target="_blank">Automatikus és felhasználói változók adattára</a>
     <p>
-    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles"
-     target="_blank">PowerShell felhasználói profil létrehozása</a>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables"
+     target="_blank">Melyek az automatikus változók?</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_preference_variables"
+     target="_blank">Mik azok a preferenciaváltozók?</a>
   </nav>
 </article>
 </body>

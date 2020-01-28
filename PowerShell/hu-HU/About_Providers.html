@@ -21,7 +21,16 @@
   Az adattár-szolgáltatók képességei (<i>Capabilities&thinsp;</i>) a következők
   lehetnek:
   <ul>
-    <li>
+    <li><kbd>None</kbd> &mdash; egyik sem az alábbiak közül;
+    <li><kbd>Include</kbd> &mdash; gyorsabb <kbd>-Include</kbd> szűrés;
+    <li><kbd>Exclude</kbd> &mdash; gyorsabb <kbd>-Exclude</kbd> szűrés;
+    <li><kbd>Filter</kbd> &mdash; használhatjuk a <kbd>-Filter</kbd> szűrő paramétert;
+    <li><kbd>ExpandWildcards</kbd> &mdash; gyorsabb helyettesítő karakteres szövegillesztés;
+    <li><kbd>ShouldProcess</kbd> &mdash; használhatjuk az általános
+        <kbd>-WhatIf</kbd> és <kbd>-Confirm</kbd> paramétereket;
+    <li><kbd>Credentials</kbd> &mdash; a parancsokat más felhasználó nevében is futtathatjuk;
+    <li><kbd>Transactions</kbd> &mdash; tranzakciókezelés: egyes műveletcsoportok
+        minden eleme vagy sikeresen végrehajtódik, vagy egyik sem kerül végrehajtásra.
   </ul>
   Az adattárak gyökér meghajtóit a <kbd>Get-PSDrive</kbd> utasítással listázhatjuk.
   <figure>
@@ -56,17 +65,20 @@
     <a href="../index.html?locale=hu-HU&article=Alias_Provider" target="_top"
       >Rövidítések és álnevek tára</a>
     <p>
-    <a href="../index.html?locale=hu-HU&article=Registry_Provider" target="_top"
-      >A rendszerbeállítások tára: a regisztrációs adatbázis</a>
+    <a href="../index.html?locale=hu-HU&article=Variable_Provider" target="_top"
+      >Az automatikus és a felhasználói változók tára</a>
     <p>
     <a href="../index.html?locale=hu-HU&article=Environment_Provider" target="_top"
       >A környezeti változók tára</a>
     <p>
-    <a href="../index.html?locale=hu-HU&article=Variable_Provider" target="_top"
-      >Az automatikus és a felhasználói változók tára</a>
-    <p>
     <a href="../index.html?locale=hu-HU&article=Function_Provider" target="_top"
       >A PowerShell függvények tára</a>
+    <p>
+    <a href="../index.html?locale=hu-HU&article=Registry_Provider" target="_top"
+      >A rendszerbeállítások tára: a regisztrációs adatbázis</a>
+    <p>
+    <a href="../index.html?locale=hu-HU&article=Registry_Provider" target="_top"
+      >Az elektronikus tanúsítványok tára</a>
     <p>
     <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_providers"
      target="_blank">Get-Help about_Providers</a>

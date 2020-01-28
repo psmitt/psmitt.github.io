@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="hu-HU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>Környezeti változók adattára</h1>
+  Az a "környezet", amelynek tulajdonságait a környezeti változók hordozzák,
+  nem más, mint <strong>az operációs rendszer</strong>, tehát a
+  szoftver-architektúra alaprétege.
+  Minden egyes környezeti változó az operációs rendszerkörnyezet valamelyik
+  fontos jellegzetességét, érdekes adatát tartalmazza, amelyet a PowerShell
+  globális futtatókörnyezet az elindítása pillanatában vesz át, és azokat
+  minden belőle indított alkörnyezetének elérhetővé teszi.
+  <p>
+  Az <i>Environment&thinsp;</i> adattárban nincsenek tárhelyek.
+  Minden adatelem az adattár gyökérelemében, vagyis az <kbd>Env:</kbd>
+  meghajtón tárolódik. A környezeti változók adattára egy kulcs-érték
+  párokat (<i>key-value pair&thinsp;</i>) tartalmazó <strong>szótár</strong>
+  (<i>Dictionary&thinsp;</i>), minden egyes környezeti változó pedig
+  egy-egy <strong>bejegyzés</strong> (<i>DictionaryEntry&thinsp;</i>)
+  ebben a szótárban.
+  <figure>
+    <img src="img/The environment variables are dictionary entries.png"/>
+    <figcaption>The environment variables are dictionary entries</figcaption>
+  </figure>
+  A környezeti változók nevét a <kbd>.Key</kbd> vagy <kbd>.Name</kbd> tulajdonságuk,
+  értékét pedig a <kbd>.Value</kbd> tulajdonságuk tartalmazza.
+  <p>
+  A környezeti változókat a többi változóhoz hasonló módon kezeljük annyi
+  különbséggel, hogy a nevükre mindig a meghajtó nevén keresztül tehát a
+  <kbd>$Env:</kbd> előtaggal hivatkozunk.
+  <figure>
+    <img src="img/Getting environment variables.png"/>
+    <figcaption>Getting environment variables</figcaption>
+  </figure>
+  Tekintettel arra, hogy a környezeti változók nem a PowerShell, hanem az
+  operációs rendszer jellegzetességeit képviselik, jelentésükről és jelentőségükről
+  mindig az adott platform működési dokumentációjában érdemes tájékozódni.
+  Mivel azonban a környezeti változók tárát egy adott PowerShell munkamenetből
+  indított minden más folyamat egyformán látja, ezért az <kbd>Env:</kbd>
+  meghajtón létrehozott változókkal egyszerűen lehetséges a munkamenetek közötti
+  adatcsere!
+  <p>
+  A PowerShell munkamenetek folyamán létrehozott változók, illetve az átvett
+  környezeti változókon végrehajtott bármilyen változtatások a fő munkamenet
+  befejeződésével eltűnnek. Azokat a beállításokat tehát, amelyeket környezeti
+  változóként rendszeresen szeretnénk használni a PowerShell munkamenetek során,
+  a PowerShell <kbd>profile.ps1</kbd> fájlban érdemes elhelyezni.
+  <h2>Preferencia változók az <i>Environment&thinsp;</i> adattárban</h2>
+  <nav>
+    <a href="../index.html?locale=hu-HU&article=Function_Provider" target="_top"
+      >A PowerShell függvények adattára</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_environment_variables"
+     target="_blank">Mik azok a környezeti változók?</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles"
+     target="_blank">PowerShell felhasználói profil létrehozása</a>
+  </nav>
+</article>
+</body>
+</html>
