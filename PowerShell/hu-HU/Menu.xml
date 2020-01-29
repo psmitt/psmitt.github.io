@@ -57,11 +57,11 @@
       </menu>
       <menu title="PowerShell parancsok rövidítései - Alias" link="Alias_Provider"/>
       <menu title="A memóriaváltozók két adattára">
-        <menu title="Áttekintés - Variable"             link="Variable_Provider"/>
+        <menu title="Áttekintés - Variable"             link="About_Variables"/>
         <menu title="Felhasználói változók"             link="User_Variables"/>
         <menu title="Automatikus változók"              link="Automatic_Variables"/>
         <menu title="Preferencia változók"              link="Preference_Variables"/>
-        <menu title="Környezeti változók - Environment" link="Environment_Provider"/>
+        <menu title="Környezeti változók - Environment" link="Environment_Variables"/>
       </menu>
       <menu title="PowerShell függvények - Function"         link="Function_Provider"/>
       <menu title="A regisztrációs adatbázis - Registry"     link="Registry_Provider"/>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="hu-HU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>Mik azok a változók?</h1>
+  A változók elnevezett memóriaobjektumok. Mondhatjuk, hogy a változó
+  az objektum  neve, vagy hogy az objektum a változó értéke, esetleg tartalma.
+  Objektumok elnevezésére, azaz változók létrehozására megvannak a megfelelő
+  parancsmagok is, de a legtöbbször a hozzárendelő (<i>assignment&thinsp;</i>)
+  operátor segítségével adunk nevet egy objektumnak vagy adunk értéket egy
+  változónak.
+  <figure>
+    <img src="img/Variable definition and usage.png"/>
+    <figcaption>Variable definition and usage</figcaption>
+  </figure>
+  Egy <a href="https://psmitt.github.io/grammar/PowerShell#VariableExpression"
+  target="_blank">változókifejezés</a> mindig a <kbd>$</kbd> dollárjellel
+  kezdődik, amit opcionálisan egy kettőspontra végződő meghajtónév
+  (<i>drive&thinsp;</i>) vagy egy hatókör-meghatározás (<i>scope&thinsp;</i>)
+  követhet, végül a változó neve következik betűkből és számokból,
+  de az aláhúzásjel és a kérdőjel használata is megengedett. Sőt!
+  Dollárjel után kapcsos zárójelek között bármilyen karakterekből álló
+  nevet is adhatunk egy változónak, ha ezt a kód olvashatósága megkívánja.
+  <p>
+  Egy változóban alapértelmezetten bármilyen típusú objektumot tárolhatunk,
+  és menet közben bármikor módosulthat ugyanannak a változónak a tartalma,
+  vagy akár a tárolt tartalom típusa is. Ugyanaz a változó egyszer jelenthet
+  egy egész számot, másszor egy dátumot, harmadszor egy szöveges adatot.
+  Ez a változékonyság azonban nehézséget okozhat a kód megértésében,
+  hiszen más és más típusú objektumoknak más és más tulajdonságaik és metódusaik
+  vannak, így a típusváltással a változónak a viselkedése is megváltozik.
+  <p>
+  A bevett gyakorlat az, hogy egy változónak csak egy bizonyos szerepet
+  osztunk, ennek megfelelő elnevezést kap, és ennek megfelelően rögzített
+  adattípust társítunk hozzá. Ahhoz, hogy a változó típusát ne lehessen
+  módosítani, ezt az adattípust a változó neve elé írjuk az értékadásnál.
+  Ettől kezdve ha más típusú objektumot próbálunk a változóhoz társítani,
+  akkor az az objektum átalakul a változó típusára, és ebben az új formában
+  tárolódik.
+  <figure>
+    <img src="img/Implicitly and strongly typed variables.png"/>
+    <figcaption>Implicitly and strongly typed variables</figcaption>
+  </figure>
+  Más adattárak meghajtóinak nevén keresztül változóként hivatkozhatunk az
+  adattárak adatelemeire &mdash; a fájlrendszer esetén ez mindig az aktuális
+  mappa fájljaira vonatkozik.
+  <figure>
+    <img src="img/Access content of another provider's path.png"/>
+    <figcaption>Access content of another provider's path</figcaption>
+  </figure>
+  A változók alapértelmezetten csak abban a környezetben elérhetők, amelyben
+  létrehoztuk őket. A PowerShell parancssori ablak indításakor például a
+  <kbd>global:</kbd> környezetbe érkezünk, de egy szkriptfájl végrehajtása során
+  már egy <kbd>script:</kbd> alkörnyezetben vagyunk. Ha egy alkörnyezetben
+  (<i>child scope&thinsp;</i>) létrehozunk egy ugyanolyan nevű változót,
+  mint ami a főkörnyezetben (<i>parent scope&thinsp;</i>) is létezik,
+  akkor a helyi (<kbd>local:</kbd>) változó "eltakarja" a főkörnyezeti
+  változót, és hatóköri hivatkozás nélkül nem is érhetjük azt el.
+  <figure>
+    <img src="img/Global and local variables.png"/>
+    <figcaption>Global and local variables</figcaption>
+  </figure>
+  A változók hatókörét és láthatóságát meghatározó előtagok:
+  <ul>
+    <li><kbd>local:</kbd> az éppen aktuális környezet változója;
+    <li><kbd>global:</kbd> a PowerShell indítási környezetének változója;
+    <li><kbd>script:</kbd> az éppen futó szkriptfájl változója;
+    <li><kbd>private:</kbd> a változó csak az aktuális környezetből érhető el,
+        az alkörnyezetekből nem;
+    <li><kbd>using:</kbd> helyi változó azonosítása a meghívott szkriptből;
+    <li><kbd>workflow:</kbd> PowerShell workflow változója;
+  </ul>
+  Keletkezésük módját és a tárolt adatok jellegét tekintve négy fajta PowerShell
+  változót különböztetünk meg:
+  <ul>
+    <li><strong>Környezeti változók</strong> azok, amelyeket a PowerShell
+        parancsértelmező induláskor az operációs rendszertől vesz át, és
+        az operációs rendszerkörnyezetre vonatkozó adatokat hordoznak.
+    <li><strong>Preferencia változók</strong> azok, amelyek a PowerShell
+        parancsértelmező viselkedését határozzák meg.
+    <li><strong>Automatikus változók</strong> azok, amelyeket a PowerShell
+        parancsértelmező a működése során hoz létre és módosít; ezek a
+        parancsértelmező működési állapotára vonatkozó adatokat hordoznak.
+    <li><strong>Felhasználói változók</strong> azok, amelyeket a felhasználók
+        a saját céljaikra hoznak létre és manipulálnak.
+  </ul>
+  A felhasználói, automatikus és preferencia változók a <i>Variable&thinsp;</i>
+  adattárban, a környezeti változók pedig az <i>Environment&thinsp;</i>
+  adattárban találhatók.
+  <nav>
+    <a href="../index.html?locale=hu-HU&article=User_Variables" target="_top"
+      >A felhasználói és automatikus változók adattára</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_variables"
+     target="_blank">Mik azok a változók?</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_scopes"
+     target="_blank">A változók hatóköre, láthatósága</a>
+  </nav>
+</article>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="hu-HU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>A felhasználói változók kezelése</h1>
+  A felhasználói, automatikus és preferencia változók a <i>Variable</i>
+  adattárban jönnek létre, amelyben nincsenek tárhelyek: minden adatelem
+  a <kbd>Variable:</kbd> gyökérmeghajtón tárolódik.
+  A PowerShell indításakor nincsenek felhasználói változók, hacsak a
+  <kbd>profile.ps1</kbd> szkript létre nem hoz néhányat. A PowerShell
+  munkamenet befejeződésekor pedig minden felhasználói változó megszűnik.
+  <p>
+  A felhasználói változók kezelésére általában az <kbd>=</kbd> hozzárendelő
+  operátort használjuk, de vannak olyan opciók, amelyek csak parancsmaggal
+  állíthatók be.
+  <p>
+  <table class="wide">
+    <tr>
+      <th>Feladat</th>
+      <th>Alapparancs</th>
+      <th>Önálló parancsmag</th>
+    </tr>
+    <tr>
+      <td>Változók felderítése</td>
+      <td><kbd>Get-ChildItem</kbd></td>
+      <td><kbd>Get-Variable</kbd></td>
+    </tr>
+    <tr>
+      <td>Változók létrehozása</td>
+      <td><kbd>New-Item</kbd></td>
+      <td><kbd>New-Variable</kbd></td>
+    </tr>
+    <tr>
+      <td>Változók módosítása</td>
+      <td><kbd>Set-Item</kbd></td>
+      <td><kbd>Set-Variable</kbd></td>
+    </tr>
+    <tr>
+      <td>Változók másolása</td>
+      <td><kbd>Copy-Item</kbd></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Változók értékének törlése</td>
+      <td><kbd>Clear-Item</kbd></td>
+      <td><kbd>Clear-Variable</kbd></td>
+    </tr>
+    <tr>
+      <td>Változók törlése</td>
+      <td><kbd>Remove-Item</kbd></td>
+      <td><kbd>Remove-Variable</kbd></td>
+    </tr>
+  </table>
+  <p>
+  A <kbd>New-Variable</kbd> parancsmag egyik érdekessége, hogy a <kbd>-Scope</kbd>
+  paraméternek nemcsak a megszokott hatóköri neveket adhatjuk át, hanem egy
+  természetes számmal jelezhetjük, hogy az aktuálistól számított hányadik
+  főkörnyezetben (<i>parent scope</i>) szeretnénk a változót létrehozni.
+  Az alapértelmezett környezet a <kbd>local:</kbd>, vagyis a <kbd>-Scope 0</kbd>.
+  <p>
+  A <kbd>New-Variable</kbd> parancsmag az
+  <a href="../index.html?locale=hu-HU&article=Alias_Provider" target="_top"
+  >álneveknél</a> megismert <kbd>-Option</kbd> mellett egy
+  <kbd>-Visibility</kbd> paraméterrel is rendelkezik, amit ha <kbd>Private</kbd>
+  értékre állítunk, akkor a változót az őt létrehozó környezetben sem felderíteni,
+  sem használni nem lehet, viszont az alkörnyezetekben elérhető marad.
+  <p>
+  A <kbd>Copy-Item</kbd> parancsmag helyett egyszerű értékadással szoktunk
+  változókat másolni, aminek a működése megegyezik a parancsmag működésével:
+  a másolat nem kapja meg az eredeti változónak sem az <kbd>.Option</kbd>,
+  sem a <kbd>.Visibility</kbd> tulajdonságát.
+  <p>
+  A <kbd>Clear-Variable</kbd> törli a <kbd>-Scope</kbd> környezetben a
+  megadott változók tartalmát. A változók nem szűnnek meg, de értékük a
+  <strong>semmi</strong> jelentésű <kbd>$null</kbd> automatikus változó
+  értékével lesz azonos. Ahhoz, hogy a változó mint adatelem ténylegesen
+  megszűnjön, a <kbd>Remove-Variable</kbd> paranccsal kell törölni azt.
+  <p>
+  
+
+  <nav>
+    <a href="../index.html?locale=hu-HU&article=Automatic_Variables" target="_top"
+      >Automatikus változók</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_variables"
+     target="_blank">Mik azok a változók?</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_variable_provider"
+     target="_blank">A változók adattára</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles"
+     target="_blank">PowerShell felhasználói profil létrehozása</a>
+  </nav>
+</article>
+</body>
+</html>
