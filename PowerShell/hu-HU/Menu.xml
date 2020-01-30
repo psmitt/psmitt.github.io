@@ -59,7 +59,11 @@
       <menu title="Memóriaváltozók - Variable">
         <menu title="Áttekintés"            link="About_Variables"/>
         <menu title="Felhasználói változók" link="User_Variables"/>
-        <menu title="Automatikus változók"  link="Automatic_Variables"/>
+        <menu title="Automatikus változók">
+          <menu title="Áttekintés"  link="Automatic_Variables"/>
+          <menu title="$null - a változó, aminek nincs értéke" link="Null_Variable"/>
+          <menu title="$true, $false - logikai értékek"        link="Boolean_Constants"/>
+        </menu>
         <menu title="Preferencia változók"  link="Preference_Variables"/>
         <menu title="Környezeti változók - Environment" link="Environment_Variables"/>
       </menu>

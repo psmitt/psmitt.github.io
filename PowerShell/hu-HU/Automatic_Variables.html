@@ -13,112 +13,29 @@
 <article>
   <h1>Automatikus változók</h1>
   A PowerShell parancsértelmező működése során keletkező, a parancsértelmező
-  által karbantartott és a felhasználó által módosíthatatlan,
-  a parancsértelmező állapotát leíró változókat automatikus változóknak
-  nevezzük. Az automatikus változók a felhasználói változókhoz hasonlóan
-  a <i>Variable</i> adattárban találhatók.
-
-  A felhasználói, automatikus és preferencia változók a <i>Variable</i>
-  adattárban jönnek létre, amelyben nincsenek tárhelyek: minden adatelem
-  a <kbd>Variable:</kbd> gyökérmeghajtón tárolódik.
-  A PowerShell indításakor nincsenek felhasználói változók, hacsak a
-  <kbd>profile.ps1</kbd> szkript létre nem hoz néhányat. A PowerShell
-  munkamenet befejeződésekor pedig minden felhasználói változó megszűnik.
+  által karbantartott, és a parancsértelmező állapotát leíró változókat
+  automatikus változóknak nevezzük. Az automatikus változók a felhasználói
+  változókhoz hasonlóan a <i>Variable</i> adattárban találhatók.
+  Módosításuktól óvakodjunk, mert az kiszámíthatatlan működési zavarhoz vezethet.
   <p>
-  A felhasználói változók kezelésére általában az <kbd>=</kbd> hozzárendelő
-  operátort használjuk, de vannak olyan opciók, amelyek csak parancsmaggal
-  állíthatók be.
-  <p>
-  <table class="wide">
-    <tr>
-      <th>Feladat</th>
-      <th>Alapparancs</th>
-      <th>Önálló parancsmag</th>
-    </tr>
-    <tr>
-      <td>Változók felderítése</td>
-      <td><kbd>Get-ChildItem</kbd></td>
-      <td><kbd>Get-Variable</kbd></td>
-    </tr>
-    <tr>
-      <td>Változók létrehozása</td>
-      <td><kbd>New-Item</kbd></td>
-      <td><kbd>New-Variable</kbd></td>
-    </tr>
-    <tr>
-      <td>Változók módosítása</td>
-      <td><kbd>Set-Item</kbd></td>
-      <td><kbd>Set-Variable</kbd></td>
-    </tr>
-    <tr>
-      <td>Változók másolása</td>
-      <td><kbd>Copy-Item</kbd></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Változók értékének törlése</td>
-      <td><kbd>Clear-Item</kbd></td>
-      <td><kbd>Clear-Variable</kbd></td>
-    </tr>
-    <tr>
-      <td>Változók törlése</td>
-      <td><kbd>Remove-Item</kbd></td>
-      <td><kbd>Remove-Variable</kbd></td>
-    </tr>
-  </table>
-  <p>
-  A <kbd>New-Variable</kbd> parancsmag egyik érdekessége, hogy a <kbd>-Scope</kbd>
-  paraméternek nemcsak a megszokott hatóköri neveket adhatjuk át, hanem egy
-  természetes számmal jelezhetjük, hogy az aktuálistól számított hányadik
-  főkörnyezetben (<i>parent scope</i>) szeretnénk a változót létrehozni.
-  Az alapértelmezett környezet a <kbd>local:</kbd>, vagyis a <kbd>-Scope 0</kbd>.
-  <p>
-  A <kbd>New-Variable</kbd> parancsmag az
-  <a href="../index.html?locale=hu-HU&article=Alias_Provider" target="_top"
-  >álneveknél</a> megismert <kbd>-Option</kbd> mellett egy
-  <kbd>-Visibility</kbd> paraméterrel is rendelkezik, amit ha <kbd>Private</kbd>
-  értékre állítunk, akkor a változót az őt létrehozó környezetben sem felderíteni,
-  sem használni nem lehet, viszont az alkörnyezetekben elérhető marad;
-  pont fordítva működik tehát, mint az <kbd>-Option Private</kbd> opció.
-  Ha mindkét paraméternek átadjuk a <kbd>Private</kbd> értéket, akkor a
-  változó használhatatlanná válik.
-  <p>
-  A <kbd>Copy-Item</kbd> parancsmag helyett egyszerű értékadással szoktunk
-  változókat másolni, aminek a működése megegyezik a parancsmag működésével:
-  a másolat nem kapja meg az eredeti változónak sem a <kbd>.Description</kbd>,
-  sem az <kbd>.Option</kbd>, sem a <kbd>.Visibility</kbd> tulajdonságát;
-  mindössze az értéke (<kbd>.Value</kbd>) másolódik át.
-  <p>
-  A <kbd>Clear-Variable</kbd> törli a <kbd>-Scope</kbd> környezetben a
-  megadott változók tartalmát. A változók nem szűnnek meg, de értékük a
-  <strong>semmi</strong> jelentésű <kbd>$null</kbd> automatikus változó
-  értékével lesz azonos. Ahhoz, hogy a változó mint adatelem ténylegesen
-  megszűnjön, a <kbd>Remove-Variable</kbd> paranccsal kell törölni azt.
-  <p>
-  Mindezek alapján most már pontos különbséget tehetünk a változó, a változó neve,
-  és a változó értéke között, ami a hivatkozott memóriaobjektumot jelenti.
+  Amennyiben a profil szkriptünk nem hoz létre felhasználói változókat, a
+  PowerShell elindítása után a <kbd>Get-Variable</kbd> parancs az összes
+  automatikus (és preferencia) változót listázza. Ezek között nemcsak
+  <kbd>[PSVariable]</kbd> típusú objektumok vannak.
   <figure>
-    <img src="img/User variable object.png"/>
-    <figcaption>User variable object</figcaption>
+    <img src="img/Counting automatic and preference variable types.png"/>
+    <figcaption>Counting automatic and preference variable types</figcaption>
   </figure>
-  A felhasználói változók <kbd>[PSVariable]</kbd> típusú objektumok,
-  amelyeknek neve (<kbd>.Name</kbd>) és értéke (<kbd>.Value</kbd>) van.
-  A változó objektumot a <kbd>Get-Variable</kbd> parancsmaggal érhetjük el.
-  Ennek a parancsmagnak a <kbd>-ValueOnly</kbd> kapcsolójával a változó értékét
-  kapjuk vissza: azt az objektumot, amelyre a <kbd>$</kbd> dollárjellel és
-  a változó nevével is hivatkozhatunk.
+
   <nav>
-    <a href="../index.html?locale=hu-HU&article=Automatic_Variables" target="_top"
-      >Automatikus változók</a>
+    <a href="../index.html?locale=hu-HU&article=Null_Variable" target="_top"
+      >$null - a változó, aminek nincs értéke</a>
     <p>
-    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_variables"
-     target="_blank">Mik azok a változók?</a>
+    <a href="../index.html?locale=hu-HU&article=Preference_Variables" target="_top"
+      >Preferencia változók</a>
     <p>
-    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_variable_provider"
-     target="_blank">A változók adattára</a>
-    <p>
-    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles"
-     target="_blank">PowerShell felhasználói profil létrehozása</a>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables"
+     target="_blank">Az automatikus változók teljes listája és leírása</a>
   </nav>
 </article>
 </body>

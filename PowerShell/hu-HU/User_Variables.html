@@ -20,8 +20,10 @@
   munkamenet befejeződésekor pedig minden felhasználói változó megszűnik.
   <p>
   A felhasználói változók kezelésére általában az <kbd>=</kbd> hozzárendelő
-  operátort használjuk, de vannak olyan opciók, amelyek csak parancsmaggal
-  állíthatók be.
+  operátort használjuk, de vannak olyan tulajdonságok is, amelyek csak
+  parancsmaggal állíthatók be. (Ennek ellenkezője is igaz, például egy
+  változó típusosságát csak a típunév után írt hozzárendelő operátoros
+  kifejezéssel tudjuk beállítani.)
   <p>
   <table class="wide">
     <tr>
@@ -89,8 +91,14 @@
   értékével lesz azonos. Ahhoz, hogy a változó mint adatelem ténylegesen
   megszűnjön, a <kbd>Remove-Variable</kbd> paranccsal kell törölni azt.
   <p>
+  <strong>Figyelem!</strong> Típusos változók esetében a <kbd>$null</kbd>
+  hozzárendelése során automatikus típuskonverzió történik, ha ez lehetséges,
+  máskülönben a művelet hibaüzenettel meghiúsul! Típusos változó esetében
+  tehát a <kbd>Clear-Variable</kbd> nem törli, hanem megváltoztatja a változó
+  tartalmát a <kbd>$null</kbd> típuskonverziójának megfelelő értékre!
+  <p>
   Mindezek alapján most már pontos különbséget tehetünk a változó, a változó neve,
-  és a változó értéke között, ami a hivatkozott memóriaobjektumot jelenti.
+  és a változó értéke között, ami a hivatkozott memóriaobjektumot jelenti:
   <figure>
     <img src="img/User variable object.png"/>
     <figcaption>User variable object</figcaption>
@@ -103,7 +111,7 @@
   a változó nevével is hivatkozhatunk.
   <nav>
     <a href="../index.html?locale=hu-HU&article=Automatic_Variables" target="_top"
-      >Automatikus változók</a>
+     >Automatikus változók</a>
     <p>
     <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_variables"
      target="_blank">Mik azok a változók?</a>
@@ -113,6 +121,9 @@
     <p>
     <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles"
      target="_blank">PowerShell felhasználói profil létrehozása</a>
+    <p>
+    <a href="../index.html?locale=hu-HU&article=Null_Variable" target="_top"
+     >$null - a változó, aminek nincs értéke</a>
   </nav>
 </article>
 </body>

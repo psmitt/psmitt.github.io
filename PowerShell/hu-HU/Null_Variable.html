@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="hu-HU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1><kbd>$null</kbd> &mdash; a változó, aminek nincs értéke</h1>
+  A PowerShell számára minden létező dolog egy meghatározott típusú objektum.
+  A <kbd>$null</kbd> változó nem létező értéke képviseli az objektumok hiányát.
+  Maga a <kbd>$null</kbd> változó az egyetlen <kbd>[NullVariable]</kbd>
+  típusú objektum.
+  <p>
+  A <kbd>$null</kbd> értéke nem módosítható, és önmagán kívül semmivel sem
+  egyenlő. Az összehasonlító operátorok nem alakítják át típusos értékké,
+  ezért bármivel összehasonlítható.
+  <p>
+  Felhasználható
+  <ul>
+    <li>nem típusos változók értékének törlésére;
+    <li>helykitöltő elemként egy gyűjteményben;
+    <li>parancsok kimenetének elnyelésére, megsemmisítésére;
+    <li>nem definiált vagy tartalom nélküli változók ellenőrzésére;
+    <li>objektumok nem létező tulajdonságának ellenőrzésére;
+    <li>eredménytelen (kimenet nélküli) parancsok ellenőrzésére;
+  </ul>
+  <figure>
+    <img src="img/The $null variable and its usage.png"/>
+    <figcaption>The $null variable and its usage</figcaption>
+  </figure>
+  Kifejezések tagjaként, illetve típusos változókhoz vagy paraméterekhez
+  hozzárendelve a <kbd>$null</kbd> a megfelelő típusú értékké alakul át,
+  amennyiben ez lehetséges, máskülönben a művelet hibaüzenettel meghiúsul.
+  A <kbd>$null</kbd> értéke számként <kbd>0</kbd>, szövegként üres <kbd>''</kbd>,
+  logikailag pedig HAMIS értéket képvisel.
+  <figure>
+    <img src="img/Basic conversions of $null.png"/>
+    <figcaption>Basic conversions of $null</figcaption>
+  </figure>
+  Az automatikus típuskonverzió miatt számváltozók nem kaphatnak <kbd>$null</kbd>
+  értéket, mert az hozzárendeléskor a nulla számértékké alakul át.
+  Szöveges változókhoz rendelve a <kbd>$null</kbd> üres szöveggé változik,
+  tehát a szöveges változó értékét sem lehet egyszerűen törölni.
+  Annak ellenére, hogy kifejezésekben van logikai értéke, érdekes módon
+  logikai változókhoz nem lehet a <kbd>$null</kbd> értéket hozzárendelni.
+  <figure>
+    <img src="img/Assignment of $null to strongly typed variables.png"/>
+    <figcaption>Assignment of $null to strongly typed variables</figcaption>
+  </figure>
+  Tipikusan nem lehet <kbd>$null</kbd> értéket rendelni a <kbd>[ValueType]</kbd>
+  osztály leszármazottaihoz. Többek között ide tartoznak a számok, dátumok
+  és logikai értékek is. Ezeknek a típusú változóknak tehát az értéke nem
+  törölhető. A <kbd>[Nullable]</kbd> osztály azonban képes a <kbd>$null</kbd>
+  értéket is ezekhez a változókhoz hozzárendelhetővé, és ezáltal a változók
+  értékét törölhetővé tenni. Törölhető változótípusokat úgy készíthetünk,
+  hogy az eredeti típust kapcsos zárójelek között átadjuk a <kbd>[Nullable]</kbd>
+  osztálynak, pl. <kbd>[Nullable[Int]]</kbd>, <kbd>[Nullable[Boolean]]</kbd>,
+  <kbd>[Nullable[DateTime]]</kbd> stb.
+  <figure>
+    <img src="img/Nullable variables.png"/>
+    <figcaption>Nullable variables</figcaption>
+  </figure>
+  A <kbd>[String]</kbd> típus azonban nem leszármazottja a <kbd>[ValueType]</kbd>
+  osztálynak, emiatt nem készíthetünk belőle a fenti módon törölhető értékű
+  típusos változót. De nincs is rá szükség! Van egy különleges objektum,
+  amelynek a <kbd>.ToString()</kbd> metódusa <kbd>$null</kbd> értéket ad vissza,
+  és ezáltal, ha szöveges változóhoz társítjuk, akkor a szöveges változó értéke
+  <kbd>$null</kbd> lesz, vagyis törlődik. Ez a különleges objektum a
+  <kbd>[NullString]</kbd> osztály egyetlen példánya, és egyben annak statikus
+  <kbd>::Value</kbd> tulajdonsága.
+  <figure>
+    <img src="img/Using the NullString.png"/>
+    <figcaption>Using the NullString</figcaption>
+  </figure>
+  A PowerShell a nemlétező változókat alapértelmezetten mint nemlétező
+  objektumokat értelmezi, tehát a kifejezésekben mint <kbd>$null</kbd> értéket
+  veszi számításba. A <kbd>Set-PSDebug -Strict</kbd> paranccsal azonban
+  bekapcsolható, hogy a nem létező változókra való hivatkozás hibajelzést okozzon.
+  Ez a viselkedés a <kbd>Set-PSDebug -Off</kbd> paranccsal kikapcsolható.
+  <figure>
+    <img src="img/Set-PSDebug -Strict.png"/>
+    <figcaption>Set-PSDebug -Strict</figcaption>
+  </figure>
+  <nav>
+    <a href="../index.html?locale=hu-HU&article=Boolean_Constants" target="_top"
+      >Logikai értékek</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables"
+     target="_blank">Az automatikus változók teljes listája és leírása</a>
+  </nav>
+</article>
+</body>
+</html>
