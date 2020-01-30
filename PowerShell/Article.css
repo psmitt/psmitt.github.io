@@ -30,6 +30,10 @@ article {
   hyphenate-limit-zone: 8%;
 }
 
+article i {
+  padding-right: 2px;
+}
+
 h1, h2 {
   font-family: 'Barlow Semi Condensed', sans-serif;
   font-weight: bold;

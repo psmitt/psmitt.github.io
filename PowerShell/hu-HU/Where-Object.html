@@ -23,9 +23,9 @@
   A <kbd>Where-Object</kbd> szűrőutasítás legegyszerűbb alakja a következő:
   <code>Where-Object &lt;Property&gt; &lt;ComparisonOperator&gt; &lt;Value&gt;</code>
   A parancsmag neve után tehát meg kell adni a tulajdonság nevét
-  (<i>Property&thinsp;</i>), amelyet minden egyes objektum esetén a jelzett módon
-  (<i>ComparisonOperator&thinsp;</i>) összehasonlítunk a megadott értékkel
-  (<i>Value&thinsp;</i>).
+  (<i>Property</i>), amelyet minden egyes objektum esetén a jelzett módon
+  (<i>ComparisonOperator</i>) összehasonlítunk a megadott értékkel
+  (<i>Value</i>).
   Ahhoz, hogy a kiadott parancs könnyebben érthető, megjegyezhető, a beszélt
   (angol) nyelvhez jobban idomuló legyen, a parancsmag teljes neve a
   <kbd>Where</kbd> rövidítéssel is helyettesíthető.
@@ -42,19 +42,19 @@
   megkülönböztethetők, mert a tagadó formában szerepel az angol <i>not</i>
   tagadószó. Két alapvető fajtájuk: a típus-összehasonlító operátorok
   (<i>type operators</i>) és a szöveges adatok összehasonlítására
-  (<i>string comparison</i>&thinsp;) is alkalmas operátorok.
+  (<i>string comparison</i>) is alkalmas operátorok.
   <p>
   Utóbbiaknak három változata van: az alapváltozat mellett (pl. <kbd>-eq</kbd>),
   amely alapértelmezetten nem érzékeny a kis- és nagybetűk eltérésére
-  (<i>case insensitive&thinsp;</i>), létezik a betűérzékeny változat, amely
+  (<i>case insensitive</i>), létezik a betűérzékeny változat, amely
   <kbd>c</kbd> karakterrel kezdődik (pl. <kbd>-ceq</kbd>), és a jelzetten
   nem betűérzékeny változat, amelyik <kbd>i</kbd>-vel (pl. <kbd>-ieq</kbd>).
   Maguk az operátorok egyébként kisbetűkkel és nagybetűkkel egyaránt írhatók
   (pl. <kbd>-Eq</kbd>, <kbd>-EQ</kbd>).
   <p>
   A szövegeket összehasonlító operátorok jobb oldalán lévő minta (<i>pattern</i>)
-  bizonyos esetekben reguláris kifejezés (<i>regular expression&thinsp;</i>)
-  is lehet, más esetekben helyettesítő karaktereket (<i>wildcards&thinsp;</i>)
+  bizonyos esetekben reguláris kifejezés (<i>regular expression</i>)
+  is lehet, más esetekben helyettesítő karaktereket (<i>wildcards</i>)
   is tartalmazhat.
   <table class="wide">
     <tr>
@@ -141,7 +141,7 @@
   összekapcsolva egyetlen összetett feltételhez jutunk. Ezt azonban a PowerShell
   szabályai szerint nem írhatjuk egyszerűen a <kbd>Where-Object</kbd> parancsmag
   után: az összetett feltételeket kapcsos zárójelek között, úgynevezett
-  <strong>blokkban</strong> (<i>ScriptBlock&thinsp;</i>) kell megadni.
+  <strong>blokkban</strong> (<i>ScriptBlock</i>) kell megadni.
   Egy blokkban egy objektum tulajdonságára csak az objektum megjelölésével lehet
   hivatkozni; nem elegendő tehát leírni a tulajdonság nevét, hanem azt is meg
   kell mondani, melyik objektum az, amelynek a tulajdonságait éppen vizsgáljuk.
@@ -151,7 +151,7 @@
   További tudnivaló, hogy a blokkban átadott kifejezést a parancsértelmező
   <strong>kifejezés módban</strong>
   (<i><a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parsing"
-  target="_blank">expression mode&thinsp;</a></i>) fogja olvasni, ezért a
+  target="_blank">expression mode</a></i>) fogja olvasni, ezért a
   szövegadatokat kötelező
   <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_quoting_rules"
   target="_blank">megfelelően idézőjelezni</a>.
@@ -165,7 +165,7 @@
   tesztelhető, amelynek logikai értékű (IGAZ vagy HAMIS) végeredménye lehet.
   <h2>A szűrés számbeli korlátozása, objektumok szétválogatása</h2>
   A csővezetéken egymás után érkező objektumok együtt egyetlen gyűjteményt alkotnak.
-  Ennek a gyűjteménynek (<i>Array&thinsp;</i>) magának is van egy <kbd>.Where</kbd>
+  Ennek a gyűjteménynek (<i>Array</i>) magának is van egy <kbd>.Where</kbd>
   metódusa, amely ugyanazon a módon képes egy blokk-kifejezéssel szűrni, mint
   a <kbd>Where-Object</kbd> parancsmag. Ehhez a blokkot mindössze közvetlenül a
   metódus neve után kell írni, hogy közöttük szóköz ne legyen:

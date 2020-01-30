@@ -15,7 +15,7 @@
   A változók elnevezett memóriaobjektumok. Mondhatjuk, hogy a változó
   az objektum  neve, vagy hogy az objektum a változó értéke, esetleg tartalma.
   Objektumok elnevezésére, azaz változók létrehozására megvannak a megfelelő
-  parancsmagok is, de a legtöbbször a hozzárendelő (<i>assignment&thinsp;</i>)
+  parancsmagok is, de a legtöbbször a hozzárendelő (<i>assignment</i>)
   operátor segítségével adunk nevet egy objektumnak vagy adunk értéket egy
   változónak.
   <figure>
@@ -25,14 +25,14 @@
   Egy <a href="https://psmitt.github.io/grammar/PowerShell#VariableExpression"
   target="_blank">változókifejezés</a> mindig a <kbd>$</kbd> dollárjellel
   kezdődik, amit opcionálisan egy kettőspontra végződő meghajtónév
-  (<i>drive&thinsp;</i>) vagy egy hatókör-meghatározás (<i>scope&thinsp;</i>)
+  (<i>drive</i>) vagy egy hatókör-meghatározás (<i>scope</i>)
   követhet, végül a változó neve következik betűkből és számokból,
   de az aláhúzásjel és a kérdőjel használata is megengedett. Sőt!
   Dollárjel után kapcsos zárójelek között bármilyen karakterekből álló
   nevet is adhatunk egy változónak, ha ezt a kód olvashatósága megkívánja.
   <p>
   Egy változóban alapértelmezetten bármilyen típusú objektumot tárolhatunk,
-  és menet közben bármikor módosulthat ugyanannak a változónak a tartalma,
+  és menet közben bármikor módosulhat ugyanannak a változónak a tartalma,
   vagy akár a tárolt tartalom típusa is. Ugyanaz a változó egyszer jelenthet
   egy egész számot, másszor egy dátumot, harmadszor egy szöveges adatot.
   Ez a változékonyság azonban nehézséget okozhat a kód megértésében,
@@ -54,15 +54,15 @@
   adattárak adatelemeire &mdash; a fájlrendszer esetén ez mindig az aktuális
   mappa fájljaira vonatkozik.
   <figure>
-    <img src="img/Access content of another provider's path.png"/>
-    <figcaption>Access content of another provider's path</figcaption>
+    <img src="img/Access content of another provider's item.png"/>
+    <figcaption>Access content of another provider's item</figcaption>
   </figure>
   A változók alapértelmezetten csak abban a környezetben elérhetők, amelyben
   létrehoztuk őket. A PowerShell parancssori ablak indításakor például a
   <kbd>global:</kbd> környezetbe érkezünk, de egy szkriptfájl végrehajtása során
   már egy <kbd>script:</kbd> alkörnyezetben vagyunk. Ha egy alkörnyezetben
-  (<i>child scope&thinsp;</i>) létrehozunk egy ugyanolyan nevű változót,
-  mint ami a főkörnyezetben (<i>parent scope&thinsp;</i>) is létezik,
+  (<i>child scope</i>) létrehozunk egy ugyanolyan nevű változót,
+  mint ami a főkörnyezetben (<i>parent scope</i>) is létezik,
   akkor a helyi (<kbd>local:</kbd>) változó "eltakarja" a főkörnyezeti
   változót, és hatóköri hivatkozás nélkül nem is érhetjük azt el.
   <figure>
@@ -93,8 +93,8 @@
     <li><strong>Felhasználói változók</strong> azok, amelyeket a felhasználók
         a saját céljaikra hoznak létre és manipulálnak.
   </ul>
-  A felhasználói, automatikus és preferencia változók a <i>Variable&thinsp;</i>
-  adattárban, a környezeti változók pedig az <i>Environment&thinsp;</i>
+  A felhasználói, automatikus és preferencia változók a <i>Variable</i>
+  adattárban, a környezeti változók pedig az <i>Environment</i>
   adattárban találhatók.
   <nav>
     <a href="../index.html?locale=hu-HU&article=User_Variables" target="_top"

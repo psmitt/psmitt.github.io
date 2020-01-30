@@ -14,21 +14,21 @@
   <h1>Tárolt objektumok egyedi azonosítói: az adatelérési utak</h1>
   Azokat a parancsmagokat, amelyekkel kifejezetten a PowerShell-hez kifejlesztett,
   hierarchikus felépítésű <kbd>PSProvider</kbd> adattár-szolgáltatók által tárolt
-  adatelemeket kezeljük, a PowerShell alapparancsainak (<i>core commands&thinsp;</i>)
+  adatelemeket kezeljük, a PowerShell alapparancsainak (<i>core commands</i>)
   nevezzük. Az adattárakban tárolt adatelemeket egyedi azonosítóját
-  <strong>adatelérési útnak</strong> (<i>Path&thinsp;</i>) hívjuk.
+  <strong>adatelérési útnak</strong> (<i>Path</i>) hívjuk.
   <p>
   Egy adatelérési út lehet abszolút vagy relatív. Egy abszolút adatelérési út
   a hierarchikus (faszerkezetű) adattár gyökerénél kezdődik, amit meghajtónak
-  (<i>PSDrive&thinsp;</i>) nevezünk. Minden meghajtónak egyedi megnevezése van.
+  (<i>PSDrive</i>) nevezünk. Minden meghajtónak egyedi megnevezése van.
   Az abszolút adatelérési út a meghajtótól az egymásba ágyazott tárhelyeken
-  (<i>Location&thinsp;</i>) keresztül vezet egészen a tárolt adatelemig
+  (<i>Location</i>) keresztül vezet egészen a tárolt adatelemig
   (<i>Item</i>), és annak a nevével végződik. A meghajtó elé tetszés szerint
   feltüntethető az adattár neve is, tehát egy abszolút elérési út teljes
   szerkezete a következőképpen írható le:
   <code>Path = [&lt;PSProvider&gt;::][&lt;PSDrive&gt;:]\[&lt;Location&gt;\…]&lt;Item&gt;</code>
   Abszolút elérési utat láthatunk például a parancssor elejét jelző
-  ún. <i>prompt&thinsp;</i> karakterláncban.
+  ún. <i>prompt</i> karakterláncban.
   <figure>
     <img src="img/Command Prompt.png"/>
     <figcaption>Command Prompt</figcaption>
