@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="hu-HU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>A parancsértelmező alapjellemzői, tulajdonságai</h1>
+  A PowerShell parancsértelmezőnek mint szoftvernek az alapvető jellemzőit
+  leíró adatokat számos automatikus változó, közöttük több konstans hordozza.
+  <h2>A rendszerkörnyezetet jellemző automatikus változók</h2>
+  A lehetséges három platform közül, amelyekre a .NET keretrendszer és a
+  PowerShell parancsértelmező telepíthető, annak a logikai változója lesz
+  IGAZ értékű, amelyiken az elindított parancsértelmező éppen fut.
+  A logikai változók neve: <kbd>$IsLinux</kbd>, <kbd>$IsMacOS</kbd>,
+  <kbd>$IsWindows</kbd>.
+  <figure>
+    <img src="img/Platform data.png"/>
+    <figcaption>Platform data</figcaption>
+  </figure>
+  A .NET keretrendszer része a nyelvi futtatókörnyezet (<i>Common Language
+  Runtime</i>, CLR), amely a köztes nyelvre lefordított PowerShell parancsok
+  végrehajtásáról gondoskodik. Ha a .NET keretrendszer platformfüggetlen,
+  akkor az <kbd>$IsCoreCLR</kbd> logikai változó értéke IGAZ, és ez
+  egyébként a PowerShell 6-os verziójától kezdődően mindig teljesül.
+  <h2>A felhasználói profilt azonosító automatikus változók</h2>
+  A PowerShell parancsértelmezőt futtató felhasználó saját könyvtárának
+  (az operációs rendszer felhasználói profil mappájának) abszolút elérési útját
+  mint szöveges adatot a <kbd>$HOME</kbd> változó tartalmazza.
+  <p>
+  A felhasználó operációs rendszer profiljának területi beállításait a
+  <kbd>$PSCulture</kbd>, nyelvi beállításait a <kbd>$PSUICulture</kbd>
+  változók tükrözik.
+  <figure>
+    <img src="img/User data.png"/>
+    <figcaption>User data</figcaption>
+  </figure>
+  A felhasználó PowerShell profil szkript állományának abszolút elérési útját
+  mint szöveges adatot a <kbd>$PROFILE</kbd> változó tartalmazza: ebben a
+  szriptfájlban kell elhelyezni a PowerShell indításakor automatikusan lefutó
+  parancsokat, tehát itt kell definiálni az induláskor létrehozandó változókat is.
+  <h2>A PowerShell parancssori eszközt jellemző automatikus változók</h2>
+  A PowerShell telepítési könyvtárának abszolút elérési útját mint szöveges adatot
+  a <kbd>$PSHOME</kbd> változó tartalmazza. Az elindított parancsértelmező
+  operációs rendszerbeli folyamatazonosítóját mint 32 bites egész számot a
+  <kbd>$PID</kbd> változóban érhetjük el; a folyamatról részletes leírást
+  kaphatunk a <code>Get-Process -Id $PID | Select *</code> paranccsal.
+  <figure>
+    <img src="img/pwsh process details.png"/>
+    <figcaption>PowerShell process details</figcaption>
+  </figure>
+  A PowerShell eszköz <kbd>$PSVersion</kbd> verziótáblája azonosítja
+  a parancsértelmező kiadását és verzióját, az operációs rendszerrel együtt.
+  A <kbd>$ShellId</kbd> magának a parancsértelmező folyamatnak az azonosítója,
+  amivel a felhasználó a <i>Host</i> gazdaprogram közvetítésével kommunikál.
+  A gazdaprogram tulajdonságait a <kbd>$Host</kbd> változó hordozza &mdash;
+  ennek az automatikus változónak az értékét adja vissza a <kbd>Get-Host</kbd>
+  utasítás is.
+  <figure>
+    <img src="img/PowerShell version table, shell, and host.png"/>
+    <figcaption>PowerShell version table, shell, and host</figcaption>
+  </figure>
+  <nav>
+    <a href="../index.html?locale=hu-HU&article=State_Variables" target="_top"
+     >A PowerShell parancsértelmező működési változói, állapotváltozói</a>
+    <p>
+    <a href="../index.html?locale=hu-HU&article=Environment_Variables" target="_top"
+     >Környezeti változók</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables"
+     target="_blank">Az automatikus változók teljes listája és leírása</a>
+  </nav>
+</article>
+</body>
+</html>

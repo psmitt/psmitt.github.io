@@ -63,6 +63,8 @@
           <menu title="Áttekintés"  link="Automatic_Variables"/>
           <menu title="$null - a változó, aminek nincs értéke" link="Null_Variable"/>
           <menu title="$true, $false - logikai értékek"        link="Boolean_Constants"/>
+          <menu title="A parancsértelmező alapjellemzői"       link="PS_Variables"/>
+          <menu title="A parancsértelmező állapotváltozói"     link="State_Variables"/>
         </menu>
         <menu title="Preferencia változók"  link="Preference_Variables"/>
         <menu title="Környezeti változók - Environment" link="Environment_Variables"/>

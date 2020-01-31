@@ -14,47 +14,33 @@
   <h1>Logikai értékek</h1>
   Logikai, vagyis <kbd>[Boolean]</kbd> típusú kifejezések lehetséges értékeit
   két konstans képviseli: az IGAZ jelentésű <kbd>$true</kbd>, és a HAMIS
-  jelentésű <kbd>$false</kbd>.
+  jelentésű <kbd>$false</kbd>. Mindkettő <kbd>[PSVariable]</kbd> típusú
+  változóobjektum.
   <figure>
-    <img src="img/The Boolean Constants.png"/>
-    <figcaption>The Boolean Constants</figcaption>
+    <img src="img/Boolean Constants.png"/>
+    <figcaption>Boolean Constants</figcaption>
   </figure>
   A két logikai konstans számként az 1, illetve 0 értékeket képviselik,
-  szöveges adattá alakítva pedig az angol <i>True</i>, illetve <i>False</i>
-
-
-
-  A PowerShell számára minden létező dolog egy meghatározott típusú objektum.
-  A <kbd>$null</kbd> változó nem létező értéke képviseli az objektumok hiányát.
-  Maga a <kbd>$null</kbd> változó az egyetlen <kbd>[NullVariable]</kbd>
-  típusú objektum. Értéke nem módosítható.
+  szövegkonverzióval pedig az angol <i>True</i>, illetve <i>False</i> szavakká
+  alakulnak át.
   <p>
-  Felhasználható
-  <ul>
-    <li>más változók értékének törlésére;
-    <li>paraméterek alapértelmezett értékének törlésére;
-    <li>helykitöltő elemként egy gyűjteményben;
-    <li>helykitöltő argumentumként egy függvényhívásban;
-    <li>parancsok kimenetének elnyelésére, megsemmisítésére.
-  </ul>
-  A PowerShell a nemlétező változókat alapértelmezetten mint nemlétező
-  objektumokat értelmezi, tehát a kifejezésekben mint <kbd>$null</kbd> értéket
-  veszi számításba. A <kbd>Set-PSDebug -Strict</kbd> paranccsal azonban
-  bekapcsolható, hogy a nem létező változókra való hivatkozás hibajelzést okozzon.
-  Ez a viselkedés a <kbd>Set-PSDebug -Off</kbd> paranccsal kikapcsolható.
+  Más típusú adatok logikai értékké alakításakor a <kbd>$null</kbd> konstans,
+  a <kbd>0</kbd> szám és az üres szöveg HAMISSÁ, a többi objektum (amennyiben
+  a konverzió egyáltalán lehetséges) IGAZZÁ válik.
   <figure>
-    <img src="img/Set-PSDebug -Strict.png"/>
-    <figcaption>Set-PSDebug -Strict</figcaption>
+    <img src="img/Boolean conversions.png"/>
+    <figcaption>Boolean conversions</figcaption>
   </figure>
-  A <kbd>$null</kbd> értéke számként <kbd>0</kbd>, szövegként üres <kbd>''</kbd>,
-  logikailag pedig HAMIS értéket képvisel. Önmagán kívül semmivel sem egyenlő.
+  Logikai változót csak a logikai értékek, illetve az 1 vagy 0 számok
+  hozzárendelésével lehet létrehozni; más típusú objektum vagy a <kbd>$null</kbd>
+  hozzárendelését csak közbevetőleges konverzióval lehet megoldani.
   <figure>
-    <img src="img/Basic conversions of $null.png"/>
-    <figcaption>Basic conversions of $null</figcaption>
+    <img src="img/Boolean assignment.png"/>
+    <figcaption>Boolean assignment</figcaption>
   </figure>
   <nav>
-    <a href="../index.html?locale=hu-HU&article=Automatic_Variables" target="_top"
-      >Preferencia változók</a>
+    <a href="../index.html?locale=hu-HU&article=Boolean_Constants" target="_top"
+      >A PowerShell parancsértelmező alapjellemzőit hordozó változók</a>
     <p>
     <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables"
      target="_blank">Az automatikus változók teljes listája és leírása</a>
