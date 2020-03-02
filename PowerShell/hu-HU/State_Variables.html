@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="hu-HU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>A parancsértelmező állapotváltozói</h1>
+  Az állapotváltozók a parancsértelmező működési állapotát,
+  a parancsvégrehajtás eredményességét és esetleges hibáit mutatják.
+  <h2>A parancsvégrehajtás előtti állapot</h2>
+  Tekintettel arra, hogy az adattárkezelő alapparancsok alapértelmezetten az
+  aktuális munkakönyvtár elemeire vonatkoznak, egy parancs kiadása előtt
+  érdemes meggyőződni arról, hogy éppen melyik adattár melyik tárhelyét látjuk.
+  Ez olyan alapvető információ, hogy a PowerShell prompt is állandóan jelzi.
+  Az aktuális munkakönytár elérési útját a <kbd>$PWD</kbd> állapotváltozó
+  tartalmazza.
+  <figure>
+    <img src="img/Current Working Directory.png"/>
+    <figcaption>Current Working Directory</figcaption>
+  </figure>
+  <h2>A parancsvégrehajtás alatti állapot</h2>
+  A <kbd>$PSItem</kbd> vagy röviden <kbd>$_</kbd> az éppen feldolgozás alatt
+  álló objektumra mutat a csővezetékben. A csővezetéken áthaladó elemeket
+  feldolgozó parancsmagok utasításblokkjaiban mindig ezzel az automatikus
+  változóval hivatkozunk a feldolgozandó objektumra.
+  <h2>A parancsvégrehajtás utáni állapot</h2>
+  A parancsvégrehajtás után a következő parancs kiadásakor az alábbi
+  automatikus változókat használhatjuk az előző parancsra vonatkozóan:
+  <p>
+  <table class="wide">
+    <tr>
+      <th>Változó</th>
+      <th>Jelentése (tartalma)</th>
+    </tr>
+    <tr>
+      <td><kbd>$^</kbd></td>
+      <td>Az előző parancs első eleme (pl. a kiadott parancs neve)</td>
+    </tr>
+    <tr>
+      <td><kbd>$$</kbd></td>
+      <td>Az előző parancs utolsó eleme (pl. a kiadott parancs utolsó paramétere
+          vagy argumentuma)</td>
+    </tr>
+    <tr>
+      <td><kbd>$?</kbd></td>
+      <td>Az előző parancs eredményességét jelző logikai változó</td>
+    </tr>
+    <tr>
+      <td><kbd>$LastExitCode</kbd></td>
+      <td>Az utoljára futtatott <strong>külső</strong> program kilépési kódja</td>
+    </tr>
+    <tr>
+      <td><kbd>$Error</kbd></td>
+      <td>Az eddig előforduló hibaüzenetek jegyzéke. A legutolsó hiba a lista elején van.</td>
+    </tr>
+    <tr>
+      <td><kbd>$StackTrace</kbd></td>
+      <td>A legutolsó hiba nyomkövetése a veremben.</td>
+    </tr>
+  </table>
+  <p>
+  <figure>
+    <img src="img/Stack trace for the most recent error.png"/>
+    <figcaption>Stack trace for the most recent error</figcaption>
+  </figure>
+  
+
+  <nav>
+    <a href="../index.html?locale=hu-HU&article=State_Variables" target="_top"
+     >A PowerShell parancsértelmező működési változói, állapotváltozói</a>
+    <p>
+    <a href="../index.html?locale=hu-HU&article=Environment_Variables" target="_top"
+     >Környezeti változók</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables"
+     target="_blank">Az automatikus változók teljes listája és leírása</a>
+  </nav>
+</article>
+</body>
+</html>
