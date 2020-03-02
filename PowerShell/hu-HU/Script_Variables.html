@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="hu-HU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Article.css">
+  <script src="../Article.js"></script>
+</head>
+<body>
+<article>
+  <h1>PowerShell szkriptek automatikus változói</h1>
+  Szkriptfájlok elindításakor a parancsértelmező állapotváltozói mellett
+  kifejezetten a szkiptre jellemző más automatikus változóknak is hasznát
+  vehetjük.
+  <p>
+  A <kbd>$PSScriptRoot</kbd> változó az elindított szkriptet tartalmazó mappára
+  mutat, amely alapul szolgálhat a mappában lévő más állományokra (pl.
+  importálandó modulokra) való hivatkozáshoz.
+  <p>
+  A futó szkript teljes elérési útját a <kbd>$PSCommandPath</kbd> változó tartalmazza.
+  <p>
+  A szkript meghívásakor felhasznált (definiált) paraméretek nevét és értékét a
+  <kbd>$PSBoundParameters</kbd>, míg a paraméterként nem definiált egyéb hívási
+  argumentumok értékét az <kbd>$args</kbd> automatikus változótömbök tartalmazák.
+  <nav>
+    <a href="../index.html?locale=hu-HU&article=Enumerator_Variables" target="_top"
+     >Felsoroló műveletek automatikus változói</a>
+    <p>
+    <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables"
+     target="_blank">Az automatikus változók teljes listája és leírása</a>
+  </nav>
+</article>
+</body>
+</html>

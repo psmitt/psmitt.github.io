@@ -26,6 +26,12 @@
     <figcaption>Current Working Directory</figcaption>
   </figure>
   <h2>A parancsvégrehajtás alatti állapot</h2>
+  A kiadott parancs számos jellemzőjét tartalmazza a <kbd>$MyInvocation</kbd>
+  automatikus változó a parancs szkriptbeli elhelyezkedésétől kezdve, a
+  csővezetékbeli pozicióján át, egészen a parancstörténetbeli sorszámáig
+  bezárólag. Természetesen magát a kiadott parancsot is visszaolvashatjuk
+  a változó <kbd>.MyCommand</kbd> tulajdonságából.
+  <p>
   A <kbd>$PSItem</kbd> vagy röviden <kbd>$_</kbd> az éppen feldolgozás alatt
   álló objektumra mutat a csővezetékben. A csővezetéken áthaladó elemeket
   feldolgozó parancsmagok utasításblokkjaiban mindig ezzel az automatikus
@@ -41,24 +47,25 @@
     </tr>
     <tr>
       <td><kbd>$^</kbd></td>
-      <td>Az előző parancs első eleme (pl. a kiadott parancs neve)</td>
+      <td>Az előző parancs első eleme (pl. a kiadott parancs neve).</td>
     </tr>
     <tr>
       <td><kbd>$$</kbd></td>
       <td>Az előző parancs utolsó eleme (pl. a kiadott parancs utolsó paramétere
-          vagy argumentuma)</td>
+          vagy argumentuma).</td>
     </tr>
     <tr>
       <td><kbd>$?</kbd></td>
-      <td>Az előző parancs eredményességét jelző logikai változó</td>
+      <td>Az előző parancs eredményességét jelző logikai változó.</td>
     </tr>
     <tr>
       <td><kbd>$LastExitCode</kbd></td>
-      <td>Az utoljára futtatott <strong>külső</strong> program kilépési kódja</td>
+      <td>Az utoljára futtatott <strong>külső</strong> program kilépési kódja.</td>
     </tr>
     <tr>
       <td><kbd>$Error</kbd></td>
-      <td>Az eddig előforduló hibaüzenetek jegyzéke. A legutolsó hiba a lista elején van.</td>
+      <td>Az eddig előforduló hibaüzenetek jegyzéke.<br>
+          A legutolsó hiba a lista elején van.</td>
     </tr>
     <tr>
       <td><kbd>$StackTrace</kbd></td>
@@ -70,14 +77,9 @@
     <img src="img/Stack trace for the most recent error.png"/>
     <figcaption>Stack trace for the most recent error</figcaption>
   </figure>
-  
-
   <nav>
-    <a href="../index.html?locale=hu-HU&article=State_Variables" target="_top"
-     >A PowerShell parancsértelmező működési változói, állapotváltozói</a>
-    <p>
-    <a href="../index.html?locale=hu-HU&article=Environment_Variables" target="_top"
-     >Környezeti változók</a>
+    <a href="../index.html?locale=hu-HU&article=Script_Variables" target="_top"
+     >PowerShell szkriptek automatikus változói</a>
     <p>
     <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables"
      target="_blank">Az automatikus változók teljes listája és leírása</a>

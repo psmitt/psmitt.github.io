@@ -65,6 +65,8 @@
           <menu title="$true, $false - logikai értékek"        link="Boolean_Constants"/>
           <menu title="A parancsértelmező alapjellemzői"       link="PS_Variables"/>
           <menu title="A parancsértelmező állapotváltozói"     link="State_Variables"/>
+          <menu title="Szkriptek automatikus változói"         link="Script_Variables"/>
+          <menu title="Felsoroló műveletek állapotváltozói"    link="Enumerator_Variables"/>
         </menu>
         <menu title="Preferencia változók"  link="Preference_Variables"/>
         <menu title="Környezeti változók - Environment" link="Environment_Variables"/>
